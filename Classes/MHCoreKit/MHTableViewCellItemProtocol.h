@@ -8,6 +8,7 @@
 //
 
 #import <Foundation/Foundation.h>
+#import "MHPrefixHeader.pch"
 
 @protocol MHTableViewCellItemProtocol <NSObject>
 

@@ -8,6 +8,8 @@
 
 #import <Foundation/Foundation.h>
 #import "MHTableViewCellItemProtocol.h"
+#import "MHPrefixHeader.pch"
+
 typedef enum : NSUInteger {
     MHTBCellSelectedStyleNone,
     MHTBCellSelectedStyleCustom,

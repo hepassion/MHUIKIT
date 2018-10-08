@@ -7,6 +7,8 @@
 //
 
 #import "MHH5Comunicator.h"
+#import "MHUtility.h"
+#import "NSString+Category.h"
 static MHH5Comunicator* instance = nil;
 
 @implementation MHH5Comunicator

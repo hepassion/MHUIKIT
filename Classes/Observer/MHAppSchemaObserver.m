@@ -7,6 +7,8 @@
 //
 
 #import "MHAppSchemaObserver.h"
+#import "NSDictionary+Category.h"
+#import "NSString+Category.h"
 
 @interface MHAppSchemaObserver ()
 

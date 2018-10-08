@@ -10,6 +10,7 @@
 #import "MHAsObservedObject.h"
 #import "MHAsPublicParamObject.h"
 #import "MHTaskManager.h"
+
 @interface MHAppSchemaObserver : NSObject
 + (instancetype)sharedInstance;
 
@@ -52,7 +53,7 @@
 - (id) syncOpenURL:(NSURL*)url;
 
 
-- (NSURL*) generateAppUrlWithSchemaName:(NSString*)schemaName;
+//- (NSURL*) generateAppUrlWithSchemaName:(NSString*)schemaName;
 
 
 

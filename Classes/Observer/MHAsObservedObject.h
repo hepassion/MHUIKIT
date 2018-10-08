@@ -7,6 +7,7 @@
 //
 
 #import <Foundation/Foundation.h>
+
 typedef id (^AppSchemaInvoke) (NSString* name, NSDictionary* parameters, UIViewController* viewController);
 
 @interface MHAsObservedObject : NSObject

@@ -7,6 +7,7 @@
 //
 
 #import "MHAsPublicParamObject.h"
+#import "NSDictionary+Category.h"
 
 @implementation MHAsPublicParamObject
 

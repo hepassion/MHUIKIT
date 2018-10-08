@@ -7,7 +7,8 @@
 //
 
 #import <UIKit/UIKit.h>
-
+#import "MHPrefixHeader.pch"
+#import "MHDataModel.h"
 @interface MHTableViewFooterViewModel : MHDataModel
 
 @property (nonatomic, strong) NSString* footerTitle;

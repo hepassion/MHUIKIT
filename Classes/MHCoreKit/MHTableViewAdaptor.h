@@ -8,7 +8,8 @@
 
 #import <Foundation/Foundation.h>
 #import "MHTableView.h"
-
+#import "MHPrefixHeader.pch"
+#import "MHTableViewCellItemProtocol.h"
 
 @protocol MHTableViewAdaptorDelegate <NSObject>
 
