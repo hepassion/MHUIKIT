@@ -14,7 +14,7 @@ Pod::Spec.new do |s|
   
   
 
-  s.author             = { "zhaomhgrdk" => "zhaomhgrdk@ccic-net.com.cn" }
+  s.author             = { "zhaomh" => "hepassion@163.com" }
   s.platform     = :ios, "8.0"
   s.source       = { :git => "https://github.com/hepassion/MHUIKIT.git", :tag => "#{s.version}" }
   s.requires_arc = true
