@@ -1,13 +1,16 @@
 //
-//  MHPrefixHeader.pch
-//  MHUIKIT
+//  MHUiKity.h
+//  test
 //
-//  Created by minghe on 2018/9/14.
+//  Created by minghe on 2018/10/8.
 //  Copyright © 2018年 minghe. All rights reserved.
 //
 
-#ifndef MHPrefixHeader_pch
-#define MHPrefixHeader_pch
+#ifndef MHUiKity_h
+#define MHUiKity_h
+
+
+
 
 #import "UIView+Utils.h"
 #import "UIImage+Category.h"
@@ -26,6 +29,10 @@
 #import "EncryptEncodeHelper.h"
 #import "MHUtility.h"
 #import "NSString+Category.h"
+#import "MHTableView.h"
+#import "UIView+Utils.h"
+
+
 #define StatusRect                                  [[UIApplication sharedApplication] statusBarFrame]
 #define Status_Bar_Height                            StatusRect.size.height
 #define NAVIGATION_BAR_DEFAULT_HEIGHT               44
@@ -59,5 +66,6 @@
 #define FIRST_NO_PER_PAGE               1
 
 
-#endif
 
+
+#endif /* MHUiKity_h */

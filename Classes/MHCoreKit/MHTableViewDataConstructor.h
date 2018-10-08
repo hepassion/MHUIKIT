@@ -7,7 +7,7 @@
 //
 
 #import <Foundation/Foundation.h>
-#import "MHPrefixHeader.pch"
+#import "MHUiKity.h"
 
 @interface MHTableViewDataConstructor : NSObject
 

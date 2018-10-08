@@ -7,7 +7,9 @@
 //
 
 #import <Foundation/Foundation.h>
-#import "MHPrefixHeader.pch"
+//#import "MHUiKity.h"
+//#import <Foundation/NSObject.h>
+//#import <Foundation/NSRange.h>
 
 @interface MHIndexPathArray : NSObject
 

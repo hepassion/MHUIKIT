@@ -8,9 +8,9 @@
 
 #import <Foundation/Foundation.h>
 #import "MHTableView.h"
-#import "MHPrefixHeader.pch"
+#import "MHIndexPathArray.h"
 #import "MHTableViewCellItemProtocol.h"
-
+#import "MHTableViewCell.h"
 @protocol MHTableViewAdaptorDelegate <NSObject>
 
 - (void) tableView:(UITableView *)tableView didSelectObject:(id<MHTableViewCellItemProtocol>)object rowAtIndexPath:(NSIndexPath *)indexPath;

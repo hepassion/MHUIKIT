@@ -7,7 +7,7 @@
 //
 
 #import <UIKit/UIKit.h>
-#import "MHPrefixHeader.pch"
+#import "MHUiKity.h"
 
 @interface MHViewController : UIViewController
 

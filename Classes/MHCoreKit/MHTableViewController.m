@@ -7,7 +7,7 @@
 //
 
 #import "MHTableViewController.h"
-#import "SecondViewController.h"
+
 @interface MHTableViewController ()<MHTableViewAdaptorDelegate>
 - (void) initialize;
 - (void) createTableView;

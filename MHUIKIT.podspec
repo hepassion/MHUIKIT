@@ -15,13 +15,13 @@ Pod::Spec.new do |s|
   
 
   s.author             = { "zhaomhgrdk" => "zhaomhgrdk@ccic-net.com.cn" }
-  s.platform     = :ios
+  s.platform     = :ios, "8.0"
   s.source       = { :git => "https://github.com/hepassion/MHUIKIT.git", :tag => "#{s.version}" }
-
+  s.requires_arc = true
 
 
   s.source_files  = "Classes", "Classes/**/*.{h,m}"
-  s.exclude_files = "Classes/Exclude"
+  # s.exclude_files = "Classes/Exclude"
 
   
 

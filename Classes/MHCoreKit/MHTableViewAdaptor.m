@@ -8,7 +8,8 @@
 
 #import "MHTableViewAdaptor.h"
 #import <objc/runtime.h>
-
+#import "MHTableViewHeaderView.h"
+#import "MHTableViewFooterView.h"
 @interface MHTableViewAdaptor ()
 - (NSInteger) numberOfSections;
 

@@ -8,7 +8,8 @@
 
 #import <Foundation/Foundation.h>
 #import "MHTableViewCellItemProtocol.h"
-#import "MHPrefixHeader.pch"
+#import <UIKit/UIKit.h>
+//#import "MHUiKity.h"
 
 typedef enum : NSUInteger {
     MHTBCellSelectedStyleNone,

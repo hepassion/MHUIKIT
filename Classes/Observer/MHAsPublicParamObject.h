@@ -8,6 +8,7 @@
 
 #import <Foundation/Foundation.h>
 #import "MHTaskObjectProtocol.h"
+#import <UIKit/UIKit.h>
 typedef void(^PublicParamInvoke) (NSString* name, NSString* value, UIViewController* viewController, void(^callback)(BOOL completed));
 @interface MHAsPublicParamObject : NSObject<MHTaskObjectProtocol>
 

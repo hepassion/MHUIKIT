@@ -7,7 +7,7 @@
 //
 
 #import "MHViewController.h"
-#import "MHPrefixHeader.pch"
+#import "MHUiKity.h"
 
 #define MHDefaultTitleColor   [UIColor blackColor]
 #define MHDefaultNavBackGroundColor   COLOR_ORANGE

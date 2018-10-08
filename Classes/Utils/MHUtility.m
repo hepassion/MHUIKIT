@@ -7,7 +7,7 @@
 //
 
 #import "MHUtility.h"
-
+#import <UIKit/UIKit.h>
 @implementation MHUtility
 
 + (NSString *)appUrlScheme {
