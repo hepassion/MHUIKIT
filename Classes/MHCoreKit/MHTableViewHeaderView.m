@@ -7,7 +7,7 @@
 //
 
 #import "MHTableViewHeaderView.h"
-#import "MHUiKity.h"
+#import "CommonDefine.h"
 @implementation MHTableViewHeaderViewModel
 
 @end

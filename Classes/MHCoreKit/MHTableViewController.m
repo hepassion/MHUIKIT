@@ -7,6 +7,7 @@
 //
 
 #import "MHTableViewController.h"
+#import "CommonDefine.h"
 
 @interface MHTableViewController ()<MHTableViewAdaptorDelegate>
 - (void) initialize;

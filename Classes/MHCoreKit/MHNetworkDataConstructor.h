@@ -8,7 +8,6 @@
 
 #import <Foundation/Foundation.h>
 #import "MHTableViewDataConstructor.h"
-#import "MHUiKity.h"
 
 @protocol MHNetworkDataConstructorDelegate;
 

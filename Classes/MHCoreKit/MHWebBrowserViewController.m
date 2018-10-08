@@ -8,6 +8,10 @@
 
 #import "MHWebBrowserViewController.h"
 #import "MHH5Comunicator.h"
+#import "CommonDefine.h"
+#import "UIView+Utils.h"
+#import "MHAppSchemaObserver.h"
+
 #define COLOR_HYH_RED                       [UIColor colorWithRed:227.0f/255.0f green:100.0f/255.0f blue:102.0f/255.0f alpha:1.0f]
 #define COLOR_HYH_BLUE                      [UIColor colorWithRed:65.0f/255.0f green:155.0f/255.0f blue:240.0f/255.0f alpha:1.0f]
 static NSString* JSHandler;

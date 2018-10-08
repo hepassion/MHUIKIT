@@ -7,7 +7,7 @@
 //
 
 #import "MHTableViewCell.h"
-#import "MHUiKity.h"
+#import "CommonDefine.h"
 @interface MHTableViewCell ()
 
 @property (nonatomic, strong)   UIView *topLine;

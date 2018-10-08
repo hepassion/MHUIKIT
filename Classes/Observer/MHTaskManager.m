@@ -8,7 +8,7 @@
 
 #import "MHTaskManager.h"
 #import "MHTaskQueue.h"
-#import "MHUiKity.h"
+#import "CommonDefine.h"
 @interface MHTaskManager ()
 @property (nonatomic, strong) NSMutableDictionary* dictionary;
 @property (nonatomic, copy) void(^taskQueueCallback)(MHTaskQueue* taskQueue, BOOL completed);

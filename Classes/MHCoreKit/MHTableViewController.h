@@ -7,7 +7,8 @@
 //
 
 #import "MHGlassMainViewController.h"
-#import "MHUiKity.h"
+#import "MHTableView.h"
+#import "MHTableViewAdaptor.h"
 
 typedef NS_ENUM(NSUInteger, MHTableViewStyle) {
     MHTableViewStyleNormal,

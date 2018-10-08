@@ -7,6 +7,8 @@
 //
 
 #import "MHTableViewFooterView.h"
+#import "CommonDefine.h"
+
 @implementation MHTableViewFooterViewModel
 @end
 

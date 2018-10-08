@@ -7,7 +7,10 @@
 //
 
 #import <Foundation/Foundation.h>
-#import "MHUiKity.h"
+#import "MHIndexPathArray.h"
+#import <UIKit/UIKit.h>
+#import "MHDataModel.h"
+#import "MHTableViewCell.h"
 
 @interface MHTableViewDataConstructor : NSObject
 

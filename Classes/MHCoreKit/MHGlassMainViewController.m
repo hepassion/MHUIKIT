@@ -7,6 +7,9 @@
 //
 
 #import "MHGlassMainViewController.h"
+#import "CommonDefine.h"
+#import "UIImage+Category.h"
+#import "UIView+Utils.h"
 #define MHNavigationBarButtonImageTextSpace         3.0f
 #define MHNavigationBarButtonDistanceToEdge         12.0f
 #define MHBackButtonTag                             11001
