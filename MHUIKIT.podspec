@@ -3,7 +3,7 @@ Pod::Spec.new do |s|
 
 
   s.name         = "MHUIKIT"
-  s.version      = "0.0.2"
+  s.version      = "0.0.3"
   s.summary      = "iOS一套UI开发框架"
   s.homepage     = "https://github.com/hepassion/MHUIKIT"
   s.license      = "MIT"
@@ -14,7 +14,7 @@ Pod::Spec.new do |s|
 
   s.requires_arc = true
   s.frameworks = "Foundation","UIKit"
-  #s.description  = "MHUIKIT,包含了一些控件封装，工具类等，可加快开发速度。"
+  s.description  = "MHUIKIT,包含了一些控件封装，工具类等，可加快开发速度。"
 
   
   
