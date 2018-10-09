@@ -87,13 +87,6 @@
 
 
 /**
- 自定义返回按钮颜色
- 
- @return 颜色
- */
-- (UIColor*) getNavigationBarBackButtonColor;
-
-/**
  重构NavigationBar。
  @param navigationBar 配置导航栏
  */

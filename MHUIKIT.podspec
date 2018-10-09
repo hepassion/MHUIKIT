@@ -18,37 +18,30 @@ Pod::Spec.new do |s|
   s.platform     = :ios, "8.0"
   s.source       = { :git => "https://github.com/hepassion/MHUIKIT.git", :tag => "#{s.version}" }
   s.requires_arc = true
+  s.frameworks = "Foundation","UIKit"
 
-
-  #s.source_files  = "Classes", "Classes/**/*.{h,m}"
-  s.public_header_files = 'Classes/MHUIKIT.h'
-  s.source_files = 'Classes/MHUIKIT.h'
-
-  # s.exclude_files = "Classes/Exclude"
-
-  
-  s.subspec 'MHCoreKit' do |cc|
-  cc.source_files = 'Classes/MHCoreKit/*.{h,m}'
-  cc.public_header_files = 'Classes/MHCoreKit/*.h'
-  end
-
-
-  
+  s.source_files = 'Classes/**/*.{h,m}'
 
 
 
   
-  s.subspec 'Observer' do |oo|
-  oo.source_files = 'Classes/Observer/*.{h,m}'
-  oo.public_header_files = 'Classes/Observer/*.h'
-  end
+  # s.subspec 'MHCoreKit' do |cc|
+  # cc.source_files        = 'Classes/MHCoreKit/*.{h,m}'
+  # cc.public_header_files = 'Classes/MHCoreKit/*.h'
+  # end
+
+  
+  # s.subspec 'Observer' do |oo|
+  # oo.source_files        = 'Classes/Observer/*.{h,m}'
+  # oo.public_header_files = 'Classes/Observer/*.h'
+  # end
 
 
 
-  s.subspec 'Utils' do |uu|
-  uu.source_files = 'Classes/Utils/*.{h,m}'
-  uu.public_header_files = 'Classes/Utils/*.h'
-  end
+  # s.subspec 'Utils' do |uu|
+  # uu.source_files        = 'Classes/Utils/*.{h,m}'
+  # uu.public_header_files = 'Classes/Utils/*.h'
+  # end
 
 
 

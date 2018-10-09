@@ -8,6 +8,7 @@
 
 #import <Foundation/Foundation.h>
 #import "EncryptEncodeHelper.h"
+
 #define AES_KEY                            @"nQAi2alQIVqLtXeI"            //AES加解密Key
 #define kDEF_USERID_COOKIE_KEY                  @"_m8k42bcDprEZceEU"           //用户ID的Cookie解密
 #define kDEF_TOKEN_COOKIE_KEY                   @"_tZBWFNXKoZzFfVgq"           //用户Token的Cookie解密

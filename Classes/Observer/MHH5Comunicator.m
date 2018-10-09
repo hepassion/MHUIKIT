@@ -9,6 +9,8 @@
 #import "MHH5Comunicator.h"
 #import "MHUtility.h"
 #import "NSString+Category.h"
+#import <WebKit/WKWebsiteDataStore.h>
+
 static MHH5Comunicator* instance = nil;
 
 @implementation MHH5Comunicator
@@ -22,7 +24,56 @@ static MHH5Comunicator* instance = nil;
     
     return instance ;
 }
-
++ (void)CleanCookies {
+    //清理webview cookie
+    if ([[UIDevice currentDevice].systemVersion floatValue] >= 9.0) {
+        NSSet *websiteDataTypes = [NSSet setWithArray:@[
+                                                        WKWebsiteDataTypeDiskCache,
+                                                        WKWebsiteDataTypeOfflineWebApplicationCache,
+                                                        WKWebsiteDataTypeMemoryCache,
+                                                        WKWebsiteDataTypeLocalStorage,
+                                                        WKWebsiteDataTypeCookies,
+                                                        WKWebsiteDataTypeSessionStorage,
+                                                        WKWebsiteDataTypeIndexedDBDatabases,
+                                                        WKWebsiteDataTypeWebSQLDatabases
+                                                        ]];
+        NSDate *dateFrom = [NSDate dateWithTimeIntervalSince1970:0];
+        [[WKWebsiteDataStore defaultDataStore] removeDataOfTypes:websiteDataTypes modifiedSince:dateFrom completionHandler:^{
+        }];
+    } else {
+        //清除UIWebView的缓存
+        [[NSURLCache sharedURLCache] removeAllCachedResponses];
+        NSURLCache * cache = [NSURLCache sharedURLCache];
+        [cache removeAllCachedResponses];
+        [cache setDiskCapacity:0];
+        [cache setMemoryCapacity:0];
+    }
+    
+    //移除共享cookies
+    NSHTTPCookie *cookie;
+    NSHTTPCookieStorage *storage = [NSHTTPCookieStorage sharedHTTPCookieStorage];
+    for (cookie in [storage cookies])
+    {
+        [storage deleteCookie:cookie];
+    }
+    
+    //删除cookie文件 iOS8+
+    NSString *libraryPath = [NSSearchPathForDirectoriesInDomains(NSLibraryDirectory, NSUserDomainMask, YES) objectAtIndex:0];
+    NSString *cookiesFolderPath = [libraryPath stringByAppendingString:@"/Cookies"];
+    NSError *errors;
+    [[NSFileManager defaultManager] removeItemAtPath:cookiesFolderPath error:&errors];
+}
++ (NSArray *)GetCookies {
+    //获取webview的cookie
+    if ([[UIDevice currentDevice].systemVersion floatValue] >= 9.0) {
+        [[WKWebsiteDataStore defaultDataStore] fetchDataRecordsOfTypes:@[WKWebsiteDataTypeCookies] completionHandler:^(NSArray<WKWebsiteDataRecord *> * _Nonnull arr) {
+        }];
+    }
+    
+    //获取共享cookie
+    NSHTTPCookieStorage *storage = [NSHTTPCookieStorage sharedHTTPCookieStorage];
+    return storage.cookies;
+}
 
 
 - (NSString *)appendUserInfoWithURL:(NSString *) urlString
