@@ -10,8 +10,8 @@ Pod::Spec.new do |s|
   s.author       = { "zhaomh" => "hepassion@163.com" }
   s.platform     = :ios, "8.0"
   s.source       = { :git => "https://github.com/hepassion/MHUIKIT.git", :tag => "#{s.version}" }
-  # s.source_files = 'Classes/*.h'
-  s.source_files = 'Classes/**/*.{h,m}'
+  s.source_files = 'Classes/*.h'
+  #s.source_files = 'Classes/**/*.{h,m}'
 
   s.requires_arc = true
   s.frameworks = "Foundation","UIKit"
@@ -25,9 +25,9 @@ Pod::Spec.new do |s|
 
 
 
-  s.subspec 'Encryption' do |ee|
-  ee.requires_arc = true
-  ee.source_files        = 'Classes/Encryption/*.{h,m}'
+  s.subspec 'Encryption' do |sp|
+  sp.requires_arc = true
+  sp.source_files        = 'Classes/Encryption/*.{h,m}'
   # ee.public_header_files = 'Classes/Encryption/*.h'
   end
 
@@ -35,21 +35,21 @@ Pod::Spec.new do |s|
 
 
 
-  s.subspec 'Utils' do |uu|
-  uu.requires_arc = true
-  uu.source_files        = 'Classes/Utils/*.{h,m}'
+  s.subspec 'Utils' do |sp|
+  sp.requires_arc = true
+  sp.source_files        = 'Classes/Utils/*.{h,m}'
   # uu.public_header_files = 'Classes/Utils/*.h'
   end
   
 
 
   
-  s.subspec 'Observer' do |oo|
-  oo.requires_arc = true
-  oo.source_files        = 'Classes/Observer/*.{h,m}'
+  s.subspec 'Observer' do |sp|
+  sp.requires_arc = true
+  sp.source_files        = 'Classes/Observer/*.{h,m}'
   # oo.public_header_files = 'Classes/Observer/*.h'
-  oo.dependency 'MHUIKIT/Encryption'
-  oo.dependency 'MHUIKIT/Utils'
+  sp.dependency 'MHUIKIT/Encryption'
+  sp.dependency 'MHUIKIT/Utils'
 
 
     # oo.subspec 'Utils' do |oosp|
@@ -74,13 +74,13 @@ Pod::Spec.new do |s|
 
 
 
-  s.subspec 'MHCoreKit' do |cc|
-  cc.requires_arc = true
+  s.subspec 'MHCoreKit' do |sp|
+  sp.requires_arc = true
   # cc.public_header_files = 'Classes/MHCoreKit/*.h'
-  cc.source_files        = 'Classes/MHCoreKit/*.{h,m}'
-  cc.dependency 'MHUIKIT/Encryption'
-  cc.dependency 'MHUIKIT/Utils'
-  cc.dependency 'MHUIKIT/Observer'
+  sp.source_files        = 'Classes/MHCoreKit/*.{h,m}'
+  sp.dependency 'MHUIKIT/Encryption'
+  sp.dependency 'MHUIKIT/Utils'
+  sp.dependency 'MHUIKIT/Observer'
 
  #  cc.subspec 'Utils' do |ccsp|
    #  ccsp.requires_arc        = true
