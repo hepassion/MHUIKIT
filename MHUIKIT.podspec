@@ -25,24 +25,29 @@ Pod::Spec.new do |s|
 
 
   
-  # s.subspec 'MHCoreKit' do |cc|
-  # cc.source_files        = 'Classes/MHCoreKit/*.{h,m}'
-  # cc.public_header_files = 'Classes/MHCoreKit/*.h'
-  # end
+  s.subspec 'MHCoreKit' do |cc|
+  cc.source_files        = 'Classes/MHCoreKit/*.{h,m}'
+  cc.public_header_files = 'Classes/MHCoreKit/*.h'
+  end
 
   
-  # s.subspec 'Observer' do |oo|
-  # oo.source_files        = 'Classes/Observer/*.{h,m}'
-  # oo.public_header_files = 'Classes/Observer/*.h'
-  # end
+  s.subspec 'Observer' do |oo|
+  oo.source_files        = 'Classes/Observer/*.{h,m}'
+  oo.public_header_files = 'Classes/Observer/*.h'
+  end
 
 
 
-  # s.subspec 'Utils' do |uu|
-  # uu.source_files        = 'Classes/Utils/*.{h,m}'
-  # uu.public_header_files = 'Classes/Utils/*.h'
-  # end
+  s.subspec 'Utils' do |uu|
+  uu.source_files        = 'Classes/Utils/*.{h,m}'
+  uu.public_header_files = 'Classes/Utils/*.h'
+  end
 
+
+  s.subspec 'Encryption' do |ee|
+  ee.source_files        = 'Classes/Encryption/*.{h,m}'
+  ee.public_header_files = 'Classes/Encryption/*.h'
+  end
 
 
 
