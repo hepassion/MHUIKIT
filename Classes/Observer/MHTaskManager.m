@@ -8,7 +8,6 @@
 
 #import "MHTaskManager.h"
 #import "MHTaskQueue.h"
-#import "CommonDefine.h"
 @interface MHTaskManager ()
 @property (nonatomic, strong) NSMutableDictionary* dictionary;
 @property (nonatomic, copy) void(^taskQueueCallback)(MHTaskQueue* taskQueue, BOOL completed);
@@ -38,7 +37,8 @@ static MHTaskManager* instance = nil;
 }
 
 - (void(^)(MHTaskQueue* taskQueue, BOOL completed))taskQueueCallback {
-    WEAK_SELF;
+    __weak __typeof(self) weakself = self;
+
     return ^(MHTaskQueue* taskQueue, BOOL completed) {
         if (weakself.finishBlock) {
             [taskQueue cancelAllTasks];
