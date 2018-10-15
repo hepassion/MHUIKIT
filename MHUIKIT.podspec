@@ -3,7 +3,7 @@ Pod::Spec.new do |s|
 
 
   s.name         = "MHUIKIT"
-  s.version      = "0.0.9"
+  s.version      = "0.1.0"
   s.summary      = "iOS一套UI开发框架"
   s.homepage     = "https://github.com/hepassion/MHUIKIT"
   s.license      = "MIT"
@@ -18,7 +18,6 @@ Pod::Spec.new do |s|
   # s.resource_bundles = {
   #   'MHUIKIT' => ['Assets/*.png']
   # }
-  s.resources = ["Assets/*.png"]
 
   
 
@@ -54,6 +53,8 @@ Pod::Spec.new do |s|
   s.subspec 'MHCoreKit' do |sp|
   sp.requires_arc = true
   sp.source_files        = 'Classes/MHCoreKit/*.{h,m}'
+  sp.resources = ["Assets/*.png"]
+
   sp.dependency 'MHUIKIT/Encryption'
   sp.dependency 'MHUIKIT/Utils'
   sp.dependency 'MHUIKIT/Observer'
