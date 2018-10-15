@@ -3,7 +3,7 @@ Pod::Spec.new do |s|
 
 
   s.name         = "MHUIKIT"
-  s.version      = "0.0.7"
+  s.version      = "0.0.8"
   s.summary      = "iOS一套UI开发框架"
   s.homepage     = "https://github.com/hepassion/MHUIKIT"
   s.license      = "MIT"
@@ -15,7 +15,17 @@ Pod::Spec.new do |s|
   s.frameworks = "Foundation","UIKit"
   s.description  = "MHUIKIT,包含了一些控件封装，工具类等，可加快开发速度。"
 
+  s.resource_bundles = {
+    'MHUIKIT' => ['Assets/*.png']
+  }
+
   
+
+  s.subspec 'MHDubgger' do |sp|
+  sp.requires_arc   = true
+  sp.source_files   = 'Classes/MHDubgger/*.{h,m}'
+  sp.dependency     'Aspects', '~> 1.4.1'
+  end
 
 
   s.subspec 'Encryption' do |sp|

@@ -40,6 +40,8 @@
 #import "MHTaskQueue.h"
 #import "MHViewController.h"
 #import "MHWebBrowserViewController.h"
+#import "MHNetworkDataConstructor.h"
+
 
 #import "NSDictionary+Category.h"
 #import "NSString+Category.h"
@@ -53,3 +55,4 @@
 
 
 #endif /* MHUiKity_h */
+
