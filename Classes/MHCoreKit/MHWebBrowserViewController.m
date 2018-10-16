@@ -11,7 +11,7 @@
 #import "CommonDefine.h"
 #import "UIView+Utils.h"
 #import "MHAppSchemaObserver.h"
-
+#import "UIImage+Category.h"
 #define COLOR_HYH_RED                       [UIColor colorWithRed:227.0f/255.0f green:100.0f/255.0f blue:102.0f/255.0f alpha:1.0f]
 #define COLOR_HYH_BLUE                      [UIColor colorWithRed:65.0f/255.0f green:155.0f/255.0f blue:240.0f/255.0f alpha:1.0f]
 static NSString* JSHandler;
@@ -24,14 +24,13 @@ NSString* const kNotificationWebViewControllerWillClosed = @"kNotificationWebVie
 @end
 
 @interface MHWebBrowserViewController ()
-<UIWebViewDelegate,
-WKNavigationDelegate,
+<WKNavigationDelegate,
 WKScriptMessageHandler,
 WKUIDelegate,
 UIScrollViewDelegate
 >
 
-
+@property (nonatomic ,strong) UIButton *closeButton;
 
 - (void) onClose:(id)sender;
 
@@ -56,7 +55,14 @@ UIScrollViewDelegate
         [self.wkWebView loadHTMLString:self.loadHTMLString baseURL:self.baseURL];
     }
     
-    [self.wkWebView loadHTMLString:self.loadHTMLString baseURL:nil];
+    if (self.config && self.config.useSystemNavigationBar) {
+        self.title = self.defaultTitle;
+        } else {
+            self.pageNavigationBar.titleLabel.text = self.defaultTitle;
+    }
+    
+    
+
     [self.wkWebView.configuration.userContentController addScriptMessageHandler:self name:@"jsoc1"];//js调用oc注册
     [self.wkWebView.configuration.userContentController addScriptMessageHandler:self name:@"jsoc2"];//js调用oc注册
 
@@ -67,10 +73,20 @@ UIScrollViewDelegate
    
 }
 
+
+- (instancetype)initWithURLString:(NSString *) urlString
+{
+    self = [super init];
+    if (self) {
+        self.urlPath        = urlString;
+    }
+    return self;
+}
+
 - (void)doRequestWithUserAndToken {
-    self.urlPath = [[MHH5Comunicator sharedInstance] appendUserInfoWithURL:self.urlPath
-                                                                        userid:@"userid"
-                                                                         token:@"token"];
+   // self.urlPath = [[MHH5Comunicator sharedInstance] appendUserInfoWithURL:self.urlPath
+//                                  /                                      userid:@"userid"
+                             //                                            token:@"token"];
     NSURL *url = [NSURL URLWithString:self.urlPath];
     NSMutableURLRequest *request = [NSMutableURLRequest requestWithURL:url];
     [request setValue:@"iPhone OS" forHTTPHeaderField:@"device"];
@@ -91,6 +107,20 @@ UIScrollViewDelegate
         [self doRequestWithUserAndToken];
     }
 }
+
+- (void)backButtonAction:(id)sender {
+    
+    if ([self.wkWebView canGoBack]) {
+       [self.wkWebView goBack];
+       // WKBackForwardListItem *item= self.wkWebView.backForwardList.backList.firstObject;
+        if (self.wkWebView.backForwardList.backList.count == 1) {
+            [self.closeButton removeFromSuperview];
+        }
+    } else {
+        [super backButtonAction:sender];
+    }
+}
+
 - (void)webviewNeedExecJavaScriptBussiness:(NSNotification *) notification {
     NSDictionary *userObject = notification.object;
     
@@ -102,10 +132,7 @@ UIScrollViewDelegate
 }
 #pragma mark - >=iOS8 标题改变
 
-- (void)observeValueForKeyPath:(NSString *)keyPath
-                      ofObject:(id)object
-                        change:(NSDictionary *)change
-                       context:(void *)context {
+- (void)observeValueForKeyPath:(NSString *)keyPath ofObject:(id)object change:(NSDictionary *)change context:(void *)context {
     if ([keyPath isEqualToString:@"title"]) {
         NSString *title = [change objectForKey:@"new"];
         if (!self.defaultTitle || !self.defaultTitle.length) {
@@ -114,6 +141,7 @@ UIScrollViewDelegate
             } else {
                 self.pageNavigationBar.titleLabel.text = title;
             }
+        } else {
         }
     }
 }
@@ -177,7 +205,6 @@ UIScrollViewDelegate
 // 页面加载完成之后调用
 - (void)webView:(WKWebView *)webView didFinishNavigation:(WKNavigation *)navigation {
   //  [self closeFirstLoadingHUD];
-   
     
 }
 // 页面加载失败时调用
@@ -202,19 +229,17 @@ UIScrollViewDelegate
     }else {
         decisionHandler(WKNavigationActionPolicyAllow);
     }
-    
-    //小叉检查下是否要展示
     if (self.config && self.config.useSystemNavigationBar) {
         [self decorateLeftButtonNavigationBar:self.navigationController.navigationBar];
     } else {
         [self decorateCustomNavigationBar:self.pageNavigationBar];
     }
+   
 }
 // 接收到服务器跳转请求之后调用
 - (void)webView:(WKWebView *)webView didReceiveServerRedirectForProvisionalNavigation:(WKNavigation *)navigation {
     
 }
-
 
 // 在收到响应后，决定是否跳转
 - (void)webView:(WKWebView *)webView decidePolicyForNavigationResponse:(WKNavigationResponse *)navigationResponse decisionHandler:(void (^)(WKNavigationResponsePolicy))decisionHandler {
@@ -249,24 +274,26 @@ UIScrollViewDelegate
 }
 #pragma mark NavigationBar ----------------------
 - (BOOL)getCustomNavigationBar  {
-    return self.config ? self.config.useSystemNavigationBar : YES;
+    return self.config ? !self.config.useSystemNavigationBar : YES;
 }
 
 - (UIColor *)getCustomNavigationBarRightButtonTintColor {
-    return self.config ? self.config.navigationRightItemColor : MHDefaultLeftRightItemTitleColor;
+    return self.config.navigationRightItemColor ? self.config.navigationRightItemColor : MHDefaultLeftRightItemTitleColor;
 }
 
 - (UIImage *)getCustomNavigationBarRightButtonImage {
-    return self.config ? self.config.navigationRightItemImage : nil;
+    return self.config.navigationRightItemImage ? self.config.navigationRightItemImage : nil;
 }
 
 - (UIColor *)getNavigationBarBackgroundColor {
-    return self.config ? self.config.navigationBarBackgroundColor : [UIColor orangeColor];
+    return self.config.navigationBarBackgroundColor ? self.config.navigationBarBackgroundColor : [UIColor orangeColor];
 }
 
 - (UIColor *)getNavigationTitleColor {
-    return self.config ? self.config.navigationBarTitleColor : MHDefaultTitleColor;
+    return self.config.navigationBarTitleColor ? self.config.navigationBarTitleColor : MHDefaultTitleColor;
 }
+
+
 
 - (NSString *)getCustomNavigationBarRightButtonTitle {
     return @"oc调用js";
@@ -285,14 +312,26 @@ UIScrollViewDelegate
 #pragma mark 检查小叉是否显示
 - (void) decorateCustomNavigationBar:(MHNavigationBar *)navigationBar {
     [super decorateCustomNavigationBar:navigationBar];
+    [self.closeButton removeFromSuperview];
+    if (self.wkWebView.canGoBack) {
+        [self.pageNavigationBar addSubview:self.closeButton];
+    } else {
+        [self.closeButton removeFromSuperview];
+    }
     
 }
 
 - (void) decorateLeftButtonNavigationBar:(UINavigationBar*)navigationBar {
     [super decorateLeftButtonNavigationBar:navigationBar];
-    
-    
+    UIBarButtonItem* backItem = [[UIBarButtonItem alloc]initWithCustomView:[self newBackButton]];
+    if (self.wkWebView.canGoBack) {
+        UIBarButtonItem* closeItem = [[UIBarButtonItem alloc]initWithCustomView:[self closeButton]];
+        self.navigationItem.leftBarButtonItems = @[backItem, closeItem];
+    } else {
+        self.navigationItem.leftBarButtonItem = backItem;
+    }
 }
+
 - (void)viewWillAppear:(BOOL)animated  {
     [super viewWillAppear:animated];
     if (self.config) {
@@ -344,6 +383,25 @@ UIScrollViewDelegate
     }return _wkWebView;
 }
 
+- (UIButton *)closeButton  {
+    if (_closeButton == nil) {
+        UIImage *btnCloseImageSRC = [UIImage imageNamed:@"icon_close"];
+        UIImage *btnCloseImage = [btnCloseImageSRC imageWithColor:[self getNavigationBarBackButtonColor]];
+        
+        _closeButton = [UIButton buttonWithType:UIButtonTypeCustom];
+        _closeButton.frame = CGRectMake(0.0f, 0.0f, 30.0f, 40.0f);
+        _closeButton.tag = 1002;
+        [_closeButton setImage:btnCloseImage forState:UIControlStateNormal];
+        [_closeButton setImage:btnCloseImage forState:UIControlStateHighlighted];
+        [_closeButton addTarget:self action:@selector(onClose:) forControlEvents:UIControlEventTouchUpInside];
+        _closeButton.left = self.pageNavigationBar.leftButton.right ;
+        _closeButton.top = self.pageNavigationBar.leftButton.top;
+    }return _closeButton;
+}
+
+- (void)onClose:(UIButton *)button {
+    [self.navigationController popViewControllerAnimated:YES];
+}
 
 - (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];

@@ -169,7 +169,7 @@
 }
 
 - (NSString*) getNavigationTitle {
-    return @"default title";
+    return @"";
 }
 - (UIColor*) getNavigationTitleColor {
     return MHDefaultTitleColor;

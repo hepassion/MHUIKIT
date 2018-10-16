@@ -91,9 +91,10 @@
  @param navigationBar 配置导航栏
  */
 - (void) decorateNavigationBar:(UINavigationBar*)navigationBar;//系统导航栏
-- (void) decorateCustomNavigationBar:(MHNavigationBar *)navigationBar;//自定义导航栏
 - (void) decorateLeftButtonNavigationBar:(UINavigationBar*)navigationBar;
 - (void) decorateRightButtonNavigationBar:(UINavigationBar*)navigationBar;
+
+- (void) decorateCustomNavigationBar:(MHNavigationBar *)navigationBar;//自定义导航栏
 
 
 - (NSString *) getCustomNavigationBarRightButtonTitle;
@@ -118,6 +119,6 @@
 
 - (void) customNavigationBarRightButtonAction:(id)sender;
 - (void) customNavigationBarLeftButtonAction:(id)sender;
-
+- (UIButton *) newBackButton ;
 
 @end
