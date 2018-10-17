@@ -7,11 +7,12 @@
 //
 
 #import <UIKit/UIKit.h>
-
+#import <WebKit/WKWebView.h>
 @interface MHWebBrowserView : UIView
 
 @property (nonatomic, copy) void(^linkClickedBlock)(NSURL* _Nullable url);
 @property (nonatomic, strong, readonly) NSURL* url;
-@property (nonatomic, strong) WKWebView* webView;
+@property (nonatomic, strong) WKWebView* wkWebView;
 
 @end
+

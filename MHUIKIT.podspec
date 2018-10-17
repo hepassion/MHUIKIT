@@ -3,7 +3,7 @@ Pod::Spec.new do |s|
 
 
   s.name         = "MHUIKIT"
-  s.version      = "0.1.4"
+  s.version      = "0.1.5"
   s.summary      = "iOS一套UI开发框架"
   s.homepage     = "https://github.com/hepassion/MHUIKIT"
   s.license      = "MIT"
@@ -12,7 +12,7 @@ Pod::Spec.new do |s|
   s.source       = { :git => "https://github.com/hepassion/MHUIKIT.git", :tag => "#{s.version}" }
   s.source_files = 'Classes/*.h'
   s.requires_arc = true
-  s.frameworks = "Foundation","UIKit"
+  s.frameworks = "Foundation","UIKit", "WebKit"
   s.description  = "MHUIKIT,包含了一些控件封装，工具类等，可加快开发速度。"
 
 
