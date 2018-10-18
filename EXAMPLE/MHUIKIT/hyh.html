@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html>
+
+	<head>
+		<meta charset="utf-8">
+		<meta name="viewport" content="width=device-width, initial-scale=1,maximum-scale=1, user-scalable=no">
+		<title>this is title</title>
+		<script type="text/javascript">
+			// alert/prompt/confirm
+			function onClicked () {
+                alert("Hello World");
+				//var params = prompt("输入参数：","1234567");
+				//alert(params);
+                var confirmed = confirm("你确定吗");
+                alert(confirmed);
+			}
+			
+			function onChangedTitle () {
+				document.title = "Hello World"+Math.random();
+			}
+			
+			// oc call js
+			
+			function ocCallJs(msg) {
+			    alert('你好 ' + msg)
+              //  window.webkit.messageHandlers.removeNavigationBar.postMessage('remove navigationBar');
+                return "js返回"
+			}
+			
+			
+			// js call oc
+			function JSToOC1 () {
+				window.webkit.messageHandlers.jsoc1.postMessage('jsToOc');
+			}
+			
+			function JSToOC2 () {
+				//window.webkit.messageHandlers.jsoc2.postMessage(['13300001111', 'Go Climbing This Weekend !!!']);
+                window.webkit.messageHandlers.jsoc2.postMessage({"key":"valuue"});
+            }
+			
+			// 协议
+			
+			function onDeviceInfo() {
+				var val = window.prompt("hyhapp://Service/deviceInfo");
+				alert(val);
+			}
+		</script>
+		<style type="text/css">
+			button {
+				border: 0;
+				height: 30px;
+				width: 100%;
+				background-color: orangered;
+				color: white;
+				display: block;
+				margin-top: 5px;
+				border-radius: 4px;
+				font-size: 12px;
+			}
+			a {
+				border: 0;
+				height: 30px;
+				width: 100%;
+				background-color: rosybrown;
+				color: white;
+				display: inline-block;
+				margin-top: 5px;
+				border-radius: 4px;
+				text-align: center;
+				line-height: 30px;
+                font-size: 12px;
+			}
+		</style>
+	</head>
+
+	<body style="background-color: lightblue;">
+		<button onclick="onClicked();">Click me! alert/confirm/prompt</button>
+		<button onclick="onChangedTitle();">修改标题</button>
+        <button onclick="JSToOC1();">js to oc :字符串</button>
+		<button onclick="JSToOC2();">js to oc :数组</button>
+		<button onclick="onDeviceInfo();">同步协议-获取DeviceID</button>
+		<a href="mhuikit://Service/deviceInfo">异步协议-deviceInfo</a>
+        <a href="http://www.baidu.com/">百度一下</a>
+        <a href="mhuikit://Service/webSetting?BgColor=0x0000ff&Title=titleValue&TitleIcon=标题文字">协议带参数</a>
+	</body>
+
+</html>

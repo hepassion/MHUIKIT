@@ -1,0 +1,39 @@
+PODS:
+  - Aspects (1.4.1)
+  - MHUIKIT (0.1.6):
+    - MHUIKIT/Encryption (= 0.1.6)
+    - MHUIKIT/MHCoreKit (= 0.1.6)
+    - MHUIKIT/MHDubgger (= 0.1.6)
+    - MHUIKIT/Observer (= 0.1.6)
+    - MHUIKIT/Utils (= 0.1.6)
+  - MHUIKIT/Encryption (0.1.6)
+  - MHUIKIT/MHCoreKit (0.1.6):
+    - MHUIKIT/Encryption
+    - MHUIKIT/Observer
+    - MHUIKIT/Utils
+  - MHUIKIT/MHDubgger (0.1.6):
+    - Aspects (~> 1.4.1)
+  - MHUIKIT/Observer (0.1.6):
+    - MHUIKIT/Encryption
+    - MHUIKIT/Utils
+  - MHUIKIT/Utils (0.1.6)
+  - MJRefresh (3.1.15.7)
+
+DEPENDENCIES:
+  - MHUIKIT (~> 0.1.6)
+  - MJRefresh (~> 3.1.15.7)
+
+SPEC REPOS:
+  https://github.com/cocoapods/specs.git:
+    - Aspects
+    - MHUIKIT
+    - MJRefresh
+
+SPEC CHECKSUMS:
+  Aspects: 7595ba96a6727a58ebcbfc954497fc5d2fdde546
+  MHUIKIT: e16adf203538a302e89bd8a9e1294fa3f57f8db9
+  MJRefresh: 697f8ec75ebdbe9207767bb682cf0f51b0d8a41f
+
+PODFILE CHECKSUM: d5e4b87041baf1e023abd3f7dc65b4b17d2ed3b0
+
+COCOAPODS: 1.5.3

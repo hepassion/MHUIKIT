@@ -1,0 +1,1 @@
+../../../MHUIKIT/Classes/Observer/MHAsPublicParamObject.h

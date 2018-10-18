@@ -1,0 +1,4 @@
+target :MHUIKIT do
+   pod 'MHUIKIT', '~> 0.1.6'
+    pod 'MJRefresh', '~> 3.1.15.7'
+end 
