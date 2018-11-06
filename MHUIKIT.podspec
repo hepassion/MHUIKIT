@@ -3,7 +3,7 @@ Pod::Spec.new do |s|
 
 
   s.name         = "MHUIKIT"
-  s.version      = "0.1.6"
+  s.version      = "0.1.7"
   s.summary      = "iOS一套UI开发框架"
   s.homepage     = "https://github.com/hepassion/MHUIKIT"
   s.license      = "MIT"
@@ -45,6 +45,16 @@ Pod::Spec.new do |s|
   sp.dependency 'MHUIKIT/Encryption'
   sp.dependency 'MHUIKIT/Utils'
   end
+
+
+  s.subspec 'SBPlayer' do |sp|
+  sp.requires_arc        = true
+  sp.source_files        = 'Classes/SBPlayer/*.{h,m}'
+  sp.dependency          pod 'Masonry', '~> 1.1.0'
+
+  end
+
+
 
 
   s.subspec 'MHCoreKit' do |sp|
