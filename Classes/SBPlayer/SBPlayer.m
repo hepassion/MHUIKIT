@@ -321,13 +321,11 @@ static NSInteger count = 0;
             }
         }
     }
+    
     UINavigationController *nav = window.rootViewController;
     NSArray *viewControllers = nav.viewControllers;
-
-    if (viewControllers && viewControllers.count) {
-        return viewControllers.lastObject;
-    }
-    return nil;
+    
+    return viewControllers.lastObject;
     //return nav.viewControllers.lastObject;
     
     
