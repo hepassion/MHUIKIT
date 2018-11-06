@@ -50,7 +50,7 @@ Pod::Spec.new do |s|
   s.subspec 'SBPlayer' do |sp|
   sp.requires_arc        = true
   sp.source_files        = 'Classes/SBPlayer/*.{h,m}'
-  sp.dependency          pod 'Masonry', '~> 1.1.0'
+  sp.dependency          'Masonry', '~> 1.1.0'
 
   end
 

@@ -14,9 +14,6 @@
 //横竖屏的时候过渡动画时间，设置为0.0则是无动画
 #define kTransitionTime 0.2
 #define kHidenControlLabelTime 3
-#define SCREEN_SIZE                                  [[UIScreen mainScreen] bounds].size
-#define SCREEN_WIDTH                                  SCREEN_SIZE.width
-#define SCREEN_HEIGHT                                 SCREEN_SIZE.height
 
 
 //填充模式枚举值
