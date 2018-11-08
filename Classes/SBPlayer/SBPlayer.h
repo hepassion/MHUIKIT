@@ -11,6 +11,8 @@
 #import "SBCommonHeader.h"
 #import "SBControlView.h"
 #import "SBPauseOrPlayView.h"
+#import "UIApplication+Helper.h"
+
 //横竖屏的时候过渡动画时间，设置为0.0则是无动画
 #define kTransitionTime 0.2
 #define kHidenControlLabelTime 3

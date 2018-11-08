@@ -307,26 +307,8 @@ static NSInteger count = 0;
 //获取当前屏幕显示的viewcontroller minghe
 - (UIViewController *)getCurrentVC
 {
-    UIViewController *result = nil;
-    UIWindow * window = [[UIApplication sharedApplication] keyWindow];
-    if (window.windowLevel != UIWindowLevelNormal)
-    {
-        NSArray *windows = [[UIApplication sharedApplication] windows];
-        for(UIWindow * tmpWin in windows)
-        {
-            if (tmpWin.windowLevel == UIWindowLevelNormal)
-            {
-                window = tmpWin;
-                break;
-            }
-        }
-    }
-    
-    UINavigationController *nav = window.rootViewController;
-    NSArray *viewControllers = nav.viewControllers;
-    
-    return viewControllers.lastObject;
-    //return nav.viewControllers.lastObject;
+    return [UIApplication dd_currentViewController];
+
     
     
 //    UIView *frontView = [[window subviews] objectAtIndex:0];
