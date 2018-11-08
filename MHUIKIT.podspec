@@ -3,7 +3,7 @@ Pod::Spec.new do |s|
 
 
   s.name         = "MHUIKIT"
-  s.version      = "0.2.1"
+  s.version      = "0.2.2"
   s.summary      = "iOS一套UI开发框架"
   s.homepage     = "https://github.com/hepassion/MHUIKIT"
   s.license      = "MIT"
@@ -47,18 +47,6 @@ Pod::Spec.new do |s|
   end
 
 
-  s.subspec 'SBPlayer' do |sp|
-  sp.requires_arc        = true
-  sp.source_files        = 'Classes/SBPlayer/*.{h,m}'
-  sp.resources = ["Classes/SBPlayer/Assets/*.png"]
-
-  # sp.resource_bundles = {
-  #   'MHUIKIT' => ['Classes/MHCoreKit/Assets/*.png']
-  # }
-  sp.dependency 'Masonry', '~> 1.1.0'
-  sp.dependency 'MHUIKIT/Utils'
-
-  end
 
 
 
