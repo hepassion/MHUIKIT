@@ -1,0 +1,1 @@
+../../../MHUIKIT/Classes/Utils/UIApplication+Helper.h

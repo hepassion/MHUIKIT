@@ -22,10 +22,9 @@
 		420227292175802D00D2B3A5 /* AccountDataConstructor.m in Sources */ = {isa = PBXBuildFile; fileRef = 420227182175802D00D2B3A5 /* AccountDataConstructor.m */; };
 		4202272A2175802D00D2B3A5 /* AccountViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 420227192175802D00D2B3A5 /* AccountViewController.m */; };
 		4202272B2175802D00D2B3A5 /* MHTitleTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 4202271D2175802D00D2B3A5 /* MHTitleTableViewCell.m */; };
-		420227312175822100D2B3A5 /* UIApplication+Helper.m in Sources */ = {isa = PBXBuildFile; fileRef = 4202272E2175822100D2B3A5 /* UIApplication+Helper.m */; };
-		420227322175822100D2B3A5 /* NSObject+Runtime.m in Sources */ = {isa = PBXBuildFile; fileRef = 4202272F2175822100D2B3A5 /* NSObject+Runtime.m */; };
 		420227342175879A00D2B3A5 /* failure.html in Resources */ = {isa = PBXBuildFile; fileRef = 420227332175879A00D2B3A5 /* failure.html */; };
 		42022737217587C000D2B3A5 /* MHWebBrowserView.m in Sources */ = {isa = PBXBuildFile; fileRef = 42022736217587C000D2B3A5 /* MHWebBrowserView.m */; };
+		4202273A2178876100D2B3A5 /* UIViewController+Exception.m in Sources */ = {isa = PBXBuildFile; fileRef = 420227392178876100D2B3A5 /* UIViewController+Exception.m */; };
 		42196001214BA68300446DD9 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 42196000214BA68300446DD9 /* AppDelegate.m */; };
 		42196009214BA68500446DD9 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 42196008214BA68500446DD9 /* Assets.xcassets */; };
 		4219600C214BA68500446DD9 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 4219600A214BA68500446DD9 /* LaunchScreen.storyboard */; };
@@ -33,6 +32,8 @@
 		42196019214BA68500446DD9 /* MHUIKITTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 42196018214BA68500446DD9 /* MHUIKITTests.m */; };
 		42196024214BA68500446DD9 /* MHUIKITUITests.m in Sources */ = {isa = PBXBuildFile; fileRef = 42196023214BA68500446DD9 /* MHUIKITUITests.m */; };
 		4229DFA0215CA582002DE8BA /* AppConfigure.m in Sources */ = {isa = PBXBuildFile; fileRef = 4229DF9F215CA582002DE8BA /* AppConfigure.m */; };
+		42DDDBA8219197DD003C4E1E /* play.mov in Resources */ = {isa = PBXBuildFile; fileRef = 42DDDBA7219197DC003C4E1E /* play.mov */; };
+		42DDDBC22193FD6A003C4E1E /* NSObject+Runtime.m in Sources */ = {isa = PBXBuildFile; fileRef = 42DDDBC02193FD69003C4E1E /* NSObject+Runtime.m */; };
 		42F4E488215A26F6008B6B27 /* hyh.html in Resources */ = {isa = PBXBuildFile; fileRef = 42F4E487215A26F6008B6B27 /* hyh.html */; };
 /* End PBXBuildFile section */
 
@@ -83,13 +84,11 @@
 		4202271B2175802D00D2B3A5 /* AccountViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AccountViewController.h; sourceTree = "<group>"; };
 		4202271C2175802D00D2B3A5 /* HYTabBarController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HYTabBarController.h; sourceTree = "<group>"; };
 		4202271D2175802D00D2B3A5 /* MHTitleTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MHTitleTableViewCell.m; sourceTree = "<group>"; };
-		4202272D2175822100D2B3A5 /* NSObject+Runtime.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSObject+Runtime.h"; sourceTree = "<group>"; };
-		4202272E2175822100D2B3A5 /* UIApplication+Helper.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIApplication+Helper.m"; sourceTree = "<group>"; };
-		4202272F2175822100D2B3A5 /* NSObject+Runtime.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSObject+Runtime.m"; sourceTree = "<group>"; };
-		420227302175822100D2B3A5 /* UIApplication+Helper.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIApplication+Helper.h"; sourceTree = "<group>"; };
 		420227332175879A00D2B3A5 /* failure.html */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.html; path = failure.html; sourceTree = "<group>"; };
 		42022735217587C000D2B3A5 /* MHWebBrowserView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = MHWebBrowserView.h; sourceTree = "<group>"; };
 		42022736217587C000D2B3A5 /* MHWebBrowserView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = MHWebBrowserView.m; sourceTree = "<group>"; };
+		420227382178876100D2B3A5 /* UIViewController+Exception.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "UIViewController+Exception.h"; sourceTree = "<group>"; };
+		420227392178876100D2B3A5 /* UIViewController+Exception.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = "UIViewController+Exception.m"; sourceTree = "<group>"; };
 		42195FFC214BA68300446DD9 /* MHUIKIT.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = MHUIKIT.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		42195FFF214BA68300446DD9 /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
 		42196000214BA68300446DD9 /* AppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AppDelegate.m; sourceTree = "<group>"; };
@@ -106,6 +105,9 @@
 		4229DF9E215CA582002DE8BA /* AppConfigure.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppConfigure.h; sourceTree = "<group>"; };
 		4229DF9F215CA582002DE8BA /* AppConfigure.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AppConfigure.m; sourceTree = "<group>"; };
 		42A3BA65216C8277006CD33F /* PrefixHeader.pch */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = PrefixHeader.pch; sourceTree = "<group>"; };
+		42DDDBA7219197DC003C4E1E /* play.mov */ = {isa = PBXFileReference; lastKnownFileType = video.quicktime; path = play.mov; sourceTree = "<group>"; };
+		42DDDBC02193FD69003C4E1E /* NSObject+Runtime.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSObject+Runtime.m"; sourceTree = "<group>"; };
+		42DDDBC12193FD6A003C4E1E /* NSObject+Runtime.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSObject+Runtime.h"; sourceTree = "<group>"; };
 		42F4E487215A26F6008B6B27 /* hyh.html */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.html; path = hyh.html; sourceTree = "<group>"; };
 		BBECBFF965E1119655205CC7 /* libPods-MHUIKIT.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-MHUIKIT.a"; sourceTree = BUILT_PRODUCTS_DIR; };
 		C7C0533DB9100DF6E05CAF88 /* Pods-MHUIKIT.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-MHUIKIT.debug.xcconfig"; path = "Pods/Target Support Files/Pods-MHUIKIT/Pods-MHUIKIT.debug.xcconfig"; sourceTree = "<group>"; };
@@ -148,6 +150,8 @@
 				4202271D2175802D00D2B3A5 /* MHTitleTableViewCell.m */,
 				42022735217587C000D2B3A5 /* MHWebBrowserView.h */,
 				42022736217587C000D2B3A5 /* MHWebBrowserView.m */,
+				420227382178876100D2B3A5 /* UIViewController+Exception.h */,
+				420227392178876100D2B3A5 /* UIViewController+Exception.m */,
 				420226FC2175802D00D2B3A5 /* Home */,
 				4202270E2175802D00D2B3A5 /* Product */,
 				420227132175802D00D2B3A5 /* More */,
@@ -173,9 +177,9 @@
 			isa = PBXGroup;
 			children = (
 				420227002175802D00D2B3A5 /* LockViewController.h */,
-				420227012175802D00D2B3A5 /* LockDataConstructor.m */,
 				420227022175802D00D2B3A5 /* LockViewController.m */,
 				420227032175802D00D2B3A5 /* LockDataConstructor.h */,
+				420227012175802D00D2B3A5 /* LockDataConstructor.m */,
 			);
 			path = Lock;
 			sourceTree = "<group>";
@@ -184,9 +188,9 @@
 			isa = PBXGroup;
 			children = (
 				420227072175802D00D2B3A5 /* BlockDataConstructor.h */,
-				420227082175802D00D2B3A5 /* BlockViewController.m */,
 				420227092175802D00D2B3A5 /* BlockDataConstructor.m */,
 				4202270A2175802D00D2B3A5 /* BlockViewController.h */,
+				420227082175802D00D2B3A5 /* BlockViewController.m */,
 			);
 			path = Block;
 			sourceTree = "<group>";
@@ -222,17 +226,6 @@
 			path = Account;
 			sourceTree = "<group>";
 		};
-		4202272C2175822100D2B3A5 /* Categary */ = {
-			isa = PBXGroup;
-			children = (
-				4202272D2175822100D2B3A5 /* NSObject+Runtime.h */,
-				4202272F2175822100D2B3A5 /* NSObject+Runtime.m */,
-				420227302175822100D2B3A5 /* UIApplication+Helper.h */,
-				4202272E2175822100D2B3A5 /* UIApplication+Helper.m */,
-			);
-			path = Categary;
-			sourceTree = "<group>";
-		};
 		42195FF3214BA68300446DD9 = {
 			isa = PBXGroup;
 			children = (
@@ -262,15 +255,17 @@
 				42196000214BA68300446DD9 /* AppDelegate.m */,
 				420227332175879A00D2B3A5 /* failure.html */,
 				42F4E487215A26F6008B6B27 /* hyh.html */,
+				42DDDBA7219197DC003C4E1E /* play.mov */,
 				420226FB2175802D00D2B3A5 /* Class */,
 				4229DF9E215CA582002DE8BA /* AppConfigure.h */,
 				4229DF9F215CA582002DE8BA /* AppConfigure.m */,
 				42A3BA65216C8277006CD33F /* PrefixHeader.pch */,
+				42DDDBC12193FD6A003C4E1E /* NSObject+Runtime.h */,
+				42DDDBC02193FD69003C4E1E /* NSObject+Runtime.m */,
 				42196008214BA68500446DD9 /* Assets.xcassets */,
 				4219600A214BA68500446DD9 /* LaunchScreen.storyboard */,
 				4219600D214BA68500446DD9 /* Info.plist */,
 				4219600E214BA68500446DD9 /* main.m */,
-				4202272C2175822100D2B3A5 /* Categary */,
 			);
 			path = MHUIKIT;
 			sourceTree = "<group>";
@@ -416,6 +411,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				4219600C214BA68500446DD9 /* LaunchScreen.storyboard in Resources */,
+				42DDDBA8219197DD003C4E1E /* play.mov in Resources */,
 				42196009214BA68500446DD9 /* Assets.xcassets in Resources */,
 				42F4E488215A26F6008B6B27 /* hyh.html in Resources */,
 				420227342175879A00D2B3A5 /* failure.html in Resources */,
@@ -464,12 +460,18 @@
 			);
 			inputPaths = (
 				"${SRCROOT}/Pods/Target Support Files/Pods-MHUIKIT/Pods-MHUIKIT-resources.sh",
-				"${PODS_CONFIGURATION_BUILD_DIR}/MHUIKIT/MHUIKIT.bundle",
+				"${PODS_ROOT}/MHUIKIT/Classes/MHCoreKit/Assets/icon_back@2x.png",
+				"${PODS_ROOT}/MHUIKIT/Classes/MHCoreKit/Assets/icon_back@3x.png",
+				"${PODS_ROOT}/MHUIKIT/Classes/MHCoreKit/Assets/icon_close@2x.png",
+				"${PODS_ROOT}/MHUIKIT/Classes/MHCoreKit/Assets/icon_close@3x.png",
 				"${PODS_ROOT}/MJRefresh/MJRefresh/MJRefresh.bundle",
 			);
 			name = "[CP] Copy Pods Resources";
 			outputPaths = (
-				"${TARGET_BUILD_DIR}/${UNLOCALIZED_RESOURCES_FOLDER_PATH}/MHUIKIT.bundle",
+				"${TARGET_BUILD_DIR}/${UNLOCALIZED_RESOURCES_FOLDER_PATH}/icon_back@2x.png",
+				"${TARGET_BUILD_DIR}/${UNLOCALIZED_RESOURCES_FOLDER_PATH}/icon_back@3x.png",
+				"${TARGET_BUILD_DIR}/${UNLOCALIZED_RESOURCES_FOLDER_PATH}/icon_close@2x.png",
+				"${TARGET_BUILD_DIR}/${UNLOCALIZED_RESOURCES_FOLDER_PATH}/icon_close@3x.png",
 				"${TARGET_BUILD_DIR}/${UNLOCALIZED_RESOURCES_FOLDER_PATH}/MJRefresh.bundle",
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -489,20 +491,20 @@
 				4219600F214BA68500446DD9 /* main.m in Sources */,
 				4229DFA0215CA582002DE8BA /* AppConfigure.m in Sources */,
 				420227262175802D00D2B3A5 /* ProductDataConstructor.m in Sources */,
+				4202273A2178876100D2B3A5 /* UIViewController+Exception.m in Sources */,
 				4202271F2175802D00D2B3A5 /* LockDataConstructor.m in Sources */,
 				420227252175802D00D2B3A5 /* HYTabBarController.m in Sources */,
 				420227222175802D00D2B3A5 /* BlockViewController.m in Sources */,
 				420227232175802D00D2B3A5 /* BlockDataConstructor.m in Sources */,
 				4202272B2175802D00D2B3A5 /* MHTitleTableViewCell.m in Sources */,
-				420227312175822100D2B3A5 /* UIApplication+Helper.m in Sources */,
 				42022737217587C000D2B3A5 /* MHWebBrowserView.m in Sources */,
 				420227212175802D00D2B3A5 /* HomeDataConstructor.m in Sources */,
 				4202272A2175802D00D2B3A5 /* AccountViewController.m in Sources */,
 				420227282175802D00D2B3A5 /* MoreViewController.m in Sources */,
 				420227242175802D00D2B3A5 /* BaseTableViewController.m in Sources */,
+				42DDDBC22193FD6A003C4E1E /* NSObject+Runtime.m in Sources */,
 				42196001214BA68300446DD9 /* AppDelegate.m in Sources */,
 				4202271E2175802D00D2B3A5 /* HomeViewController.m in Sources */,
-				420227322175822100D2B3A5 /* NSObject+Runtime.m in Sources */,
 				420227202175802D00D2B3A5 /* LockViewController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

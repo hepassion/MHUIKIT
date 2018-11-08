@@ -8,12 +8,12 @@
 
 #ifndef PrefixHeader_pch
 #define PrefixHeader_pch
-//#import <MHUiKit.h>
+#import <MHUiKit.h>
 #import <MHUIKIT/MHUiKit.h>
 #import "BaseTableViewController.h"
 #import "NSObject+Runtime.h"
-#import "UIApplication+Helper.h"
-
+#import "MHTitleTableViewCell.h"
+//#import <MHUIKIT/UIApplication+Helper.h>
 // Include any system framework and library headers here that should be included in all compilation units.
 // You will also need to set the Prefix Header build setting of one or more of your targets to reference this file.
 

@@ -132,7 +132,7 @@ static MHAppSchemaObserver* instance = nil;
  */
 - (BOOL) handleOpenURL:(NSURL *)url controller:(id) controller {
     NSString* scheme        = url.scheme;
-    NSString* host          = url.host;
+    //    NSString* host          = url.host;
     NSString* service       = url.path;
     NSString* paramStr      = [url.query URLDecodedChineseString];
     

@@ -14,6 +14,14 @@
     [self.items removeAllObjects];
     
   
+    MHTitleDataModel *model = [MHTitleDataModel new];
+    model.content = @"cell.type.synchronized";
+    model.cellClass = [MHTitleTableViewCell class];
+    model.cellType  = @"cell.type.synchronized";
+    model.cellHeight = @([MHTitleTableViewCell heightForCell]);
+    model.delegate = self.viewControllerDelegate;
+    [self.items addObject:model];
+    
     
     
     

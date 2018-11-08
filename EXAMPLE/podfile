@@ -1,4 +1,8 @@
 target :MHUIKIT do
-   pod 'MHUIKIT', '~> 0.1.6'
-    pod 'MJRefresh', '~> 3.1.15.7'
+    
+   pod 'MHUIKIT', '~> 0.2.2'
+   pod 'MJRefresh', '~> 3.1.15.7'
+   # pod 'VideoPlayerKit', '~> 1.0.0'
+   pod 'Masonry', '~> 1.1.0'
+   
 end 

@@ -103,16 +103,19 @@
 - (void) tableView:(UITableView *)tableView didSelectObject:(id<MHTableViewCellItemProtocol>)object rowAtIndexPath:(NSIndexPath *)indexPath {
     NSString *cellType = object.cellType;
     
-    [ self.navigationController popViewControllerAnimated:YES];
     if ([cellType isEqualToString:@"cell.type.synchronized"]) {
-        //线程1
-        dispatch_async(self.concurrentQueueOne, ^{
-            [self saleTicketsSynchronized];
-        });
-        //线程2
-        dispatch_async(self.concurrentQueueOne, ^{
-            [self saleTicketsSynchronized];
-        });
+       
+        
+        UINavigationController *currentNav=    [UIApplication dd_currentNavigationControllerOnTabBar];
+        UINavigationController *rootNav  = [UIApplication dd_rootNavigationController];
+        for (UIViewController *vc in currentNav.viewControllers) {
+            NSLog(@"curr: %@", vc);
+        }
+        for (UIViewController *vc in rootNav.viewControllers) {
+            NSLog(@"root: %@", vc);
+        }
+        
+       
       
     }  else if ([cellType isEqualToString:@"cell.type.nslock"]) {
         dispatch_async(self.concurrentQueueOne, ^{

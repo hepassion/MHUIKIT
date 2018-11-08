@@ -78,6 +78,16 @@
     } else if ([cellType isEqualToString:@"cell.type.lock"]) {
         LockViewController *lockVC = [LockViewController new];
         [self.navigationController pushViewController:lockVC animated:YES];
+     UINavigationController *currentNav=    [UIApplication dd_currentNavigationControllerOnTabBar];
+        UINavigationController *rootNav  = [UIApplication dd_rootNavigationController];
+        for (UIViewController *vc in currentNav.viewControllers) {
+            NSLog(@"curr: %@", vc);
+        }
+        for (UIViewController *vc in rootNav.viewControllers) {
+            NSLog(@"root: %@", vc);
+        }
+        
+        
     }  else if ([cellType isEqualToString:@"cell.type.html"]) {
         MHWebBrowserViewController *webBrowserController = [[MHWebBrowserViewController alloc] init];
         NSString* path = [[NSBundle mainBundle] pathForResource:@"hyh" ofType:@"html"];

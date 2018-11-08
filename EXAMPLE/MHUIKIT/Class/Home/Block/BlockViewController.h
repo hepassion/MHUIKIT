@@ -8,6 +8,6 @@
 
 #import "BaseTableViewController.h"
 
-@interface BlockViewController : BaseTableViewController
+@interface BlockViewController : MHGlassMainViewController
 
 @end
