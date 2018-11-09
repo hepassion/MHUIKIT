@@ -8,6 +8,7 @@
 
 #import "BlockViewController.h"
 #import "BlockDataConstructor.h"
+
 @interface BlockViewController ()
 
 @property (nonatomic, strong) BlockDataConstructor *dataConstructor;
@@ -20,10 +21,9 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-    //block其实编译后是一个结构体struct对象，包含外部引用的变量和方法。所以当block初始化完成后，捕获到的变量不能更改，需要加__block进行拷贝，拷贝后又是一个struct。
-    //由于block对外部的变量有强引用，所以通常用 __weak修饰
    
-   
+  
+    
     
 }
 

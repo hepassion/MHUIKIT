@@ -4,5 +4,7 @@ target :MHUIKIT do
    pod 'MJRefresh', '~> 3.1.15.7'
    # pod 'VideoPlayerKit', '~> 1.0.0'
    pod 'Masonry', '~> 1.1.0'
+   #  pod 'JPVideoPlayer', '~> 3.1.1'
+   # pod 'SJVideoPlayer', '~> 2.2.3'
    
 end 
