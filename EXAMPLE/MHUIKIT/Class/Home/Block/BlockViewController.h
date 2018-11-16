@@ -7,7 +7,10 @@
 //
 
 #import "BaseTableViewController.h"
+#import "BlockDataConstructor.h"
 
 @interface BlockViewController : MHGlassMainViewController
+
+@property (nonatomic, strong) BlockDataConstructor *dataConstructor;
 
 @end

@@ -14,6 +14,7 @@
 @end
 
 @implementation MHTitleTableViewCell
+
 - (void)initUI {
     [super initUI];
 }

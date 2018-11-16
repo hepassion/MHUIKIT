@@ -7,13 +7,12 @@
 //
 
 #import "BlockViewController.h"
-#import "BlockDataConstructor.h"
+#import "SBPlayer.h"
 
 @interface BlockViewController ()
 
-@property (nonatomic, strong) BlockDataConstructor *dataConstructor;
 //@property (nonatomic, copy) void(^textBlock)(NSString *);
-
+@property (nonatomic, strong) SBPlayer *player;
 
 @end
 
@@ -21,9 +20,16 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-   
-  
+//    self.uiTableView.top = NAVIGATION_BAR_DEFAULT_HEIGHT + Status_Bar_Height;
     
+    self.player = [[SBPlayer alloc]initWithUrl:[NSURL URLWithString:@"http://download.3g.joy.cn/video/236/60236937/1451280942752_hd.mp4"]  frame:CGRectMake(0, NAVIGATION_BAR_DEFAULT_HEIGHT + Status_Bar_Height, SCREEN_WIDTH, 250)];
+    //设置标题
+    [self.player setTitle:@"这是一个标题"];
+    //设置播放器填充模式 默认SBLayerVideoGravityResizeAspectFill，可以不添加此语句
+    self.player.mode = SBLayerVideoGravityResizeAspectFill;
+    //添加播放器到视图
+    [self.view addSubview:self.player];
+  
     
 }
 
@@ -57,6 +63,15 @@
 
 - (NSString *)getNavigationTitle {
     return @"block test";
+}
+
+- (void)viewDidDisappear:(BOOL)animated {
+    [super viewDidDisappear:animated];
+    [self.player stop];
+}
+
+- (void)dealloc {
+    [self.view removeAllSubviews];
 }
 
 - (void)didReceiveMemoryWarning {

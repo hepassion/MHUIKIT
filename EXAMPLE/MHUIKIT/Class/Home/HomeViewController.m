@@ -73,7 +73,7 @@
    
     
     if ([cellType isEqualToString:@"cell.type.block"]) {
-        BlockViewController *blockVC  = [BlockViewController new];
+        BlockViewController *blockVC  = [[BlockViewController alloc] init];
         [self.navigationController pushViewController:blockVC animated:YES];
     } else if ([cellType isEqualToString:@"cell.type.lock"]) {
         LockViewController *lockVC = [LockViewController new];
