@@ -23,6 +23,7 @@
     self = [super initWithFrame:frame];
     if (self) {
         [self addSubview:self.titleLabel];
+        [self addSubview:self.lineView];
        
     }
     return self;
@@ -121,7 +122,11 @@
     }return _titleLabel;
 }
 
-
+- (UIView *)lineView {
+    if (_lineView == nil) {
+        _lineView = [[UIView alloc] initWithFrame:CGRectMake(0, self.bounds.size.height - FIT6(1), SCREEN_WIDTH, FIT6(1))];
+    }return _lineView;
+}
 
 
 
@@ -187,6 +192,16 @@
     return MHDefaultBackButtonColor ;
 }
 
+- (BOOL) getShowNavigationBarBottomLine {
+    return YES;
+}
+
+
+- (UIColor*) getNavigationBarBottomLineColor {
+    return NavBarBottomLineDefaultColor;
+}
+
+
 - (BOOL) getNavigationBarEdgePanBack {
     return YES;
 }
@@ -251,10 +266,14 @@
     UIColor* colorBackground = [self getNavigationBarBackgroundColor];
     [navigationBar setBackgroundImage:[UIImage imageWithColor:colorBackground] forBarMetrics:UIBarMetricsDefault];
     
-    //去除发丝线
-    UIImage* image = [[UIImage alloc] init];
-    navigationBar.shadowImage = image;
-    
+   
+//
+    if ([self getShowNavigationBarBottomLine]) {
+           [navigationBar setShadowImage:[UIImage imageWithColor:[self getNavigationBarBottomLineColor]]];
+    } else { //去除发丝线
+        UIImage* image = [[UIImage alloc] init];
+        navigationBar.shadowImage = image;
+    }
     
     self.navigationItem.titleView = nil;
     self.title = [self getNavigationTitle];
@@ -285,6 +304,15 @@
        
         self.pageNavigationBar.rightButton = [self newRightButton];
     }
+ 
+    
+    if ([self getShowNavigationBarBottomLine]) {
+        self.pageNavigationBar.lineView.hidden = NO;
+        self.pageNavigationBar.lineView.backgroundColor = [self getNavigationBarBottomLineColor];
+    } else {
+        self.pageNavigationBar.lineView.hidden = YES;
+    }
+    
 }
 
 

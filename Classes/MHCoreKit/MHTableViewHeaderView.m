@@ -26,7 +26,7 @@
    // self.backgroundColor = [UIColor greenColor];
     if (self) {
         
-        self.backgroundColor        = COLOR_GRAY;
+        self.backgroundColor        = [UIColor whiteColor];
         
         self.uiTitle                = [[UILabel alloc] initWithFrame:CGRectMake(10.0f, 0.0f, SCREEN_WIDTH/2, 20.0f)];
         [self addSubview:self.uiTitle];

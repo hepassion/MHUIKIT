@@ -376,7 +376,7 @@ UIScrollViewDelegate
         
         
         _wkWebView =  [[WKWebView alloc] initWithFrame:CGRectMake(0.0f, 0.0f, SCREEN_WIDTH, SCREEN_HEIGHT - NAVIGATION_BAR_DEFAULT_HEIGHT - Status_Bar_Height) configuration:configuration];
-        _wkWebView.backgroundColor = COLOR_DEFAULT_WHITE;
+        _wkWebView.backgroundColor = [UIColor whiteColor];
         _wkWebView.UIDelegate = self;
         _wkWebView.navigationDelegate = self;
 

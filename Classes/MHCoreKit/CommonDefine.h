@@ -32,10 +32,6 @@
 #define HEXA(hex,a)  [UIColor colorWithRed:((float)((hex & 0xFF0000) >> 16))/255.0 green:((float)((hex & 0xFF00) >> 8))/255.0 blue:((float)(hex & 0xFF))/255.0 alpha:a]
 #define HEX(hex)                HEXA(hex,1)
 
-#define COLOR_DEFAULT_WHITE        HEX(0xffffff)
-#define COLOR_GRAY                  HEX(0xaaaaaa)
-#define COLOR_ORANGE            HEX(0xfa5e3f)
-
 #define WEAK_WITH_NAME_OBJECT(_obj, _name)      __weak typeof(_obj) weak##_name = _obj
 #define WEAK(_obj)                              WEAK_WITH_NAME_OBJECT(_obj, _obj)
 #define WEAK_SELF                               WEAK(self)
