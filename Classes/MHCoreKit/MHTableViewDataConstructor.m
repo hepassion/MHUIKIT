@@ -16,7 +16,7 @@
 - (id) init {
     self = [super init];
     if (self) {
-        _indexOfHighlight = -1;
+       
     }
     
     return self;
@@ -122,24 +122,43 @@
 
 
 static char kAdapterArrayKeysObjectKey;
+static char kAdapterHeaderModelsObjectKey;
+static char kAdapterFooterModelsObjectKey;
 
 
-@implementation MHTableViewDataConstructor (Index)
+@implementation MHTableViewDataConstructor (Category)
 @dynamic arrayKeys;
+@dynamic headerModels;
+@dynamic footerModels;
 
-
-- (NSArray*) arrayKeys {
-    return (NSArray *)objc_getAssociatedObject(self, &kAdapterArrayKeysObjectKey);
+- (NSMutableArray*) arrayKeys {
+    return (NSMutableArray *)objc_getAssociatedObject(self, &kAdapterArrayKeysObjectKey);
 }
 
-- (void) setArrayKeys:(NSArray *)arrayKeys {
+- (void) setArrayKeys:(NSMutableArray *)arrayKeys {
     objc_setAssociatedObject(self, &kAdapterArrayKeysObjectKey, arrayKeys, OBJC_ASSOCIATION_RETAIN_NONATOMIC);
 }
 
 
-- (void) constructIndex {
-    
+- (Class) headerModels {
+    return (Class)objc_getAssociatedObject(self, &kAdapterHeaderModelsObjectKey);
 }
+
+- (void)setHeaderModels:(NSMutableArray *)headerModels {
+    objc_setAssociatedObject(self, &kAdapterHeaderModelsObjectKey, headerModels, OBJC_ASSOCIATION_COPY_NONATOMIC);
+}
+
+
+- (NSArray*) footerModels {
+    return (NSArray*)objc_getAssociatedObject(self, &kAdapterFooterModelsObjectKey);
+}
+
+- (void)setFooterModels:(NSMutableArray *)footerModels {
+    objc_setAssociatedObject(self, &kAdapterFooterModelsObjectKey, footerModels, OBJC_ASSOCIATION_RETAIN_NONATOMIC);
+}
+
+
+
 
 @end
 

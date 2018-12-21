@@ -105,7 +105,9 @@
     
     if ([cellType isEqualToString:@"cell.type.synchronized"]) {
        
-        
+        NSLog(@"dd_currentNavigationControllerOnTabBar%@", [UIApplication dd_currentNavigationControllerOnTabBar]);
+        NSLog(@"self.navigationController%@", self.navigationController);
+
         UINavigationController *currentNav=    [UIApplication dd_currentNavigationControllerOnTabBar];
         UINavigationController *rootNav  = [UIApplication dd_rootNavigationController];
         for (UIViewController *vc in currentNav.viewControllers) {

@@ -12,6 +12,7 @@
 @interface MHTableViewFooterViewModel : MHDataModel
 
 @property (nonatomic, strong) NSString* footerTitle;
+@property (nonatomic, assign) NSInteger sectionIndex;
 
 
 @end

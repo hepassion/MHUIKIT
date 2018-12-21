@@ -8,7 +8,7 @@
 
 #import "MHTableViewController.h"
 #import "CommonDefine.h"
-
+#import <UIApplication+Helper.h>
 @interface MHTableViewController ()<MHTableViewAdaptorDelegate>
 - (void) initialize;
 - (void) createTableView;
@@ -40,11 +40,16 @@
     }
     if ([self getCustomNavigationBar]) {
         self.uiTableView.top = NAVIGATION_BAR_DEFAULT_HEIGHT + Status_Bar_Height;
-        self.uiTableView.height = SCREEN_HEIGHT - NAVIGATION_BAR_DEFAULT_HEIGHT - Status_Bar_Height;
     } else {
         self.uiTableView.top = 0;
-        self.uiTableView.height = SCREEN_HEIGHT - NAVIGATION_BAR_DEFAULT_HEIGHT - Status_Bar_Height;
     }
+    if ([UIApplication dd_rootNavigationController] == [UIApplication dd_currentNavigationViewController]) { //子页面 不在tabbar最外层
+        self.uiTableView.height = SCREEN_HEIGHT - NAVIGATION_BAR_DEFAULT_HEIGHT - Status_Bar_Height;
+    } else {
+        self.uiTableView.height = SCREEN_HEIGHT - NAVIGATION_BAR_DEFAULT_HEIGHT - Status_Bar_Height - TAB_BAR_HEIGHT;
+    }
+    
+
     [self setAutomaticallyAdjustsScrollViewInsets:YES];
     self.navigationController.navigationBar.translucent = NO;
     // Do any additional setup after loading the view.
@@ -79,7 +84,8 @@
     //NSString* tableViewClassName = [self.adaptor tableViewClassName];
     //Class tableViewClass = NSClassFromString(tableViewClassName);
     CGRect fram = CGRectMake(0, 0 , SCREEN_WIDTH, SCREEN_HEIGHT);
-    _uiTableView = [[MHTableView alloc] initWithFrame:fram];
+   // _uiTableView = [[MHTableView alloc] initWithFrame:fram];
+    _uiTableView = [[MHTableView alloc] initWithFrame:fram style:[self getTableViewStyle]];
     [_uiTableView setBackgroundColor:[UIColor clearColor]];
     [_uiTableView setSeparatorStyle:UITableViewCellSeparatorStyleNone];
     _uiTableView.showsHorizontalScrollIndicator     = NO;
@@ -94,24 +100,16 @@
     [self.view addSubview:_uiTableView];
     [_uiTableView reloadData];
     
-    self.tableViewStyle = MHTableViewStyleGroup;
 }
 
 - (void) reloadTableViewData {
     [self.uiTableView reloadData];
 }
 
-
-#pragma mark - Setter/Getter
-- (void) setTableViewStyle:(MHTableViewStyle)tableViewStyle {
-    _tableViewStyle = tableViewStyle;
-    if (_tableViewStyle == MHTableViewStyleGroup) {
-        //可能造成Tableview下方偏移20.0f
-        //self.uiTableView.contentInset = UIEdgeInsetsMake(20.0f, 0.0f, 20.0f, 0.0f);
-    } else {
-       self.uiTableView.contentInset = UIEdgeInsetsZero;
-    }
+- (UITableViewStyle )getTableViewStyle {
+    return UITableViewStylePlain;
 }
+
 
 - (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];

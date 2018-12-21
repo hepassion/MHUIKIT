@@ -30,8 +30,7 @@
 - (id) init {
     self = [super init];
     if (self) {
-        self.canMove = NO;
-        self.canEdit = NO;
+        
     }
     
     return self;
@@ -170,15 +169,19 @@
     return NO;
 }
 
-- (BOOL) tableView:(UITableView *)tableView canMoveRowAtIndexPath:(NSIndexPath *)indexPath {
-    
-    id<MHTableViewCellItemProtocol> object = [self objectForRowAtIndexPath:indexPath];
-    if (_delegate && [_delegate respondsToSelector:@selector(tableView:canMoveObject:forRowAtIndexPath:)]) {
-        return [_delegate tableView:tableView canMoveObject:object forRowAtIndexPath:indexPath];
-    }
-    
-    return NO;
+- (UITableViewCellEditingStyle)tableView:(UITableView *)tableView editingStyleForRowAtIndexPath:(NSIndexPath *)indexPath
+{
+    return UITableViewCellEditingStyleDelete;
 }
+
+- (NSString *)tableView:(UITableView *)tableView titleForDeleteConfirmationButtonForRowAtIndexPath:(NSIndexPath *)indexPath
+{
+    if (_delegate && [_delegate respondsToSelector:@selector(tableView:titleForDeleteConfirmationButtonForRowAtIndexPath:)]) {
+        return [_delegate tableView:tableView titleForDeleteConfirmationButtonForRowAtIndexPath:indexPath];
+    }
+    return @"删除";
+}
+
 
 - (void)tableView:(UITableView *)tableView commitEditingStyle:(UITableViewCellEditingStyle)editingStyle forRowAtIndexPath:(NSIndexPath *)indexPath {
     
@@ -191,14 +194,6 @@
     }
 }
 
-- (BOOL) tableView:(UITableView *)tableView enableGroupModeAtSection:(NSInteger)section {
-    
-    if (_delegate && [_delegate respondsToSelector:@selector(tableView:enableGroupModeAtSection:)]) {
-        return [_delegate tableView:tableView enableGroupModeAtSection:section];
-    }
-    
-    return NO;
-}
 
 
 #pragma mark - UI TableView Delegate
@@ -272,12 +267,10 @@
 
 
 static char kAdapterArrayKeysObjectKey;
-static char kAdapterHeaderModelsObjectKey;
 
 
 @implementation MHTableViewAdaptor (Index)
 @dynamic arrayKeys;
-@dynamic headerModels;
 
 
 - (NSArray*) arrayKeys {
@@ -288,14 +281,6 @@ static char kAdapterHeaderModelsObjectKey;
     objc_setAssociatedObject(self, &kAdapterArrayKeysObjectKey, arrayKeys, OBJC_ASSOCIATION_RETAIN_NONATOMIC);
 }
 
-
-- (Class) headerModels {
-    return (Class)objc_getAssociatedObject(self, &kAdapterHeaderModelsObjectKey);
-}
-
-- (void)setHeaderModels:(NSMutableArray *)headerModels {
-    objc_setAssociatedObject(self, &kAdapterHeaderModelsObjectKey, headerModels, OBJC_ASSOCIATION_COPY_NONATOMIC);
-}
 
 
 #pragma mark - UI TableView DataSource
@@ -319,13 +304,30 @@ static char kAdapterHeaderModelsObjectKey;
 //}
 
 
+@end
+
+
+static char kAdapterHeaderModelsObjectKey;
+
+@implementation MHTableViewAdaptor (Header)
+@dynamic headerModels;
+
+- (Class) headerModels {
+    return (Class)objc_getAssociatedObject(self, &kAdapterHeaderModelsObjectKey);
+}
+
+- (void)setHeaderModels:(NSMutableArray *)headerModels {
+    objc_setAssociatedObject(self, &kAdapterHeaderModelsObjectKey, headerModels, OBJC_ASSOCIATION_COPY_NONATOMIC);
+}
+
+
 #pragma mark - UITableViewDelegate
 - (CGFloat) tableView:(UITableView *)tableView heightForHeaderInSection:(NSInteger)section {
     CGFloat height = 0.0f;
     if (self.headerModels && self.headerModels.count && section < self.headerModels.count) {
         MHTableViewHeaderViewModel *model = self.headerModels[section];
         if (model.cellClass) {
-          height = [model.cellClass tableView:tableView sectionHeaderHeightForObject:model];
+            height = [model.cellClass tableView:tableView sectionHeaderHeightForObject:model];
         }
     }
     return height;
@@ -334,10 +336,10 @@ static char kAdapterHeaderModelsObjectKey;
 
 - (UIView *)tableView:(UITableView *)tableView viewForHeaderInSection:(NSInteger)section {
     MHTableViewHeaderViewModel *model = self.headerModels[section];
-
+    model.sectionIndex = section;
     MHTableViewHeaderView* headerView = nil;
     if (model.cellClass) {
-        headerView = [[model.cellClass alloc] init];
+        headerView = [[model.cellClass alloc] init ];
     } else {
         headerView = [[MHTableViewHeaderView alloc] init];
     }
@@ -345,8 +347,8 @@ static char kAdapterHeaderModelsObjectKey;
     return headerView;
 }
 
-@end
 
+@end
 
 
 static char kAdapterFooterModelsObjectKey;
@@ -385,6 +387,7 @@ static char kAdapterFooterModelsObjectKey;
     NSInteger count = [self.footerModels count];
     if (count > 0 && count > section) {
         MHTableViewFooterViewModel * object = [self.footerModels objectAtIndex:section];
+        object.sectionIndex = section;
         Class cellClass = [self cellClassForObject:object];
         
         if (cellClass) {

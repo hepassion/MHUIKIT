@@ -11,6 +11,7 @@
 @interface MHTableViewHeaderViewModel : MHDataModel
 
 @property (nonatomic, strong) NSString* title;
+@property (nonatomic, assign) NSInteger sectionIndex;
 
 
 @end
@@ -19,6 +20,7 @@
 @interface MHTableViewHeaderView : UIView
 
 @property (nonatomic, strong) MHTableViewHeaderViewModel* model;
+@property (nonatomic, strong) UILabel* uiTitle;
 
 
 /*!

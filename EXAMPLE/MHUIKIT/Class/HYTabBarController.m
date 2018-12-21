@@ -26,13 +26,13 @@
     if (self) {
         
         UIView* backView = [[UIView alloc]init];
-        backView.backgroundColor = HEX(0xffffff);
+        backView.backgroundColor = COLOR_DEFAULT_WHITE;
         backView.frame = self.tabBar.bounds;
         
         [[UITabBar appearance] insertSubview:backView atIndex:0];
 
         [self initialize];
-       // self.delegate = self;
+      
     }
     
     return self;
@@ -89,10 +89,10 @@
                                moreNaviController]];
     
     
-//     [[UITabBarItem appearance] setTitleTextAttributes:[NSDictionary dictionaryWithObjectsAndKeys:[UIColor greenColor], UITextAttributeTextColor, nil] forState:UIControlStateNormal];
-//
-//     [[UITabBarItem appearance] setTitleTextAttributes:[NSDictionary dictionaryWithObjectsAndKeys:[UIColor redColor], UITextAttributeTextColor, nil] forState:UIControlStateSelected];
-//
+     [[UITabBarItem appearance] setTitleTextAttributes:[NSDictionary dictionaryWithObjectsAndKeys:[UIColor greenColor], UITextAttributeTextColor, nil] forState:UIControlStateNormal];
+
+     [[UITabBarItem appearance] setTitleTextAttributes:[NSDictionary dictionaryWithObjectsAndKeys:[UIColor redColor], UITextAttributeTextColor, nil] forState:UIControlStateSelected];
+
     
     self.selectedIndex = 0;
 }

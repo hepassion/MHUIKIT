@@ -10,22 +10,16 @@
 #import "MHTableViewCellItemProtocol.h"
 #import <UIKit/UIKit.h>
 
-
-typedef enum : NSUInteger {
-    MHTBCellSelectedStyleNone,
-    MHTBCellSelectedStyleCustom,
-} MHTBCellSelectedStyle;
-
 @interface MHDataModel : NSObject<MHTableViewCellItemProtocol>
 
 
 @property (nonatomic, copy) NSString *content;
 
-@property (nonatomic, assign) MHTBCellSelectedStyle selectedStyle;
-@property (nonatomic, strong) UIColor *normalBackgroudColor;
-@property (nonatomic, strong) UIColor *selectedBackgroudColor;              //Cell选中背景色-默认白色
+@property (nonatomic, assign) UITableViewCellSelectionStyle selectedStyle; //cell点击效果
+@property (nonatomic, strong) UIColor *normalBackgroudColor;                //cell 背景色
 
-@property (nonatomic, assign) UITableViewCellAccessoryType accessoryType;
+@property (nonatomic, assign) BOOL showRightRow;                             //显示右侧箭头  yes显示  no不显示
+
 
 @property (nonatomic, assign) BOOL showTopLine;                             //顶部分割组线
 @property (nonatomic, strong) UIColor *topLineColor;

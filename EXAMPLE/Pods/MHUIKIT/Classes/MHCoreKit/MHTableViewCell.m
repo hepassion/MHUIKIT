@@ -12,6 +12,9 @@
 
 @property (nonatomic, strong)   UIView *topLine;
 @property (nonatomic, strong)   UIView *bottomLine;
+@property (nonatomic, strong)   UIImageView *rowImageView;
+
+
 
 @end
 @implementation MHTableViewCell
@@ -19,7 +22,6 @@
 - (instancetype)initWithStyle:(UITableViewCellStyle)style reuseIdentifier:(nullable NSString *)reuseIdentifier {
     self = [super initWithStyle:style reuseIdentifier:reuseIdentifier];
     if (self) {
-        self.selectionStyle = UITableViewCellSelectionStyleNone;
         [self initUI];
     }
     return self;
@@ -28,6 +30,8 @@
 - (void)initUI {
     [self.contentView addSubview:self.topLine];
     [self.contentView addSubview:self.bottomLine];
+    [self.contentView addSubview:self.rowImageView];
+    
 }
 
 
@@ -50,34 +54,43 @@
     if (_item != item && item != nil) {
         _item = item;
     }
-    self.backgroundColor = self.item.normalBackgroudColor?self.item.normalBackgroudColor:MHTableViewCell_DEFAULT_BACKGROUND_COLOR;
-    self.item.selectedBackgroudColor =  self.item.selectedBackgroudColor ?  self.item.selectedBackgroudColor : MHTableViewCell_DEFAULT_SELECT_BGCOLOR;
     
-   
-    // top line
-    
-    
-    if (self.item.showTopLine) {
+    self.contentView.backgroundColor = self.item.normalBackgroudColor?self.item.normalBackgroudColor:MHTableViewCell_DEFAULT_BACKGROUND_COLOR;
+    if (!self.item.selectedStyle) {
+        self.selectionStyle = UITableViewCellSelectionStyleGray; //默认点击灰色
+    } else{
+        self.selectionStyle = _item.selectedStyle;
+    }
+    // top line    
+    if (_item.showTopLine) {
         self.topLine.hidden = NO;
-        self.topLine.left =  self.item.topLineLeft;
-        self.topLine.width = self.width - self.item.topLineRight - self.item.topLineLeft;
-        self.topLine.backgroundColor = self.item.topLineColor;
+        self.topLine.left =  _item.topLineLeft;
+        self.topLine.width = self.width - _item.topLineRight - _item.topLineLeft;
+        self.topLine.backgroundColor = _item.topLineColor?_item.topLineColor: HEX(0xaaaaaa);
     }else {
         self.topLine.hidden = YES;
     }
     
     // bottom line
-    if (self.item.showBottomLine) {
+    if (_item.showBottomLine) {
         self.bottomLine.hidden = NO;
         self.bottomLine.bottom = [self.item.cellHeight floatValue];
         self.bottomLine.left =  self.item.bottomLineLeft;
         self.bottomLine.width = self.width - self.item.bottomLineLeft - self.item.bottomLineRight;
-        self.bottomLine.backgroundColor = self.item.bottomLineColor;
+        self.bottomLine.backgroundColor = _item.bottomLineColor?_item.bottomLineColor: HEX(0xaaaaaa);
     }else {
         self.bottomLine.hidden = YES;
     }
     
-    self.accessoryType  = self.item.accessoryType;
+    if (self.item.showRightRow) {
+        self.rowImageView.hidden = NO;
+        self.rowImageView.centerY = _item.cellHeight.floatValue/2.0f;
+        self.rowImageView.left = self.width - FIT6P(77);
+    } else {
+        self.rowImageView.hidden = YES;
+    }
+    
+    
     
     
 }
@@ -89,34 +102,6 @@
 
 + (CGFloat) heightForCell {
     return 32.0f;
-}
-
-- (void)touchesBegan:(NSSet<UITouch *> *)touches withEvent:(UIEvent *)event {
-    if (self.item.selectedStyle == MHTBCellSelectedStyleCustom) {
-        self.backgroundColor = self.item.selectedBackgroudColor;
-        
-    }
-    [super touchesBegan:touches withEvent:event];
-}
-
-- (void)touchesEnded:(NSSet<UITouch *> *)touches withEvent:(UIEvent *)event {
-    if (self.item.selectedStyle == MHTBCellSelectedStyleCustom) {
-        WEAK_SELF;
-        [UIView animateWithDuration:0.5 animations:^{
-            weakself.backgroundColor = weakself.item.normalBackgroudColor?weakself.item.normalBackgroudColor:MHTableViewCell_DEFAULT_BACKGROUND_COLOR;
-        }];
-    }
-    [super touchesEnded:touches withEvent:event];
-}
-
-- (void)touchesCancelled:(NSSet<UITouch *> *)touches withEvent:(UIEvent *)event {
-    if (self.item.selectedStyle == MHTBCellSelectedStyleCustom) {
-        WEAK_SELF;
-        [UIView animateWithDuration:0.5 animations:^{
-            weakself.backgroundColor = weakself.item.normalBackgroudColor?weakself.item.normalBackgroudColor:MHTableViewCell_DEFAULT_BACKGROUND_COLOR;
-        }];
-    }
-    [super touchesCancelled:touches withEvent:event];
 }
 
 - (void)setSelected:(BOOL)selected animated:(BOOL)animated {
@@ -131,8 +116,6 @@
                                                             self.width,
                                                             FIT6(1))];
         _topLine.autoresizingMask = UIViewAutoresizingFlexibleWidth;
-        _topLine.backgroundColor = self.item.topLineColor?self.item.topLineColor:[UIColor lightGrayColor];
-       
     }
     return _topLine;
 }
@@ -144,9 +127,18 @@
                                                                self.width,
                                                                FIT6(1))];
         _bottomLine.autoresizingMask = UIViewAutoresizingFlexibleWidth;
-        _bottomLine.backgroundColor = self.item.bottomLineColor?self.item.bottomLineColor:[UIColor lightGrayColor];
     }
     return _bottomLine;
+}
+
+-(UIImageView *)rowImageView {
+    if (_rowImageView == nil) {
+         _rowImageView = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"arrow_icon"]];
+        _rowImageView.frame = CGRectMake(0, 0, FIT6P(30), FIT6P(42));
+      //  _rowImageView.autoresizingMask = UIViewAutoresizingFlexibleLeftMargin;
+        _rowImageView.hidden = YES;
+
+    }return _rowImageView;
 }
 
 

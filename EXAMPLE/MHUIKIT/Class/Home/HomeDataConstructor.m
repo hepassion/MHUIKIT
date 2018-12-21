@@ -8,6 +8,9 @@
 
 #import "HomeDataConstructor.h"
 #import "MHTitleTableViewCell.h"
+#import "MHTestTableViewHeaderView.h"
+
+
 @implementation HomeDataConstructor
 
 - (void)loadData {
@@ -18,11 +21,8 @@
 //
 //    }];
     
-    
-    if (self.delegate &&
-        [self.delegate respondsToSelector:@selector(networkDataContructor:didFinishWithData:)]) {
-        [self.delegate networkDataContructor:self didFinishWithData:nil];
-    }
+    [self MH_responseSuccess:nil];
+   
     
 }
 - (void)constructData {
@@ -33,6 +33,9 @@
     model.cellType  = @"cell.type.block";
     model.cellHeight = @([MHTitleTableViewCell heightForCell]);
     model.delegate = self.viewControllerDelegate;
+    model.showTopLine = YES;
+    model.topLineColor = COLOR_GRAY;
+    model.selectedStyle = UITableViewCellSelectionStyleGray;
     [self.items addObject:model];
     
     
@@ -43,6 +46,8 @@
     model.cellType  = @"cell.type.lock";
     model.cellHeight = @([MHTitleTableViewCell heightForCell]);
     model.delegate = self.viewControllerDelegate;
+    model.showTopLine = YES;
+    model.topLineColor = COLOR_GRAY;
     [self.items addObject:model];
 
     
@@ -52,6 +57,9 @@
     model.cellType  = @"cell.type.html";
     model.cellHeight = @([MHTitleTableViewCell heightForCell]);
     model.delegate = self.viewControllerDelegate;
+    model.showTopLine = YES;
+    model.topLineColor = COLOR_GRAY;
+    model.showRightRow = YES;
     [self.items addObject:model];
  
     model = [MHTitleDataModel new];
@@ -60,6 +68,9 @@
     model.cellType  = @"cell.type.failure";
     model.cellHeight = @([MHTitleTableViewCell heightForCell]);
     model.delegate = self.viewControllerDelegate;
+    model.showTopLine = YES;
+    model.topLineColor = COLOR_GRAY;
+
     [self.items addObject:model];
     
     
@@ -69,6 +80,9 @@
     model.cellType  = @"cell.type.baidu";
     model.cellHeight = @([MHTitleTableViewCell heightForCell]);
     model.delegate = self.viewControllerDelegate;
+//    model.showTopLine = YES;
+//    model.topLineColor = COLOR_GRAY;
+
     [self.items addObject:model];
     
     
@@ -78,7 +92,51 @@
     model.cellType  = @"cell.type.task";
     model.cellHeight = @([MHTitleTableViewCell heightForCell]);
     model.delegate = self.viewControllerDelegate;
+//    model.showTopLine = YES;
+//    model.topLineColor = COLOR_GRAY;
+    
     [self.items addObject:model];
+    
+   
+    NSMutableArray *array = [NSMutableArray new];
+    [array addObject:model];
+    
+ //   [self.items addObjects:array];
+    [self.items addObjectsAtNewSection:array];
+    
+    
+    
+    MHTestTableViewHeaderViewModel *header = [MHTestTableViewHeaderViewModel new];
+    header.title = @"header";
+    header.midleText = @"headerText";
+    header.cellHeight  =@([ MHTestTableViewHeaderView heightForHeaderView]);
+    header.cellType = @"ccdd";
+    header.cellClass = [MHTestTableViewHeaderView class];
+    NSMutableArray *saa = [NSMutableArray new];
+    [saa addObject:header];
+    [saa addObject:header];
+    
+    self.headerModels = saa;
+    
+    MHTableViewFooterViewModel *footer = [MHTableViewFooterViewModel new];
+    footer.footerTitle = @"footer";
+    footer.cellHeight  =@([ MHTableViewFooterView heightForFooterView ]);
+    footer.cellType = @"ccdd";
+    footer.cellClass = [MHTableViewFooterView class];
+    NSMutableArray *bbb = [NSMutableArray  new];
+    [bbb addObject:footer];
+    [bbb addObject:footer];
+    
+    self.footerModels = bbb;
+    
+    
+    
+    NSMutableArray *keys = [NSMutableArray new];
+    [keys addObject:@"a"];
+    [keys addObject:@"b"];
+    [keys addObject:@"c"];
+    
+    self.arrayKeys = keys;
     
 }
 

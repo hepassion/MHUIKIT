@@ -18,11 +18,7 @@
     [super viewDidLoad];
     self.view.backgroundColor = [UIColor clearColor];
     self.uiTableView.backgroundColor = [UIColor whiteColor];
-    
-//    self.uiTableView.top = 64;//self.pageNavigationBar.bottom;
-//    self.uiTableView.height = SCREEN_HEIGHT - 64;//self.pageNavigationBar.height;
-//    self.uiTableView.backgroundColor = COLOR_JJ_BACKGROUND;
-//    // Do any additional setup after loading the view.
+  
 }
 
 #pragma mark - NavigationBar
@@ -56,6 +52,18 @@
 - (UIColor *)getNavigationBarBackButtonColor {
     return [UIColor blackColor];
 }
+
+- (BOOL)getShowNavigationBarBottomLine {
+    return YES;
+}
+
+- (UIColor *)getNavigationBarBottomLineColor {
+    return [UIColor greenColor];
+}
+
+//- (UITableViewStyle )getTableViewStyle {
+//    return UITableViewStyleGrouped;
+//}
 
 - (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];

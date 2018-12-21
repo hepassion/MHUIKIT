@@ -3,7 +3,7 @@
 	archiveVersion = 1;
 	classes = {
 	};
-	objectVersion = 50;
+	objectVersion = 46;
 	objects = {
 
 /* Begin PBXBuildFile section */
@@ -199,7 +199,7 @@
 		05FC12BB0916CBD3EB0531669C6145B8 /* AES.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = AES.h; path = Classes/Encryption/AES.h; sourceTree = "<group>"; };
 		092653404295D38C14CE137C6431ABC2 /* NSLayoutConstraint+MASDebugAdditions.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = "NSLayoutConstraint+MASDebugAdditions.m"; path = "Masonry/NSLayoutConstraint+MASDebugAdditions.m"; sourceTree = "<group>"; };
 		092F223D4025B5E5A469EAC8A11A61AB /* MHNetworkDataConstructor.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = MHNetworkDataConstructor.h; path = Classes/MHCoreKit/MHNetworkDataConstructor.h; sourceTree = "<group>"; };
-		0C61816833838526B52C79EDA274D3EC /* libMasonry.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; name = libMasonry.a; path = libMasonry.a; sourceTree = BUILT_PRODUCTS_DIR; };
+		0C61816833838526B52C79EDA274D3EC /* libMasonry.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libMasonry.a; sourceTree = BUILT_PRODUCTS_DIR; };
 		0EE9C98FB00EE76FF559E40D3D29D85C /* MHTableViewDataConstructor.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = MHTableViewDataConstructor.m; path = Classes/MHCoreKit/MHTableViewDataConstructor.m; sourceTree = "<group>"; };
 		10CF16C4A8B9C17E599DFB263907648D /* MHTaskQueue.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = MHTaskQueue.h; path = Classes/Observer/MHTaskQueue.h; sourceTree = "<group>"; };
 		12626B4CC0C08A112D5D31526186FDA4 /* MHTableViewCell.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = MHTableViewCell.h; path = Classes/MHCoreKit/MHTableViewCell.h; sourceTree = "<group>"; };
@@ -279,13 +279,13 @@
 		831774424CD5E707255243957FED6AF0 /* MHAppSchemaObserver.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = MHAppSchemaObserver.h; path = Classes/Observer/MHAppSchemaObserver.h; sourceTree = "<group>"; };
 		8428303B26EF079D9DEB7A92339224CC /* NSObject+Category.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = "NSObject+Category.m"; path = "Classes/Utils/NSObject+Category.m"; sourceTree = "<group>"; };
 		85A786F04C6B46D3D7A347ABA17C3079 /* MHDubugger.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = MHDubugger.m; path = Classes/MHDubgger/MHDubugger.m; sourceTree = "<group>"; };
-		8611D33F6224C38F337F753E231355B4 /* libPods-MHUIKIT.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; name = "libPods-MHUIKIT.a"; path = "libPods-MHUIKIT.a"; sourceTree = BUILT_PRODUCTS_DIR; };
+		8611D33F6224C38F337F753E231355B4 /* libPods-MHUIKIT.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-MHUIKIT.a"; sourceTree = BUILT_PRODUCTS_DIR; };
 		86CDB3EC67C55B018337EB045522A3D6 /* Pods-MHUIKIT-acknowledgements.plist */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.plist.xml; path = "Pods-MHUIKIT-acknowledgements.plist"; sourceTree = "<group>"; };
 		8CE7C09986D03F92E7579B423CEFB275 /* MASCompositeConstraint.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = MASCompositeConstraint.h; path = Masonry/MASCompositeConstraint.h; sourceTree = "<group>"; };
 		8D390FF3F987CC6D7C8C43B7171B49E2 /* MJRefreshHeader.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = MJRefreshHeader.m; path = MJRefresh/Base/MJRefreshHeader.m; sourceTree = "<group>"; };
 		8ECAB8E6689AF3F629812E816AE12E3D /* NSString+Category.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = "NSString+Category.m"; path = "Classes/Utils/NSString+Category.m"; sourceTree = "<group>"; };
 		91BB40F27075390D610288A9B63C0C94 /* MHTableViewAdaptor.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = MHTableViewAdaptor.h; path = Classes/MHCoreKit/MHTableViewAdaptor.h; sourceTree = "<group>"; };
-		93A4A3777CF96A4AAC1D13BA6DCCEA73 /* Podfile */ = {isa = PBXFileReference; explicitFileType = text.script.ruby; includeInIndex = 1; lastKnownFileType = text; name = Podfile; path = ../Podfile; sourceTree = SOURCE_ROOT; xcLanguageSpecificationIdentifier = xcode.lang.ruby; };
+		93A4A3777CF96A4AAC1D13BA6DCCEA73 /* Podfile */ = {isa = PBXFileReference; explicitFileType = text.script.ruby; includeInIndex = 1; name = Podfile; path = ../Podfile; sourceTree = SOURCE_ROOT; xcLanguageSpecificationIdentifier = xcode.lang.ruby; };
 		93F1990C181F540296EECCBBA22AD169 /* MHUiKit.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = MHUiKit.h; path = Classes/MHUiKit.h; sourceTree = "<group>"; };
 		95FFE65C94339ACD6DFB782632FF2344 /* MJRefreshAutoStateFooter.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = MJRefreshAutoStateFooter.m; path = MJRefresh/Custom/Footer/Auto/MJRefreshAutoStateFooter.m; sourceTree = "<group>"; };
 		96A0C51AE38A12437C7FADEB10681B06 /* MJRefreshBackGifFooter.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = MJRefreshBackGifFooter.m; path = MJRefresh/Custom/Footer/Back/MJRefreshBackGifFooter.m; sourceTree = "<group>"; };
@@ -293,7 +293,7 @@
 		986B43906FE9EA689A57F594BEB466F4 /* MHUtility.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = MHUtility.h; path = Classes/Utils/MHUtility.h; sourceTree = "<group>"; };
 		9C311062F3B4E57A4413663CD1858EB2 /* MHUIKIT-prefix.pch */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = "MHUIKIT-prefix.pch"; sourceTree = "<group>"; };
 		9DB9AB0AEB905250A26DBDB5DFF045EE /* UIImage+Category.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = "UIImage+Category.h"; path = "Classes/Utils/UIImage+Category.h"; sourceTree = "<group>"; };
-		A08A13EA76AFC32FB4D0D7031048F036 /* libMHUIKIT.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; name = libMHUIKIT.a; path = libMHUIKIT.a; sourceTree = BUILT_PRODUCTS_DIR; };
+		A08A13EA76AFC32FB4D0D7031048F036 /* libMHUIKIT.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libMHUIKIT.a; sourceTree = BUILT_PRODUCTS_DIR; };
 		A3F03E9791BDCDF2B07FCD27AEFBA6CB /* MHTaskQueue.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = MHTaskQueue.m; path = Classes/Observer/MHTaskQueue.m; sourceTree = "<group>"; };
 		A4B2F72E337CE6A84CC502150A332C6F /* MHAsObservedObject.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = MHAsObservedObject.m; path = Classes/Observer/MHAsObservedObject.m; sourceTree = "<group>"; };
 		A5EA535BE8B3971B1F97A15C7E853C69 /* MHTableViewFooterView.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = MHTableViewFooterView.m; path = Classes/MHCoreKit/MHTableViewFooterView.m; sourceTree = "<group>"; };
@@ -342,12 +342,12 @@
 		E91E2C5E7896422336919520B5B637FC /* icon_close@2x.png */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = image.png; name = "icon_close@2x.png"; path = "Classes/MHCoreKit/Assets/icon_close@2x.png"; sourceTree = "<group>"; };
 		EAEDB420FF4758339B5AE92E6C1B0F56 /* MHTableViewCellItemProtocol.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = MHTableViewCellItemProtocol.h; path = Classes/MHCoreKit/MHTableViewCellItemProtocol.h; sourceTree = "<group>"; };
 		EC502C82889F40A67C5AA73676FC07B9 /* MJRefreshAutoGifFooter.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = MJRefreshAutoGifFooter.h; path = MJRefresh/Custom/Footer/Auto/MJRefreshAutoGifFooter.h; sourceTree = "<group>"; };
-		EC6206B2340833097359279CAF013E01 /* libAspects.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; name = libAspects.a; path = libAspects.a; sourceTree = BUILT_PRODUCTS_DIR; };
+		EC6206B2340833097359279CAF013E01 /* libAspects.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libAspects.a; sourceTree = BUILT_PRODUCTS_DIR; };
 		ED55FAD56682087B4257085302CC48B7 /* Aspects.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = Aspects.h; sourceTree = "<group>"; };
 		EDFDDA2750DD3EE445F20E6E52AF5B3C /* Masonry-prefix.pch */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = "Masonry-prefix.pch"; sourceTree = "<group>"; };
 		EFDA9112FC5E1F92BE0C170BC315D4C5 /* Aspects-prefix.pch */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = "Aspects-prefix.pch"; sourceTree = "<group>"; };
 		F03C01A65B8357A4A71C2B06CD491AA8 /* MASViewConstraint.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = MASViewConstraint.h; path = Masonry/MASViewConstraint.h; sourceTree = "<group>"; };
-		F19F9435CC7149B9D4CC808448993C55 /* libMJRefresh.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; name = libMJRefresh.a; path = libMJRefresh.a; sourceTree = BUILT_PRODUCTS_DIR; };
+		F19F9435CC7149B9D4CC808448993C55 /* libMJRefresh.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libMJRefresh.a; sourceTree = BUILT_PRODUCTS_DIR; };
 		F3560B68FA322CAADE15260ECD703059 /* MHTableViewDataConstructor.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = MHTableViewDataConstructor.h; path = Classes/MHCoreKit/MHTableViewDataConstructor.h; sourceTree = "<group>"; };
 		F411A629F05B1A0D0BB9AAA55ED2448D /* MHTableView.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = MHTableView.m; path = Classes/MHCoreKit/MHTableView.m; sourceTree = "<group>"; };
 		F4E76583779DAE26990C736DE2947895 /* Aspects.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = Aspects.xcconfig; sourceTree = "<group>"; };
@@ -442,7 +442,6 @@
 				9F16232567336ECCCCB915B71811F1E6 /* Support Files */,
 				DBF7380DC6544E7CC79396390BAA21CE /* Utils */,
 			);
-			name = MHUIKIT;
 			path = MHUIKIT;
 			sourceTree = "<group>";
 		};
@@ -453,7 +452,6 @@
 				B75F89BBDC56E50E864C3C757C696A00 /* Aspects.m */,
 				F31292413ED8A3A45AEB2E1E51018C97 /* Support Files */,
 			);
-			name = Aspects;
 			path = Aspects;
 			sourceTree = "<group>";
 		};
@@ -575,7 +573,6 @@
 				43E88F31990256FC4A12A09BF729BE04 /* ViewController+MASAdditions.m */,
 				72A77583718BC95E39918B0C8E1767CA /* Support Files */,
 			);
-			name = Masonry;
 			path = Masonry;
 			sourceTree = "<group>";
 		};
@@ -661,7 +658,6 @@
 				DD3FC4ED0A9BDBE2573B1285A7A232FB /* Resources */,
 				3F9869EEC6DE096716B5CD8DBD5E38D6 /* Support Files */,
 			);
-			name = MJRefresh;
 			path = MJRefresh;
 			sourceTree = "<group>";
 		};

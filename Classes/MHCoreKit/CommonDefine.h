@@ -13,9 +13,10 @@
 
 #define StatusRect                                  [[UIApplication sharedApplication] statusBarFrame]
 #define Status_Bar_Height                            StatusRect.size.height
+#define Status_Bar_Width                             StatusRect.size.width
+
 #define NAVIGATION_BAR_DEFAULT_HEIGHT               44
-#define iPhoneX                                      ([[UIScreen mainScreen] bounds].size.height == 812.0)
-#define TAB_BAR_HEIGHT                               (iPhoneX?49:83)
+#define TAB_BAR_HEIGHT                            [UIApplication dd_rootTabBarController].tabBar.bounds.size.height
 
 
 #define SCREEN_SIZE                                  [[UIScreen mainScreen] bounds].size
@@ -39,3 +40,4 @@
 #define SIZE_PER_PAGE                   20
 #define FIRST_NO_PER_PAGE               1
 #endif /* CommonDefine_h */
+

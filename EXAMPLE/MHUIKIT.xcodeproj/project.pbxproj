@@ -32,6 +32,7 @@
 		42196019214BA68500446DD9 /* MHUIKITTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 42196018214BA68500446DD9 /* MHUIKITTests.m */; };
 		42196024214BA68500446DD9 /* MHUIKITUITests.m in Sources */ = {isa = PBXBuildFile; fileRef = 42196023214BA68500446DD9 /* MHUIKITUITests.m */; };
 		4229DFA0215CA582002DE8BA /* AppConfigure.m in Sources */ = {isa = PBXBuildFile; fileRef = 4229DF9F215CA582002DE8BA /* AppConfigure.m */; };
+		423C2D8721CB948C005EDE99 /* MHTestTableViewHeaderView.m in Sources */ = {isa = PBXBuildFile; fileRef = 423C2D8621CB948C005EDE99 /* MHTestTableViewHeaderView.m */; };
 		426CEC79219BC674000FC911 /* pause@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 426CEC6E219BC674000FC911 /* pause@2x.png */; };
 		426CEC7A219BC674000FC911 /* play@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 426CEC6F219BC674000FC911 /* play@2x.png */; };
 		426CEC7B219BC674000FC911 /* knob.png in Resources */ = {isa = PBXBuildFile; fileRef = 426CEC70219BC674000FC911 /* knob.png */; };
@@ -115,6 +116,8 @@
 		42196025214BA68500446DD9 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		4229DF9E215CA582002DE8BA /* AppConfigure.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppConfigure.h; sourceTree = "<group>"; };
 		4229DF9F215CA582002DE8BA /* AppConfigure.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AppConfigure.m; sourceTree = "<group>"; };
+		423C2D8521CB948C005EDE99 /* MHTestTableViewHeaderView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = MHTestTableViewHeaderView.h; sourceTree = "<group>"; };
+		423C2D8621CB948C005EDE99 /* MHTestTableViewHeaderView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = MHTestTableViewHeaderView.m; sourceTree = "<group>"; };
 		426CEC6A219BC674000FC911 /* SBPauseOrPlayView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SBPauseOrPlayView.h; sourceTree = "<group>"; };
 		426CEC6B219BC674000FC911 /* SBPlayer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SBPlayer.h; sourceTree = "<group>"; };
 		426CEC6C219BC674000FC911 /* SBCommonHeader.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SBCommonHeader.h; sourceTree = "<group>"; };
@@ -175,6 +178,8 @@
 				4202270C2175802D00D2B3A5 /* HYTabBarController.m */,
 				4202270D2175802D00D2B3A5 /* MHTitleTableViewCell.h */,
 				4202271D2175802D00D2B3A5 /* MHTitleTableViewCell.m */,
+				423C2D8521CB948C005EDE99 /* MHTestTableViewHeaderView.h */,
+				423C2D8621CB948C005EDE99 /* MHTestTableViewHeaderView.m */,
 				42022735217587C000D2B3A5 /* MHWebBrowserView.h */,
 				42022736217587C000D2B3A5 /* MHWebBrowserView.m */,
 				420227382178876100D2B3A5 /* UIViewController+Exception.h */,
@@ -561,6 +566,7 @@
 				4202273A2178876100D2B3A5 /* UIViewController+Exception.m in Sources */,
 				4202271F2175802D00D2B3A5 /* LockDataConstructor.m in Sources */,
 				420227252175802D00D2B3A5 /* HYTabBarController.m in Sources */,
+				423C2D8721CB948C005EDE99 /* MHTestTableViewHeaderView.m in Sources */,
 				42E90C22219D876D00F14786 /* VideoTableViewCell.m in Sources */,
 				426CEC82219BC674000FC911 /* SBControlView.m in Sources */,
 				420227222175802D00D2B3A5 /* BlockViewController.m in Sources */,

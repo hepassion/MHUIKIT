@@ -43,6 +43,13 @@
     return [tabBarC.viewControllers objectAtIndex:tabBarC.selectedIndex];
 }
 
++ (UINavigationController *)dd_currentNavigationViewController {
+    UINavigationController *rootNav =   [UIApplication dd_rootNavigationController];
+    if (rootNav.viewControllers && rootNav.viewControllers.count > 1) {
+        return [UIApplication dd_rootNavigationController];
+    }
+    return [UIApplication dd_currentNavigationControllerOnTabBar];
+}
 
 + (UIViewController *)dd_currentViewController {
   UINavigationController *rootNav =   [UIApplication dd_rootNavigationController];

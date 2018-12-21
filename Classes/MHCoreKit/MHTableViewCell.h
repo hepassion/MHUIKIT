@@ -11,7 +11,6 @@
 #import "UIView+Utils.h"
 
 #define MHTableViewCell_DEFAULT_BACKGROUND_COLOR                          [UIColor whiteColor]
-#define MHTableViewCell_DEFAULT_SELECT_BGCOLOR                          [UIColor lightGrayColor]
 /*!
  @class
  @abstract      继承UITableViewCell

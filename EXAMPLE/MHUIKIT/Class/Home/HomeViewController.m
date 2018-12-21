@@ -20,25 +20,32 @@
 
 @implementation HomeViewController
 
+static inline UIEdgeInsets sgm_safeAreaInset(UIView *view) {
+    if (@available(iOS 11.0, *)) {
+        return view.safeAreaInsets;
+    }
+    return UIEdgeInsetsZero;
+}
+
 - (void)viewDidLoad {
     [super viewDidLoad];
     self.view.backgroundColor = HEX(0xfffff1);
     WEAK_SELF;
-     self.uiTableView.contentInsetAdjustmentBehavior = UIScrollViewContentInsetAdjustmentNever;
+    if (@available(iOS 11.0, *)) {
+        self.uiTableView.contentInsetAdjustmentBehavior = UIScrollViewContentInsetAdjustmentNever;
+    }
+    
     
 
     self.uiTableView.mj_header = [MJRefreshNormalHeader headerWithRefreshingBlock:^{
         [weakself.dataConstructor loadData];
     }];
   
-    
-    
    
     
     //  http://download.3g.joy.cn/video/236/60236937/1451280942752_hd.mp4
     
 }
-
 
 - (void) constructData {
     if (_dataConstructor == nil) {
@@ -48,6 +55,11 @@
     }
     // 初始化完毕 发送网络请求
     [self.dataConstructor loadData];
+    
+}
+
+- (BOOL)getCustomNavigationBar {
+    return YES;
     
 }
 //
@@ -74,8 +86,12 @@
     
     if ([cellType isEqualToString:@"cell.type.block"]) {
         BlockViewController *blockVC  = [[BlockViewController alloc] init];
-        [self.navigationController pushViewController:blockVC animated:YES];
+       //[self.navigationController pushViewController:blockVC animated:YES];
     } else if ([cellType isEqualToString:@"cell.type.lock"]) {
+        NSLog(@"dd_currentNavigationControllerOnTabBar%@", [UIApplication dd_currentNavigationControllerOnTabBar]);
+        NSLog(@"dd_rootNavigationController%@", [UIApplication dd_rootNavigationController]);
+        NSLog(@" self.navigationController%@", self.navigationController);
+
         LockViewController *lockVC = [LockViewController new];
         [self.navigationController pushViewController:lockVC animated:YES];
      UINavigationController *currentNav=    [UIApplication dd_currentNavigationControllerOnTabBar];
@@ -144,17 +160,32 @@
     //刷新数据
     [self.dataConstructor constructData];
     self.adaptor.items = self.dataConstructor.items;
+    self.adaptor.arrayKeys = self.dataConstructor.arrayKeys;
+    self.adaptor.headerModels = self.dataConstructor.headerModels;
+    self.adaptor.footerModels = self.dataConstructor.footerModels;
+    
+
+    
     [self.uiTableView reloadData];
+}
+
+- (BOOL) tableView:(UITableView *)tableView canEditObject:(id<MHTableViewCellItemProtocol>)object forRowAtIndexPath:(NSIndexPath *)indexPath {
+    return YES;
+}
+
+
+- (void) tableView:(UITableView *)tableView commitDeletingObject:(id<MHTableViewCellItemProtocol>)object forRowAtIndexPath:(NSIndexPath *)indexPath {
+    [self.adaptor.items removeObjectAtIndex:indexPath.row inSection:indexPath.section];
+    self.dataConstructor.items = self.adaptor.items;
+    [self.uiTableView deleteRowsAtIndexPaths:@[indexPath] withRowAnimation:UITableViewRowAnimationFade];
+   // [self reloadTableViewData];
 }
 
 - (void) networkDataContructor:(MHNetworkDataConstructor*)dataConstructor didErrorWithData:(id)data {
    // [self.view nv_hideLoading];
     [self stopMJRefreshing];
     // [self nv_showOffNetworkView];
-
-  
 }
-
 
 - (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];

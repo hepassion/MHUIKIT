@@ -15,6 +15,7 @@
 + (UINavigationController *)dd_navigationControllerOnTabBarIndex:(NSInteger) index;
 + (UINavigationController *)dd_currentNavigationControllerOnTabBar;
 + (UIViewController *)dd_currentViewController;
++ (UINavigationController *)dd_currentNavigationViewController;
 
 
 

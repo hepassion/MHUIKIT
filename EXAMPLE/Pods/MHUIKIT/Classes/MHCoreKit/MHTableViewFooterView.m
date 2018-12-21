@@ -24,16 +24,13 @@
 - (id) init {
     CGRect frame = CGRectMake(0.0f, 0.0f, SCREEN_WIDTH, 20);
     self = [super initWithFrame:frame];
-   // self.backgroundColor = [UIColor blueColor];
 
     if (self) {
         
-       self.backgroundColor        = COLOR_GRAY;
+       self.backgroundColor        = [UIColor whiteColor];
         
-        self.uiTitle                = [[UILabel alloc] initWithFrame:CGRectMake(100.0f, 0.0f,200, 20.0f)];
-        [self addSubview:self.uiTitle];
-        self.uiTitle.font           = FONT_SYSTEM_SIZE(FIT6(24));
-        self.uiTitle.textColor      = [UIColor blackColor];
+     [self addSubview:self.uiTitle];
+      
     }
     
     return self;
@@ -42,8 +39,9 @@
 
 - (void)setModel:(MHTableViewFooterViewModel *)model {
     _model = model;
-    self.uiTitle.text = model.footerTitle;
-    
+  //  self.uiTitle.text = model.footerTitle;
+    self.uiTitle.text = [NSString stringWithFormat:@"%ld--%@",model.sectionIndex, model.footerTitle];
+
 }
 
 
@@ -64,6 +62,15 @@
 
 + (CGFloat) heightForFooterView {
     return 20.0f;
+}
+
+#pragma mark lazy loading ---------
+- (UILabel *)uiTitle {
+    if (_uiTitle == nil) {
+        _uiTitle                = [[UILabel alloc] initWithFrame:CGRectMake(10.0f, 0.0f, SCREEN_WIDTH/2, [MHTableViewFooterView heightForFooterView])];
+        _uiTitle.font           = FONT_SYSTEM_SIZE(FIT6(24));
+        _uiTitle.textColor      = [UIColor blackColor];
+    }return _uiTitle;
 }
 
 

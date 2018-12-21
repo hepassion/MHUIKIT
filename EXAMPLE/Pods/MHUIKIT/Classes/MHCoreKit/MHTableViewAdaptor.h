@@ -16,10 +16,11 @@
 - (void) tableView:(UITableView *)tableView didSelectObject:(id<MHTableViewCellItemProtocol>)object rowAtIndexPath:(NSIndexPath *)indexPath;
 
 @optional
-- (BOOL) tableView:(UITableView *)tableView enableGroupModeAtSection:(NSInteger)section;
+
 - (BOOL) tableView:(UITableView *)tableView canEditObject:(id<MHTableViewCellItemProtocol>)object forRowAtIndexPath:(NSIndexPath *)indexPath;
-- (BOOL) tableView:(UITableView *)tableView canMoveObject:(id<MHTableViewCellItemProtocol>)object forRowAtIndexPath:(NSIndexPath *)indexPath;
+- (NSString *)tableView:(UITableView *)tableView titleForDeleteConfirmationButtonForRowAtIndexPath:(NSIndexPath *)indexPath;
 - (void) tableView:(UITableView *)tableView commitDeletingObject:(id<MHTableViewCellItemProtocol>)object forRowAtIndexPath:(NSIndexPath *)indexPath;
+
 //- (void) tableView:(UITableView *)tableView willDisplayCell:(UITableViewCell *)cell withObject:(id<NVTableViewCellItemProtocol>)object forRowAtIndexPath:(NSIndexPath *)indexPath;
 
 - (void)tableViewDidScroll:(UITableView *)tableView;
@@ -59,10 +60,16 @@ UITableViewDelegate>
 @interface MHTableViewAdaptor (Index)
 
 @property (nonatomic, strong) NSMutableArray* arrayKeys; //右侧索引数组  nsstring
-@property (nonatomic, strong) NSMutableArray * headerModels;//MHTableViewHeaderViewModel
 
 @end
 
+
+
+@interface MHTableViewAdaptor (Header)
+
+@property (nonatomic, strong) NSMutableArray * headerModels;//MHTableViewHeaderViewModel
+
+@end
 
 
 @interface MHTableViewAdaptor (Footer)

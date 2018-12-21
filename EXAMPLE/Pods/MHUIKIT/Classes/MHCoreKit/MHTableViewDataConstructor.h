@@ -15,7 +15,6 @@
 @interface MHTableViewDataConstructor : NSObject
 
 @property (nonatomic, strong) MHIndexPathArray * items;
-@property (nonatomic, assign) NSInteger indexOfHighlight;
 @property (nonatomic, assign) UIViewController* viewControllerDelegate;
 
 - (void) constructData;
@@ -32,18 +31,15 @@
 - (void) refreshValueForCellType:(NSString*)cellType;
 - (void) refreshValueForCellType:(NSString *)cellType block:(void (^)(MHDataModel* item))block;
 
-/*
- 获取对应type的dataModel
- 请使用- (MHDataModel *) modelByCellType:(NSString*)cellType 替代！
- */
-//- (MHDataModel*) itemByCellType:(NSString*)cellType;
-
 @end
 
 
 
-@interface MHTableViewDataConstructor (Index)
-@property (nonatomic, strong) NSArray* arrayKeys;
-- (void) constructIndex;
+@interface MHTableViewDataConstructor (Category)
+
+@property (nonatomic, strong) NSMutableArray* arrayKeys;
+@property (nonatomic, strong) NSMutableArray * headerModels;//MHTableViewHeaderViewModel
+@property (nonatomic, strong) NSMutableArray * footerModels;//MHTableViewFooterViewModel
+
 @end
 

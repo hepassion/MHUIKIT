@@ -9,9 +9,10 @@
 #import "MHViewController.h"
 
 #define MHDefaultTitleColor   [UIColor blackColor]
-#define MHDefaultNavBackGroundColor   COLOR_ORANGE
-#define MHDefaultBackButtonColor   COLOR_DEFAULT_WHITE
-#define MHDefaultLeftRightItemTitleColor   COLOR_GRAY
+#define MHDefaultNavBackGroundColor    [UIColor whiteColor]
+#define MHDefaultBackButtonColor      HEX(0xaaaaaa)
+#define MHDefaultLeftRightItemTitleColor    HEX(0xaaaaaa)
+#define NavBarBottomLineDefaultColor         HEX(0xaaaaaa)
 
 
 
@@ -20,6 +21,7 @@
 @property (nonatomic, strong) UILabel* titleLabel;
 @property (nonatomic, strong) UIButton* leftButton;
 @property (nonatomic, strong) UIButton* rightButton;
+@property (nonatomic, strong) UIView* lineView;
 
 @end
 
@@ -66,6 +68,21 @@
  @return 背景色
  */
 - (UIColor*) getNavigationBarBackgroundColor;
+
+/**
+ 是否显示NavigationBar 底部线颜色
+ 默认： yes 显示底部线颜色
+ 
+ */
+- (BOOL) getShowNavigationBarBottomLine;
+
+
+/**
+ 子类设置NavigationBar 底部线颜色 背景色
+ 
+ @return 背景色
+ */
+- (UIColor*) getNavigationBarBottomLineColor;
 
 
 
