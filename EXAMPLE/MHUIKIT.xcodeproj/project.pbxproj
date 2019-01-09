@@ -33,6 +33,8 @@
 		42196024214BA68500446DD9 /* MHUIKITUITests.m in Sources */ = {isa = PBXBuildFile; fileRef = 42196023214BA68500446DD9 /* MHUIKITUITests.m */; };
 		4229DFA0215CA582002DE8BA /* AppConfigure.m in Sources */ = {isa = PBXBuildFile; fileRef = 4229DF9F215CA582002DE8BA /* AppConfigure.m */; };
 		423C2D8721CB948C005EDE99 /* MHTestTableViewHeaderView.m in Sources */ = {isa = PBXBuildFile; fileRef = 423C2D8621CB948C005EDE99 /* MHTestTableViewHeaderView.m */; };
+		423C2D8F21CCC34B005EDE99 /* PDHttpClient.m in Sources */ = {isa = PBXBuildFile; fileRef = 423C2D8E21CCC34B005EDE99 /* PDHttpClient.m */; };
+		423C2D9221CCC47E005EDE99 /* MHErrorModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 423C2D9121CCC47E005EDE99 /* MHErrorModel.m */; };
 		426CEC79219BC674000FC911 /* pause@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 426CEC6E219BC674000FC911 /* pause@2x.png */; };
 		426CEC7A219BC674000FC911 /* play@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 426CEC6F219BC674000FC911 /* play@2x.png */; };
 		426CEC7B219BC674000FC911 /* knob.png in Resources */ = {isa = PBXBuildFile; fileRef = 426CEC70219BC674000FC911 /* knob.png */; };
@@ -43,6 +45,10 @@
 		426CEC80219BC674000FC911 /* SBPlayer.m in Sources */ = {isa = PBXBuildFile; fileRef = 426CEC76219BC674000FC911 /* SBPlayer.m */; };
 		426CEC81219BC674000FC911 /* SBPauseOrPlayView.m in Sources */ = {isa = PBXBuildFile; fileRef = 426CEC77219BC674000FC911 /* SBPauseOrPlayView.m */; };
 		426CEC82219BC674000FC911 /* SBControlView.m in Sources */ = {isa = PBXBuildFile; fileRef = 426CEC78219BC674000FC911 /* SBControlView.m */; };
+		42A725C121E591A100FACA20 /* AppManger.m in Sources */ = {isa = PBXBuildFile; fileRef = 42A725C021E591A100FACA20 /* AppManger.m */; };
+		42A725C421E591E800FACA20 /* UsrModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 42A725C321E591E800FACA20 /* UsrModel.m */; };
+		42A725C721E5DE4B00FACA20 /* MHFileDataModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 42A725C621E5DE4B00FACA20 /* MHFileDataModel.m */; };
+		42A725CA21E5E64600FACA20 /* PDHttpClient+Test.m in Sources */ = {isa = PBXBuildFile; fileRef = 42A725C921E5E64600FACA20 /* PDHttpClient+Test.m */; };
 		42DDDBA8219197DD003C4E1E /* play.mov in Resources */ = {isa = PBXBuildFile; fileRef = 42DDDBA7219197DC003C4E1E /* play.mov */; };
 		42DDDBC22193FD6A003C4E1E /* NSObject+Runtime.m in Sources */ = {isa = PBXBuildFile; fileRef = 42DDDBC02193FD69003C4E1E /* NSObject+Runtime.m */; };
 		42E90C22219D876D00F14786 /* VideoTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 42E90C21219D876D00F14786 /* VideoTableViewCell.m */; };
@@ -118,6 +124,10 @@
 		4229DF9F215CA582002DE8BA /* AppConfigure.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AppConfigure.m; sourceTree = "<group>"; };
 		423C2D8521CB948C005EDE99 /* MHTestTableViewHeaderView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = MHTestTableViewHeaderView.h; sourceTree = "<group>"; };
 		423C2D8621CB948C005EDE99 /* MHTestTableViewHeaderView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = MHTestTableViewHeaderView.m; sourceTree = "<group>"; };
+		423C2D8D21CCC34B005EDE99 /* PDHttpClient.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = PDHttpClient.h; sourceTree = "<group>"; };
+		423C2D8E21CCC34B005EDE99 /* PDHttpClient.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = PDHttpClient.m; sourceTree = "<group>"; };
+		423C2D9021CCC47E005EDE99 /* MHErrorModel.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = MHErrorModel.h; sourceTree = "<group>"; };
+		423C2D9121CCC47E005EDE99 /* MHErrorModel.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = MHErrorModel.m; sourceTree = "<group>"; };
 		426CEC6A219BC674000FC911 /* SBPauseOrPlayView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SBPauseOrPlayView.h; sourceTree = "<group>"; };
 		426CEC6B219BC674000FC911 /* SBPlayer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SBPlayer.h; sourceTree = "<group>"; };
 		426CEC6C219BC674000FC911 /* SBCommonHeader.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SBCommonHeader.h; sourceTree = "<group>"; };
@@ -133,6 +143,15 @@
 		426CEC77219BC674000FC911 /* SBPauseOrPlayView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SBPauseOrPlayView.m; sourceTree = "<group>"; };
 		426CEC78219BC674000FC911 /* SBControlView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SBControlView.m; sourceTree = "<group>"; };
 		42A3BA65216C8277006CD33F /* PrefixHeader.pch */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = PrefixHeader.pch; sourceTree = "<group>"; };
+		42A725BF21E591A100FACA20 /* AppManger.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppManger.h; sourceTree = "<group>"; };
+		42A725C021E591A100FACA20 /* AppManger.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AppManger.m; sourceTree = "<group>"; };
+		42A725C221E591E800FACA20 /* UsrModel.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = UsrModel.h; sourceTree = "<group>"; };
+		42A725C321E591E800FACA20 /* UsrModel.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = UsrModel.m; sourceTree = "<group>"; };
+		42A725C521E5DE4B00FACA20 /* MHFileDataModel.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = MHFileDataModel.h; sourceTree = "<group>"; };
+		42A725C621E5DE4B00FACA20 /* MHFileDataModel.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = MHFileDataModel.m; sourceTree = "<group>"; };
+		42A725C821E5E64600FACA20 /* PDHttpClient+Test.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "PDHttpClient+Test.h"; sourceTree = "<group>"; };
+		42A725C921E5E64600FACA20 /* PDHttpClient+Test.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = "PDHttpClient+Test.m"; sourceTree = "<group>"; };
+		42A725CE21E5E91200FACA20 /* Common.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = Common.h; sourceTree = "<group>"; };
 		42DDDBA7219197DC003C4E1E /* play.mov */ = {isa = PBXFileReference; lastKnownFileType = video.quicktime; path = play.mov; sourceTree = "<group>"; };
 		42DDDBC02193FD69003C4E1E /* NSObject+Runtime.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSObject+Runtime.m"; sourceTree = "<group>"; };
 		42DDDBC12193FD6A003C4E1E /* NSObject+Runtime.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSObject+Runtime.h"; sourceTree = "<group>"; };
@@ -290,11 +309,17 @@
 				420227332175879A00D2B3A5 /* failure.html */,
 				42F4E487215A26F6008B6B27 /* hyh.html */,
 				42DDDBA7219197DC003C4E1E /* play.mov */,
+				423C2D8C21CCC338005EDE99 /* NetWork */,
 				426CEC69219BC674000FC911 /* SBPlayer */,
 				420226FB2175802D00D2B3A5 /* Class */,
 				4229DF9E215CA582002DE8BA /* AppConfigure.h */,
 				4229DF9F215CA582002DE8BA /* AppConfigure.m */,
+				42A725BF21E591A100FACA20 /* AppManger.h */,
+				42A725C021E591A100FACA20 /* AppManger.m */,
+				42A725C221E591E800FACA20 /* UsrModel.h */,
+				42A725C321E591E800FACA20 /* UsrModel.m */,
 				42A3BA65216C8277006CD33F /* PrefixHeader.pch */,
+				42A725CE21E5E91200FACA20 /* Common.h */,
 				42DDDBC12193FD6A003C4E1E /* NSObject+Runtime.h */,
 				42DDDBC02193FD69003C4E1E /* NSObject+Runtime.m */,
 				42196008214BA68500446DD9 /* Assets.xcassets */,
@@ -321,6 +346,21 @@
 				42196025214BA68500446DD9 /* Info.plist */,
 			);
 			path = MHUIKITUITests;
+			sourceTree = "<group>";
+		};
+		423C2D8C21CCC338005EDE99 /* NetWork */ = {
+			isa = PBXGroup;
+			children = (
+				423C2D8D21CCC34B005EDE99 /* PDHttpClient.h */,
+				423C2D8E21CCC34B005EDE99 /* PDHttpClient.m */,
+				42A725C821E5E64600FACA20 /* PDHttpClient+Test.h */,
+				42A725C921E5E64600FACA20 /* PDHttpClient+Test.m */,
+				423C2D9021CCC47E005EDE99 /* MHErrorModel.h */,
+				423C2D9121CCC47E005EDE99 /* MHErrorModel.m */,
+				42A725C521E5DE4B00FACA20 /* MHFileDataModel.h */,
+				42A725C621E5DE4B00FACA20 /* MHFileDataModel.m */,
+			);
+			path = NetWork;
 			sourceTree = "<group>";
 		};
 		426CEC69219BC674000FC911 /* SBPlayer */ = {
@@ -531,6 +571,8 @@
 			);
 			inputPaths = (
 				"${SRCROOT}/Pods/Target Support Files/Pods-MHUIKIT/Pods-MHUIKIT-resources.sh",
+				"${PODS_ROOT}/MHUIKIT/Classes/MHCoreKit/Assets/arrow_icon@2x.png",
+				"${PODS_ROOT}/MHUIKIT/Classes/MHCoreKit/Assets/arrow_icon@3x.png",
 				"${PODS_ROOT}/MHUIKIT/Classes/MHCoreKit/Assets/icon_back@2x.png",
 				"${PODS_ROOT}/MHUIKIT/Classes/MHCoreKit/Assets/icon_back@3x.png",
 				"${PODS_ROOT}/MHUIKIT/Classes/MHCoreKit/Assets/icon_close@2x.png",
@@ -539,6 +581,8 @@
 			);
 			name = "[CP] Copy Pods Resources";
 			outputPaths = (
+				"${TARGET_BUILD_DIR}/${UNLOCALIZED_RESOURCES_FOLDER_PATH}/arrow_icon@2x.png",
+				"${TARGET_BUILD_DIR}/${UNLOCALIZED_RESOURCES_FOLDER_PATH}/arrow_icon@3x.png",
 				"${TARGET_BUILD_DIR}/${UNLOCALIZED_RESOURCES_FOLDER_PATH}/icon_back@2x.png",
 				"${TARGET_BUILD_DIR}/${UNLOCALIZED_RESOURCES_FOLDER_PATH}/icon_back@3x.png",
 				"${TARGET_BUILD_DIR}/${UNLOCALIZED_RESOURCES_FOLDER_PATH}/icon_close@2x.png",
@@ -557,23 +601,28 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				423C2D8F21CCC34B005EDE99 /* PDHttpClient.m in Sources */,
 				420227272175802D00D2B3A5 /* ProductViewController.m in Sources */,
 				426CEC81219BC674000FC911 /* SBPauseOrPlayView.m in Sources */,
 				420227292175802D00D2B3A5 /* AccountDataConstructor.m in Sources */,
 				4219600F214BA68500446DD9 /* main.m in Sources */,
 				4229DFA0215CA582002DE8BA /* AppConfigure.m in Sources */,
+				423C2D9221CCC47E005EDE99 /* MHErrorModel.m in Sources */,
 				420227262175802D00D2B3A5 /* ProductDataConstructor.m in Sources */,
 				4202273A2178876100D2B3A5 /* UIViewController+Exception.m in Sources */,
 				4202271F2175802D00D2B3A5 /* LockDataConstructor.m in Sources */,
 				420227252175802D00D2B3A5 /* HYTabBarController.m in Sources */,
 				423C2D8721CB948C005EDE99 /* MHTestTableViewHeaderView.m in Sources */,
+				42A725C721E5DE4B00FACA20 /* MHFileDataModel.m in Sources */,
 				42E90C22219D876D00F14786 /* VideoTableViewCell.m in Sources */,
+				42A725C121E591A100FACA20 /* AppManger.m in Sources */,
 				426CEC82219BC674000FC911 /* SBControlView.m in Sources */,
 				420227222175802D00D2B3A5 /* BlockViewController.m in Sources */,
 				420227232175802D00D2B3A5 /* BlockDataConstructor.m in Sources */,
 				4202272B2175802D00D2B3A5 /* MHTitleTableViewCell.m in Sources */,
 				42022737217587C000D2B3A5 /* MHWebBrowserView.m in Sources */,
 				420227212175802D00D2B3A5 /* HomeDataConstructor.m in Sources */,
+				42A725CA21E5E64600FACA20 /* PDHttpClient+Test.m in Sources */,
 				4202272A2175802D00D2B3A5 /* AccountViewController.m in Sources */,
 				426CEC80219BC674000FC911 /* SBPlayer.m in Sources */,
 				420227282175802D00D2B3A5 /* MoreViewController.m in Sources */,
@@ -581,6 +630,7 @@
 				42DDDBC22193FD6A003C4E1E /* NSObject+Runtime.m in Sources */,
 				42196001214BA68300446DD9 /* AppDelegate.m in Sources */,
 				4202271E2175802D00D2B3A5 /* HomeViewController.m in Sources */,
+				42A725C421E591E800FACA20 /* UsrModel.m in Sources */,
 				420227202175802D00D2B3A5 /* LockViewController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

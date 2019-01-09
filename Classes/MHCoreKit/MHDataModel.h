@@ -31,6 +31,8 @@
 @property (nonatomic, assign) CGFloat bottomLineLeft;
 @property (nonatomic, assign) CGFloat bottomLineRight;
 
+- (NSDictionary*) dictionaryValue;
+
 @end
 
 

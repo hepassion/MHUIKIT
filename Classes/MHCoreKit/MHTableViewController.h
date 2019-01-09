@@ -9,7 +9,7 @@
 #import "MHGlassMainViewController.h"
 #import "MHTableView.h"
 #import "MHTableViewAdaptor.h"
-
+#import "MHTableViewDataConstructor.h"
 
 @interface MHTableViewController : MHGlassMainViewController<UITableViewDataSource, UITableViewDelegate> {
     BOOL _isLoading;

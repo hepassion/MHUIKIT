@@ -13,6 +13,8 @@
 #import "AppConfigure.h"
 #import "HYTabBarController.h"
 #import <MHUIKIT/MHDubugger.h>
+#import "PDHttpClient.h"
+#import "AppManger.h"
 @interface AppDelegate ()
 
 @end
@@ -40,6 +42,13 @@
     
     [self openApp];
 #endif
+    
+    [[AppManger sharedInstance] deviceWANIPAddress:^(NSString *WANIP) {
+        
+    }];
+    
+    [PDHttpClient sharedInstance];
+ 
     
     return YES;
 }

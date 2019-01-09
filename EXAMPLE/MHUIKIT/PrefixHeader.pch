@@ -8,16 +8,20 @@
 
 #ifndef PrefixHeader_pch
 #define PrefixHeader_pch
+
+#import "Common.h"
+
 #import <MHUiKit.h>
 #import <MHUIKIT/MHUiKit.h>
 #import "BaseTableViewController.h"
 #import "NSObject+Runtime.h"
 #import "MHTitleTableViewCell.h"
 #import <MHUIKIT/UIApplication+Helper.h>
+#import "MHErrorModel.h"
+#import "PDHttpClient.h"
+#import "AppManger.h"
+#import "UsrModel.h"
 // Include any system framework and library headers here that should be included in all compilation units.
 // You will also need to set the Prefix Header build setting of one or more of your targets to reference this file.
-#define COLOR_DEFAULT_WHITE        HEX(0xffffff)
-#define COLOR_GRAY                  HEX(0xaaaaaa)
-#define COLOR_ORANGE            HEX(0xfa5e3f)
 
 #endif /* PrefixHeader_pch */

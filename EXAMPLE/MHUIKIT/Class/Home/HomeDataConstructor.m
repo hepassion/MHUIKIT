@@ -9,7 +9,7 @@
 #import "HomeDataConstructor.h"
 #import "MHTitleTableViewCell.h"
 #import "MHTestTableViewHeaderView.h"
-
+#import "PDHttpClient+Test.h"
 
 @implementation HomeDataConstructor
 
@@ -22,7 +22,11 @@
 //    }];
     
     [self MH_responseSuccess:nil];
-   
+    [[PDHttpClient sharedInstance] getHomeUnLoginHeaderDataSuccess:^(UsrModel *dataModel) {
+        
+    } failure:^(MHErrorModel *dataModel) {
+        
+    }];
     
 }
 - (void)constructData {
@@ -116,7 +120,7 @@
     [saa addObject:header];
     [saa addObject:header];
     
-    self.headerModels = saa;
+   // self.headerModels = saa;
     
     MHTableViewFooterViewModel *footer = [MHTableViewFooterViewModel new];
     footer.footerTitle = @"footer";
@@ -127,7 +131,7 @@
     [bbb addObject:footer];
     [bbb addObject:footer];
     
-    self.footerModels = bbb;
+    //self.footerModels = bbb;
     
     
     
@@ -136,7 +140,7 @@
     [keys addObject:@"b"];
     [keys addObject:@"c"];
     
-    self.arrayKeys = keys;
+    //self.arrayKeys = keys;
     
 }
 
