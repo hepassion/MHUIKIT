@@ -9,8 +9,8 @@
 #import <Foundation/Foundation.h>
 #import "MHTableViewCellItemProtocol.h"
 #import <UIKit/UIKit.h>
-
-@interface MHDataModel : NSObject<MHTableViewCellItemProtocol>
+#import "MHSerializedObjectProtocol.h"
+@interface MHDataModel : NSObject<MHTableViewCellItemProtocol, MHFundationSerializedObjectProtocol, MHFundationDeserializedObjectProtocol>
 
 
 @property (nonatomic, copy) NSString *content;
@@ -31,7 +31,6 @@
 @property (nonatomic, assign) CGFloat bottomLineLeft;
 @property (nonatomic, assign) CGFloat bottomLineRight;
 
-- (NSDictionary*) dictionaryValue;
 
 @end
 

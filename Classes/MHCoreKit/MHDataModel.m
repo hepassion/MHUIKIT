@@ -30,10 +30,6 @@
     return self;
 }
 
-- (NSDictionary*) dictionaryValue {
-    return [NSDictionary dictionary];
-}
-
 
 
 @end
