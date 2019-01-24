@@ -9,7 +9,7 @@
 #import "MHAppSchemaObserver.h"
 #import "NSDictionary+Category.h"
 #import "NSString+Category.h"
-
+#import "UIApplication+Helper.h"
 @interface MHAppSchemaObserver ()
 
 @property (nonatomic, strong) NSMutableDictionary* dictObserver;
@@ -159,10 +159,21 @@ static MHAppSchemaObserver* instance = nil;
                 //                NSArray* arrayNames             = [parameters allKeys];
                 NSArray* publicParams            = [self hasPublicParamExisted:parametersSorted];
                 
-                UIWindow* window = [UIApplication sharedApplication].delegate.window;
-                UIViewController* rootController = window.rootViewController;
+                UIViewController* currentController ;
+                
                 if (controller) {
-                    rootController = controller;
+                    currentController = controller;
+                } else {
+//                    UIWindow* window = [UIApplication sharedApplication].delegate.window;
+//                    UINavigationController *rootNaVc  = (UINavigationController *) window.rootViewController;
+//                    UIViewController *lastVc = rootNaVc.viewControllers.lastObject;
+//                    if ([lastVc isKindOfClass:[UITabBarController class]]) {
+//                        UITabBarController *tabbarVc = (UITabBarController *)lastVc;
+//                        currentController = tabbarVc.selectedViewController;
+//                    } else {
+//                        currentController = lastVc;
+//                    }
+                    currentController = [UIApplication dd_currentViewController];
                 }
                 
                 NSString* const kTaskNamePublicParams       = @"task.name.public.params";
@@ -176,7 +187,7 @@ static MHAppSchemaObserver* instance = nil;
 
                         NSString* value         = [parameters nvObjectForKey:paramObject.name];
                         task.userInfo           = @{@"value": value,
-                                                    @"viewController": rootController};
+                                                    @"viewController": currentController};
 
                         [[MHTaskManager sharedInstance] addTask:task
                                                            name:kTaskNamePublicParams];
@@ -184,12 +195,12 @@ static MHAppSchemaObserver* instance = nil;
 
 
                     [[MHTaskManager sharedInstance] start:kTaskNamePublicParams finish:^(BOOL completed) {
-                        observedObject.invokeBlock(observedObject.name, parameters, rootController);
+                        observedObject.invokeBlock(observedObject.name, parameters, currentController);
                     }];
                     
                     
                 } else {
-                    observedObject.invokeBlock(observedObject.name, parameters, rootController);
+                    observedObject.invokeBlock(observedObject.name, parameters, currentController);
                 }
                 
                 

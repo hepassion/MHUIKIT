@@ -54,13 +54,7 @@ UIScrollViewDelegate
     } else if (self.loadHTMLString != nil) {
         [self.wkWebView loadHTMLString:self.loadHTMLString baseURL:self.baseURL];
     }
-    
-    if (self.config && self.config.useSystemNavigationBar) {
-        self.title = self.defaultTitle;
-        } else {
-            self.pageNavigationBar.titleLabel.text = self.defaultTitle;
-    }
-    
+
     
 
     [self.wkWebView.configuration.userContentController addScriptMessageHandler:self name:@"jsoc1"];//js调用oc注册
@@ -142,6 +136,7 @@ UIScrollViewDelegate
                 self.pageNavigationBar.titleLabel.text = title;
             }
         } else {
+            // nothing todo
         }
     }
 }
@@ -217,7 +212,7 @@ UIScrollViewDelegate
 - (void)webView:(WKWebView *)webView decidePolicyForNavigationAction:(WKNavigationAction *)navigationAction decisionHandler:(void (^)(WKNavigationActionPolicy))decisionHandler {
     NSURLRequest *request = navigationAction.request;
     NSURL* url = request.URL;
-    
+   // mhuikit://camera
     NSString* scheme        = url.scheme;
     //    NSString* host          = url.host;
     //    NSString* service       = url.path;
@@ -277,6 +272,10 @@ UIScrollViewDelegate
     return self.config ? !self.config.useSystemNavigationBar : YES;
 }
 
+- (NSString *)getNavigationTitle {
+    return self.defaultTitle;
+}
+
 - (UIColor *)getCustomNavigationBarRightButtonTintColor {
     return self.config.navigationRightItemColor ? self.config.navigationRightItemColor : MHDefaultLeftRightItemTitleColor;
 }
@@ -300,12 +299,12 @@ UIScrollViewDelegate
 }
 
 - (void)customNavigationBarRightButtonAction:(id)sender {
-//    [self.wkWebView evaluateJavaScript:@"ocCallJs('oc字段')" completionHandler:^(id _Nullable item, NSError * _Nullable error) {
-//        NSLog(@"js返回字段 = %@", item);
-//    }];
-    [[MHAppSchemaObserver sharedInstance] openURLString:@"mhuikit://service/deviceInfo"];
+    [self.wkWebView evaluateJavaScript:@"ocCallJs('oc字段')" completionHandler:^(id _Nullable item, NSError * _Nullable error) {
+        NSLog(@"js返回字段 = %@", item);
+    }];
+ //   [[MHAppSchemaObserver sharedInstance] openURLString:@"mhuikit://service/deviceInfo"];
 
-    
+    //mhuikit://camera
 }
 
 
@@ -337,11 +336,9 @@ UIScrollViewDelegate
     if (self.config) {
         if (self.config.navigationBarHidden) { //导航栏隐藏
             if (self.config.useSystemNavigationBar) {
-                self.pageNavigationBar.hidden = YES;
-                [self.navigationController setNavigationBarHidden:NO];
+                [self.navigationController setNavigationBarHidden:YES];
             } else {
                 self.navigationController.navigationBar.hidden = YES;
-                self.pageNavigationBar.hidden = NO;
             }
             self.wkWebView.top = 0;
             self.wkWebView.height = SCREEN_HEIGHT;
@@ -354,12 +351,12 @@ UIScrollViewDelegate
             self.wkWebView.height = SCREEN_HEIGHT - NAVIGATION_BAR_DEFAULT_HEIGHT - Status_Bar_Height;
         }
     } else {
-        self.pageNavigationBar.hidden = NO;
-        [self.navigationController setNavigationBarHidden:YES];
         self.wkWebView.top = NAVIGATION_BAR_DEFAULT_HEIGHT + Status_Bar_Height;
         self.wkWebView.height = SCREEN_HEIGHT - NAVIGATION_BAR_DEFAULT_HEIGHT - Status_Bar_Height;
     }
 }
+
+
 
 #pragma mark lazy loading -------------
 
