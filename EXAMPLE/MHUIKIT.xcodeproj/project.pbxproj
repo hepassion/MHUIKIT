@@ -252,8 +252,8 @@
 			isa = PBXGroup;
 			children = (
 				4202270F2175802D00D2B3A5 /* ProductDataConstructor.h */,
-				420227102175802D00D2B3A5 /* ProductViewController.h */,
 				420227112175802D00D2B3A5 /* ProductDataConstructor.m */,
+				420227102175802D00D2B3A5 /* ProductViewController.h */,
 				420227122175802D00D2B3A5 /* ProductViewController.m */,
 			);
 			path = Product;

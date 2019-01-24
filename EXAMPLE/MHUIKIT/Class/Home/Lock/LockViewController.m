@@ -31,71 +31,9 @@
 //   1 OSSpinLock （暂不建议使用，原因参见这里）
    
 //所有锁（包括NSLock）的接口实际上都是通过NSLocking协议定义的，它定义了lock和unlock方法。你使用这些方法来获取和释放该锁。
-    
-    self.lock = [[NSLock alloc] init];
-    self.recursiveLock  = [[NSRecursiveLock alloc] init];
-    self.concurrentQueueOne = dispatch_queue_create("test.queue.one", DISPATCH_QUEUE_CONCURRENT);
-    self.concurrentQueueTwo = dispatch_queue_create("test.queue.two", DISPATCH_QUEUE_CONCURRENT);
-
-    self.tickets = 5;
+  
     
 }
-
-- (void)saleTicketsSynchronized
-{
-    while (1) {
-        @synchronized(self) {
-            [NSThread sleepForTimeInterval:1];
-            if (_tickets > 0) {
-                _tickets--;
-                NSLog(@"剩余票数= %ld, Thread:%@",_tickets,[NSThread currentThread]);
-            } else {
-                NSLog(@"票卖完了  Thread:%@",[NSThread currentThread]);
-                break;
-            }
-        }
-    }
-}
-- (void)saleTicketsNSLock
-{
-    
-    while (1) {
-        [NSThread sleepForTimeInterval:1];
-        //加锁
-        [self.lock lock];
-        if (_tickets > 0) {
-            _tickets--;
-            NSLog(@"剩余票数= %ld, Thread:%@",_tickets,[NSThread currentThread]);
-        } else {
-            NSLog(@"票卖完了  Thread:%@",[NSThread currentThread]);
-            break;
-        }
-        //解锁
-        [self.lock unlock];
-    }
-}
-
-
-- (void)saleTicketsNSRecursiveLock
-{
-    
-    while (1) {
-        [NSThread sleepForTimeInterval:1];
-        //加锁
-        [self.recursiveLock lock];
-        if (_tickets > 0) {
-            _tickets--;
-            NSLog(@"剩余票数= %ld, Thread:%@",_tickets,[NSThread currentThread]);
-        } else {
-            NSLog(@"票卖完了  Thread:%@",[NSThread currentThread]);
-            break;
-        }
-        //解锁
-        [self.recursiveLock unlock];
-    }
-}
-
-
 
 
 #pragma mark NVTableViewAdaptor Delegate
@@ -104,37 +42,12 @@
     NSString *cellType = object.cellType;
     
     if ([cellType isEqualToString:@"cell.type.synchronized"]) {
-       
-        NSLog(@"dd_currentNavigationControllerOnTabBar%@", [UIApplication dd_currentNavigationControllerOnTabBar]);
-        NSLog(@"self.navigationController%@", self.navigationController);
-
-        UINavigationController *currentNav=    [UIApplication dd_currentNavigationControllerOnTabBar];
-        UINavigationController *rootNav  = [UIApplication dd_rootNavigationController];
-        for (UIViewController *vc in currentNav.viewControllers) {
-            NSLog(@"curr: %@", vc);
+        if (self.completion) {
+            self.completion(YES, @"lockvc");
         }
-        for (UIViewController *vc in rootNav.viewControllers) {
-            NSLog(@"root: %@", vc);
-        }
-        
-       
+        NSURL *url = [NSURL URLWithString:@"mhuikit://Service/webSetting" ];
+        [[MHAppSchemaObserver sharedInstance] handleOpenURL:url];
       
-    }  else if ([cellType isEqualToString:@"cell.type.nslock"]) {
-        dispatch_async(self.concurrentQueueOne, ^{
-            [self saleTicketsNSLock];
-        });
-        //线程2
-        dispatch_async(self.concurrentQueueTwo, ^{
-            [self saleTicketsNSLock];
-        });
-    } else if ([cellType isEqualToString:@"cell.type.NSRecursiveLock"]) {
-        dispatch_async(self.concurrentQueueOne, ^{
-            [self saleTicketsNSRecursiveLock];
-        });
-        //线程2
-        dispatch_async(self.concurrentQueueTwo, ^{
-            [self saleTicketsNSRecursiveLock];
-        });
     }
     
     

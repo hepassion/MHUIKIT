@@ -46,7 +46,9 @@
 
 - (void) tableView:(UITableView *)tableView didSelectObject:(id<MHTableViewCellItemProtocol>)object rowAtIndexPath:(NSIndexPath *)indexPath {
     NSString *cellType = object.cellType;
-    
+    if ([cellType isEqualToString:@"cell.type.task"]) {
+        self.completion(YES, @"authvc");
+    }
 }
 
 - (void)didReceiveMemoryWarning {

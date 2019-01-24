@@ -7,7 +7,8 @@
 //
 
 #import <UIKit/UIKit.h>
-//缓存  本地存储
+
 @interface ProductViewController : BaseTableViewController
+@property(nonatomic, copy) MHTaskCompletion completion;
 
 @end

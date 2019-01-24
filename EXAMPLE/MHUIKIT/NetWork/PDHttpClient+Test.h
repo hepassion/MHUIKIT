@@ -15,9 +15,18 @@
 
 
 /*
- 获取未登录的首页头部数据
+ get
  */
-- (void)getHomeUnLoginHeaderDataSuccess:(void (^)(UsrModel* dataModel))success
+- (void)getTestDataSuccess:(void (^)(UsrModel* dataModel))success
+                                failure:(void (^)(MHErrorModel* dataModel))failure;
+
+
+
+
+/*
+ post
+ */
+- (void)postTestDataSuccess:(void (^)(UsrModel* dataModel))success
                                 failure:(void (^)(MHErrorModel* dataModel))failure;
 
 

@@ -15,17 +15,24 @@
 
 - (void)loadData {
     self.pageIndex = FIRST_NO_PER_PAGE;
-//    [[PDHttpClient sharedClient] getProductListWithType:2 page:self.pageIndex pageSize:SIZE_PER_PAGE Success:^(ProductListModel *listModel) {
-//
-//    } failure:^(NVErrorDataModel *dataModel) {
-//
-//    }];
     
-    [self MH_responseSuccess:nil];
-    [[PDHttpClient sharedInstance] getHomeUnLoginHeaderDataSuccess:^(UsrModel *dataModel) {
-        
+    
+    [self MH_startLoading];
+    
+
+    [[PDHttpClient sharedInstance] getTestDataSuccess:^(UsrModel *dataModel) {
+        [self MH_responseSuccess:dataModel];
+        NSLog(@"success");
     } failure:^(MHErrorModel *dataModel) {
-        
+        [self MH_responseError:dataModel];
+        NSLog(@"failure");
+    }];
+
+
+    [[PDHttpClient sharedInstance] postTestDataSuccess:^(UsrModel *dataModel) {
+        NSLog(@"post success");
+    } failure:^(MHErrorModel *dataModel) {
+         NSLog(@"post failure");
     }];
     
 }
@@ -101,13 +108,13 @@
     
     [self.items addObject:model];
     
-   
-    NSMutableArray *array = [NSMutableArray new];
-    [array addObject:model];
-    
- //   [self.items addObjects:array];
-    [self.items addObjectsAtNewSection:array];
-    
+//
+//    NSMutableArray *array = [NSMutableArray new];
+//    [array addObject:model];
+//
+// //   [self.items addObjects:array];
+//    [self.items addObjectsAtNewSection:array];
+//    
     
     
     MHTestTableViewHeaderViewModel *header = [MHTestTableViewHeaderViewModel new];

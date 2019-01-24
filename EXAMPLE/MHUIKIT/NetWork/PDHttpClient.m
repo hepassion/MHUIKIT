@@ -42,7 +42,7 @@ static PDHttpClient* instance = nil;
             config.callbackQueue = dispatch_get_main_queue();
             
 #ifdef DEBUG
-            config.consoleLog = YES;
+          //  config.consoleLog = YES;
 #endif
      
         
@@ -79,10 +79,9 @@ static PDHttpClient* instance = nil;
                  uploadDatas:(NSMutableArray *)uploadDatas
                 success:(void (^)(id))success
                 failure:(void (^)(MHErrorModel *))failure {
-    NSString *address = [NSString stringWithFormat:@"%@%@",self.baseURL ,url];
+    
     WEAK_SELF;
     NSString* mothedUpper = [method uppercaseString];
-    NSLog(@"\n\nRequest:%@ \nMethod:%@ \nRequestJson:%@\n\n", address,method, [parameters JSONString]);
     if ([mothedUpper isEqualToString:GET]) {
         [XMCenter sendRequest:^(XMRequest * _Nonnull request) {
             request.api         = url;

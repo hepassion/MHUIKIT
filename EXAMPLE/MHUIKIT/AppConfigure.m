@@ -7,6 +7,8 @@
 //
 
 #import "AppConfigure.h"
+#import "LockViewController.h"
+#import "ProductViewController.h"
 
 @implementation AppConfigure
 
@@ -37,9 +39,27 @@ static AppConfigure* instance = nil;
                                     NSString *paramValue,
                                     UIViewController *viewController,
                                     void(^callback)(BOOL complete) ) {
+
+                               LockViewController *lockVC = [LockViewController new];
                                
-                               NSLog(@"LOGIN");
-                                callback(YES);                               
+                               UINavigationController *naVC = [UIApplication dd_rootNavigationController ];
+                               NSLog(@"5 %@", viewController);
+                               
+                               
+                               WEAK(lockVC);
+                               lockVC.completion = ^(BOOL success, id info) {
+                                   if (success) {
+                                     
+                                       [weaklockVC dismissViewControllerAnimated:YES completion:nil];
+                                       callback(YES);
+                                   } else {
+                                    
+                                       callback(NO);
+                                   }
+                               };
+                               [naVC presentViewController:lockVC animated:YES completion:nil];
+
+                               
                            }];
     
     [observers addPublicParamName:@"nauth"
@@ -47,9 +67,23 @@ static AppConfigure* instance = nil;
                                     NSString *paramValue,
                                     UIViewController *viewController,
                                     void(^callback)(BOOL complete) ) {
-                               
-                               NSLog(@"nauth");
-                               callback(YES);
+                               UINavigationController *naVC = [UIApplication dd_rootNavigationController ];
+                               NSLog(@"6 %@", viewController);
+                              
+                               ProductViewController *productVC = [ProductViewController new];
+                               WEAK(productVC);
+                               productVC.completion = ^(BOOL success, id info) {
+                                   if (success) {
+                                     
+                                       [weakproductVC dismissViewControllerAnimated:YES completion:nil];
+                                       callback(YES);
+                                   } else {
+                                     
+                                       callback(NO);
+                                   }
+                               };
+                               [naVC presentViewController:productVC animated:YES completion:nil];
+
                            }];
 }
 /**
@@ -72,8 +106,9 @@ static AppConfigure* instance = nil;
                    serviceName:@"/webSetting"
                         invoke:^id (NSString *name, NSDictionary *parameters, UIViewController *viewController) {
                            // NSLog(@"%@ , %@, %@", name, parameters, viewController);
-                        
-                            NSLog(@"webSetting");
+
+                            NSLog(@"7 %@", viewController);
+                           
 
                             return nil;
                         }];

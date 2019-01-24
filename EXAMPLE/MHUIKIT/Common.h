@@ -18,7 +18,8 @@
 //#define DO_MAIN @"https://test.95590.cn/OLI/"        // 信保测试
 //#define    DO_MAIN @"https://test.95590.cn/OLI_ver/"  //信保UAT
 //#define DO_MAIN @"https://app.ddsd-ccic.com/loan/"  //生产
-#define DO_MAIN @"http://mock-api.com/89n6rrnV.mock/"  //生产
+#define DO_MAIN @"http://mock-api.com/89n6rrnV.mock/"  //
+//#define DO_MAIN @"http://localhost:10086/"  //mock
 
 
 

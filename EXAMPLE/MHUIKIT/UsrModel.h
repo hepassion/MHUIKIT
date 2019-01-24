@@ -13,7 +13,8 @@
 @interface UsrModel : MHDataModel
 
 @property (nonatomic, strong) NSString *token;
-@property (nonatomic, strong) NSString *ipAdress;
+@property (nonatomic, strong) NSString *name;
+@property (nonatomic, assign) NSInteger IP;
 
 
 @end

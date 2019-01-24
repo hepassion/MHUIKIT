@@ -10,4 +10,6 @@
 
 @interface LockViewController : BaseTableViewController
 
+@property(nonatomic, copy) MHTaskCompletion completion;
+
 @end

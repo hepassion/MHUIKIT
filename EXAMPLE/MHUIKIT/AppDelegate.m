@@ -15,6 +15,7 @@
 #import <MHUIKIT/MHDubugger.h>
 #import "PDHttpClient.h"
 #import "AppManger.h"
+#import "NSObject+Runtime.h"
 @interface AppDelegate ()
 
 @end
@@ -24,6 +25,9 @@
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions {
     [self runtimeConfig ];
+    
+   
+    
     [MHDubugger Debug];
     
     self.window = [[UIWindow alloc] initWithFrame:[UIScreen mainScreen].bounds];
@@ -126,4 +130,6 @@
     
     
 }
+
+
 @end

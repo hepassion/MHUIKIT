@@ -14,6 +14,7 @@
 #import "LockViewController.h"
 #import <MJRefresh/MJRefresh.h>
 #import "MHWebBrowserView.h"
+#import <WebKit/WebKit.h>
 @interface HomeViewController ()
 @property (nonatomic, strong) HomeDataConstructor *dataConstructor;
 @end
@@ -30,12 +31,13 @@ static inline UIEdgeInsets sgm_safeAreaInset(UIView *view) {
 - (void)viewDidLoad {
     [super viewDidLoad];
     self.view.backgroundColor = HEX(0xfffff1);
+    NSLog(@"%@", self.navigationController);
     WEAK_SELF;
     if (@available(iOS 11.0, *)) {
         self.uiTableView.contentInsetAdjustmentBehavior = UIScrollViewContentInsetAdjustmentNever;
     }
     
-    
+    WKWebViewConfiguration *cc = [WKWebViewConfiguration new];
 
     self.uiTableView.mj_header = [MJRefreshNormalHeader headerWithRefreshingBlock:^{
         [weakself.dataConstructor loadData];
@@ -86,30 +88,24 @@ static inline UIEdgeInsets sgm_safeAreaInset(UIView *view) {
     
     if ([cellType isEqualToString:@"cell.type.block"]) {
         BlockViewController *blockVC  = [[BlockViewController alloc] init];
-       //[self.navigationController pushViewController:blockVC animated:YES];
+        [self.navigationController pushViewController:blockVC animated:YES];
     } else if ([cellType isEqualToString:@"cell.type.lock"]) {
-        NSLog(@"dd_currentNavigationControllerOnTabBar%@", [UIApplication dd_currentNavigationControllerOnTabBar]);
-        NSLog(@"dd_rootNavigationController%@", [UIApplication dd_rootNavigationController]);
-        NSLog(@" self.navigationController%@", self.navigationController);
-
+       
         LockViewController *lockVC = [LockViewController new];
         [self.navigationController pushViewController:lockVC animated:YES];
-     UINavigationController *currentNav=    [UIApplication dd_currentNavigationControllerOnTabBar];
-        UINavigationController *rootNav  = [UIApplication dd_rootNavigationController];
-        for (UIViewController *vc in currentNav.viewControllers) {
-            NSLog(@"curr: %@", vc);
-        }
-        for (UIViewController *vc in rootNav.viewControllers) {
-            NSLog(@"root: %@", vc);
-        }
-        
-        
+    
     }  else if ([cellType isEqualToString:@"cell.type.html"]) {
         MHWebBrowserViewController *webBrowserController = [[MHWebBrowserViewController alloc] init];
         NSString* path = [[NSBundle mainBundle] pathForResource:@"hyh" ofType:@"html"];
         NSString* htmlStr = [NSString stringWithContentsOfFile:path encoding:NSUTF8StringEncoding error:nil];
         webBrowserController.loadHTMLString = htmlStr;
-        webBrowserController.defaultTitle = @"defaultTitle";
+        webBrowserController.defaultTitle = @"默认标题";
+   
+        MHWebBrowserConfig *config = [MHWebBrowserConfig new];
+        config.navigationBarHidden = YES;
+        config.useSystemNavigationBar = NO;
+        webBrowserController.config = config;
+        
         
        
         
@@ -136,7 +132,8 @@ static inline UIEdgeInsets sgm_safeAreaInset(UIView *view) {
         MHWebBrowserViewController *web = [[MHWebBrowserViewController alloc] initWithURLString:@"https://www.tutorialspoint.com/ios/ios_tutorial.pdf"];
         [self.navigationController pushViewController:web animated:YES];
     } else if ([cellType isEqualToString:@"cell.type.task"]) {
-        NSURL *url = [NSURL URLWithString:@"mhuikit://Service/webSetting?nlogin=y&nauth=y" ];
+       // NSURL *url = [NSURL URLWithString:@"mhuikit://Service/webSetting?nlogin=y&nauth=y" ];
+        NSURL *url = [NSURL URLWithString:@"mhuikit://Service/webSetting?nlogin=y" ];
         [[MHAppSchemaObserver sharedInstance] handleOpenURL:url];
     }
     
@@ -169,6 +166,19 @@ static inline UIEdgeInsets sgm_safeAreaInset(UIView *view) {
     [self.uiTableView reloadData];
 }
 
+
+
+- (void) networkDataContructor:(MHNetworkDataConstructor*)dataConstructor didErrorWithData:(id)data {
+    // [self.view nv_hideLoading];
+    [self stopMJRefreshing];
+    MHErrorModel *model = (MHErrorModel *)data;
+    NSLog(@"%ld", model.code);
+    
+    
+    // [self nv_showOffNetworkView];
+}
+
+
 - (BOOL) tableView:(UITableView *)tableView canEditObject:(id<MHTableViewCellItemProtocol>)object forRowAtIndexPath:(NSIndexPath *)indexPath {
     return YES;
 }
@@ -179,12 +189,6 @@ static inline UIEdgeInsets sgm_safeAreaInset(UIView *view) {
     self.dataConstructor.items = self.adaptor.items;
     [self.uiTableView deleteRowsAtIndexPaths:@[indexPath] withRowAnimation:UITableViewRowAnimationFade];
    // [self reloadTableViewData];
-}
-
-- (void) networkDataContructor:(MHNetworkDataConstructor*)dataConstructor didErrorWithData:(id)data {
-   // [self.view nv_hideLoading];
-    [self stopMJRefreshing];
-    // [self nv_showOffNetworkView];
 }
 
 - (void)didReceiveMemoryWarning {

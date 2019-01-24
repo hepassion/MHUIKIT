@@ -14,6 +14,14 @@
     [self.items removeAllObjects];
     
    
+    MHTitleDataModel *model = [MHTitleDataModel new];
+    model.content = @"cell.type.task";
+    model.cellClass = [MHTitleTableViewCell class];
+    model.cellType  = @"cell.type.task";
+    model.cellHeight = @([MHTitleTableViewCell heightForCell]);
+    model.delegate = self.viewControllerDelegate;
+    [self.items addObject:model];
+    
     
 }
 @end
