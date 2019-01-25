@@ -156,7 +156,6 @@ static MHAppSchemaObserver* instance = nil;
                 }
                 
                 NSArray* parametersSorted       = [paramStr parametersSorted];
-                //                NSArray* arrayNames             = [parameters allKeys];
                 NSArray* publicParams            = [self hasPublicParamExisted:parametersSorted];
                 
                 UIViewController* currentController ;
@@ -164,15 +163,6 @@ static MHAppSchemaObserver* instance = nil;
                 if (controller) {
                     currentController = controller;
                 } else {
-//                    UIWindow* window = [UIApplication sharedApplication].delegate.window;
-//                    UINavigationController *rootNaVc  = (UINavigationController *) window.rootViewController;
-//                    UIViewController *lastVc = rootNaVc.viewControllers.lastObject;
-//                    if ([lastVc isKindOfClass:[UITabBarController class]]) {
-//                        UITabBarController *tabbarVc = (UITabBarController *)lastVc;
-//                        currentController = tabbarVc.selectedViewController;
-//                    } else {
-//                        currentController = lastVc;
-//                    }
                     currentController = [UIApplication dd_currentViewController];
                 }
                 
@@ -230,7 +220,8 @@ static MHAppSchemaObserver* instance = nil;
             [scheme isEqualToString:@"https"]) {
             
             NSURL* urlWeb   = [NSURL URLWithString:[NSString stringWithFormat:@"%@://Service/web?url=%@", self.appSchema, url.absoluteString]];
-            [[UIApplication sharedApplication] openURL:urlWeb];
+          //  [[UIApplication sharedApplication] openURL:urlWeb];
+            [self openURL:urlWeb controller:controller];
         }
     }
 }
@@ -258,9 +249,8 @@ static MHAppSchemaObserver* instance = nil;
                 //                NSArray* arrayNames             = [parameters allKeys];
                 //NSArray* publicParams            = [self hasPublicParamExisted:parametersSorted];
                 
-                UIWindow* window = [UIApplication sharedApplication].delegate.window;
-                UIViewController* rootController = window.rootViewController;
-                return observedObject.invokeBlock(observedObject.name, parameters, rootController);
+                UIViewController* curretnController = [UIApplication dd_currentViewController];
+                return observedObject.invokeBlock(observedObject.name, parameters, curretnController);
             }
         }
     }

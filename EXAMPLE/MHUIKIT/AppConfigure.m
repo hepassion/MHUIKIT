@@ -92,11 +92,25 @@ static AppConfigure* instance = nil;
 - (void)initAppSchemaObservers {
     MHAppSchemaObserver* observers      = [MHAppSchemaObserver sharedInstance];
     [observers setAppSchema:[MHUtility appUrlScheme]];
+    [observers addObserverName:@"Service/web"
+                   serviceName:@"/web"
+                        invoke:^id (NSString *name, NSDictionary *parameters, UIViewController *viewController) {
+                            NSLog(@"web");
+                            NSString *url = [parameters objectForKey:@"url"];
+                            MHWebBrowserViewController *web = [[MHWebBrowserViewController alloc] initWithURLString:url];
+                             [[UIApplication dd_rootNavigationController] pushViewController:web animated:YES];
+                            return nil;
+                        }];
+    [observers addObserverName:@"llpromt"
+                   serviceName:@"/promt"
+                        invoke:^id (NSString *name, NSDictionary *parameters, UIViewController *viewController) {
+                            NSLog(@"promt");
+                            return @"promot";
+                        }];
+    
     [observers addObserverName:@"service.task.deviceInfo"
                    serviceName:@"/deviceInfo"
                         invoke:^id (NSString *name, NSDictionary *parameters, UIViewController *viewController) {
-                           
-                          //  NSLog(@"%@ , %@, %@", name, parameters, viewController);
                             NSLog(@"deviceInfo");
                             return nil;
                         }];
@@ -105,11 +119,7 @@ static AppConfigure* instance = nil;
     [observers addObserverName:@"service.task.webSetting"
                    serviceName:@"/webSetting"
                         invoke:^id (NSString *name, NSDictionary *parameters, UIViewController *viewController) {
-                           // NSLog(@"%@ , %@, %@", name, parameters, viewController);
-
                             NSLog(@"7 %@", viewController);
-                           
-
                             return nil;
                         }];
 }

@@ -16,30 +16,30 @@ PODS:
     - AFNetworking/NSURLSession
   - Aspects (1.4.1)
   - Masonry (1.1.0)
-  - MHUIKIT (0.2.7):
-    - MHUIKIT/Encryption (= 0.2.7)
-    - MHUIKIT/MHCoreKit (= 0.2.7)
-    - MHUIKIT/MHDubgger (= 0.2.7)
-    - MHUIKIT/Observer (= 0.2.7)
-    - MHUIKIT/Utils (= 0.2.7)
-  - MHUIKIT/Encryption (0.2.7)
-  - MHUIKIT/MHCoreKit (0.2.7):
+  - MHUIKIT (0.2.9):
+    - MHUIKIT/Encryption (= 0.2.9)
+    - MHUIKIT/MHCoreKit (= 0.2.9)
+    - MHUIKIT/MHDubgger (= 0.2.9)
+    - MHUIKIT/Observer (= 0.2.9)
+    - MHUIKIT/Utils (= 0.2.9)
+  - MHUIKIT/Encryption (0.2.9)
+  - MHUIKIT/MHCoreKit (0.2.9):
     - MHUIKIT/Encryption
     - MHUIKIT/Observer
     - MHUIKIT/Utils
-  - MHUIKIT/MHDubgger (0.2.7):
+  - MHUIKIT/MHDubgger (0.2.9):
     - Aspects (~> 1.4.1)
-  - MHUIKIT/Observer (0.2.7):
+  - MHUIKIT/Observer (0.2.9):
     - MHUIKIT/Encryption
     - MHUIKIT/Utils
-  - MHUIKIT/Utils (0.2.7)
+  - MHUIKIT/Utils (0.2.9)
   - MJRefresh (3.1.15.7)
   - XMNetworking (1.1.0):
     - AFNetworking (~> 3.0)
 
 DEPENDENCIES:
   - Masonry (~> 1.1.0)
-  - MHUIKIT (~> 0.2.7)
+  - MHUIKIT (~> 0.2.9)
   - MJRefresh (~> 3.1.15.7)
   - XMNetworking (~> 1.1.0)
 
@@ -56,10 +56,10 @@ SPEC CHECKSUMS:
   AFNetworking: b6f891fdfaed196b46c7a83cf209e09697b94057
   Aspects: 7595ba96a6727a58ebcbfc954497fc5d2fdde546
   Masonry: 678fab65091a9290e40e2832a55e7ab731aad201
-  MHUIKIT: 73d4230f34aa2875a47b10885303255448ddae1a
+  MHUIKIT: 1e8b1434e48cff548fc16dc8d6f09170c1fda45b
   MJRefresh: 697f8ec75ebdbe9207767bb682cf0f51b0d8a41f
   XMNetworking: 7160cc06f504f325eec515a1e687ee1aa89bc462
 
-PODFILE CHECKSUM: 4d0c7369ef63fc36d68bfd24eebb8b553d7aa5b4
+PODFILE CHECKSUM: bdb9a9cada152355f689ded0112a73e99a1d05e4
 
 COCOAPODS: 1.5.3

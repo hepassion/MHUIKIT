@@ -44,6 +44,10 @@ UIScrollViewDelegate
 
 @implementation MHWebBrowserViewController
 
+- (void)dealloc{
+    [self.wkWebView removeObserver:self forKeyPath:@"title"];
+}
+
 
 - (void)viewDidLoad {
     [super viewDidLoad];

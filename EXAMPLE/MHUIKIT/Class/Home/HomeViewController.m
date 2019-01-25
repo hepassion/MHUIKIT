@@ -101,10 +101,10 @@ static inline UIEdgeInsets sgm_safeAreaInset(UIView *view) {
         webBrowserController.loadHTMLString = htmlStr;
         webBrowserController.defaultTitle = @"默认标题";
    
-        MHWebBrowserConfig *config = [MHWebBrowserConfig new];
-        config.navigationBarHidden = YES;
-        config.useSystemNavigationBar = NO;
-        webBrowserController.config = config;
+//        MHWebBrowserConfig *config = [MHWebBrowserConfig new];
+//        config.navigationBarHidden = YES;
+//        config.useSystemNavigationBar = NO;
+//        webBrowserController.config = config;
         
         
        
@@ -118,7 +118,7 @@ static inline UIEdgeInsets sgm_safeAreaInset(UIView *view) {
         [self.view addSubview:webBrowser];
         
         webBrowser.linkClickedBlock = ^(NSURL* url) {
-            if ([url.absoluteString isEqualToString:@"http://back/"]) {
+            if ([url.absoluteString isEqualToString:@"mhuikit://back"]) {
                 [webBrowser removeFromSuperview];
                 [self.navigationController popToRootViewControllerAnimated:YES];
             }
@@ -129,12 +129,14 @@ static inline UIEdgeInsets sgm_safeAreaInset(UIView *view) {
         NSString* htmlStr = [NSString stringWithContentsOfFile:path encoding:NSUTF8StringEncoding error:nil];
         [webBrowser.wkWebView loadHTMLString:htmlStr baseURL:baseURL];
     } else if ([cellType isEqualToString:@"cell.type.baidu"]) {
-        MHWebBrowserViewController *web = [[MHWebBrowserViewController alloc] initWithURLString:@"https://www.tutorialspoint.com/ios/ios_tutorial.pdf"];
-        [self.navigationController pushViewController:web animated:YES];
+        NSURL *url = [NSURL URLWithString:@"https://www.tutorialspoint.com/ios/ios_tutorial.pdf" ];
+        [[MHAppSchemaObserver sharedInstance] openURL:url];
+        
+        
     } else if ([cellType isEqualToString:@"cell.type.task"]) {
-       // NSURL *url = [NSURL URLWithString:@"mhuikit://Service/webSetting?nlogin=y&nauth=y" ];
-        NSURL *url = [NSURL URLWithString:@"mhuikit://Service/webSetting?nlogin=y" ];
-        [[MHAppSchemaObserver sharedInstance] handleOpenURL:url];
+        NSURL *url = [NSURL URLWithString:@"mhuikit://Service/webSetting?nlogin=y&nauth=y" ];
+//        NSURL *url = [NSURL URLWithString:@"mhuikit://Service/webSetting?nlogin=y" ];
+        [[MHAppSchemaObserver sharedInstance] openURL:url];
     }
     
     

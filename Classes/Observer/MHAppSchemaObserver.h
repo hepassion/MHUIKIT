@@ -33,11 +33,16 @@
 - (NSArray*) hasPublicParamExisted:(NSArray*)paramNames;
 
 
+/**
+ 判断是否能打开u一个服务  在appdellegate调用
+ 
+ @param url 服务的URL
+ */
 - (BOOL) handleOpenURL:(NSURL*)url;
 - (BOOL) handleOpenURL:(NSURL *)url controller:(id) controller;
 
 /**
- 异步方式 打开一个服务
+  打开一个服务
  
  @param url 服务的URL
  */
@@ -46,7 +51,7 @@
 - (void) openURLString:(NSString *)urlString;
 
 /**
- 同步方式 打开一个服务 立即返回结果
+ 同步方式 打开一个服务 返回结果
  
  @param url 服务URL
  */
