@@ -14,6 +14,7 @@
 + (NSString*) appBundleId;
 + (NSString*) appVersion;
 + (NSString*) osVersion;
++ (NSString*) appBuildID;
 + (NSString*) deviceInfo;
 + (NSString*) uuid;
 @end

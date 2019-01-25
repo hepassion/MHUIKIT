@@ -42,6 +42,10 @@
     NSString* version = [[[NSBundle mainBundle] infoDictionary] objectForKey:@"CFBundleShortVersionString"];
     return version;
 }
++ (NSString*) appBuildID {
+    NSString* appBuildID = [[[NSBundle mainBundle] infoDictionary] objectForKey:@"CFBundleVersion"];
+    return appBuildID;
+}
 
 + (NSString*) osVersion {
     NSString* osVersion = [[UIDevice currentDevice] systemVersion];

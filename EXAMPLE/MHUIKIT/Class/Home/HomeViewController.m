@@ -129,10 +129,9 @@ static inline UIEdgeInsets sgm_safeAreaInset(UIView *view) {
         NSString* htmlStr = [NSString stringWithContentsOfFile:path encoding:NSUTF8StringEncoding error:nil];
         [webBrowser.wkWebView loadHTMLString:htmlStr baseURL:baseURL];
     } else if ([cellType isEqualToString:@"cell.type.baidu"]) {
-        NSURL *url = [NSURL URLWithString:@"https://www.tutorialspoint.com/ios/ios_tutorial.pdf" ];
+      //  NSURL *url = [NSURL URLWithString:@"https://www.tutorialspoint.com/ios/ios_tutorial.pdf" ];
+        NSURL *url = [NSURL URLWithString:@"https://www.baidu.com"];
         [[MHAppSchemaObserver sharedInstance] openURL:url];
-        
-        
     } else if ([cellType isEqualToString:@"cell.type.task"]) {
         NSURL *url = [NSURL URLWithString:@"mhuikit://Service/webSetting?nlogin=y&nauth=y" ];
 //        NSURL *url = [NSURL URLWithString:@"mhuikit://Service/webSetting?nlogin=y" ];

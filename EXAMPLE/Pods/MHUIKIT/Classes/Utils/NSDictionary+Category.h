@@ -18,6 +18,13 @@
 - (id)objectForKeyCustom:(id)aKey;
 
 - (id)nvKeyForValue:(id)value;
+
+/**
+ *  @brief NSDictionary转换成JSON字符串
+ *
+ *  @return  JSON字符串
+ */
+-(NSString *)JSONString;
 @end
 
 

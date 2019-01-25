@@ -61,4 +61,6 @@
 
 @interface UIImage (Compressed)
 - (UIImage *)scaleToSize:(UIImage *)img size:(CGSize)size;
+- (void)compressToMaxDataSizeKBytes:(CGFloat)size
+                            complation:(void (^)(UIImage *image, double rate, NSInteger execCount)) complation;
 @end
