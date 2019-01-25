@@ -12,6 +12,7 @@
 #import "UIView+Utils.h"
 #import "MHAppSchemaObserver.h"
 #import "UIImage+Category.h"
+#import "MBProgressHUD.h"
 #define COLOR_HYH_RED                       [UIColor colorWithRed:227.0f/255.0f green:100.0f/255.0f blue:102.0f/255.0f alpha:1.0f]
 #define COLOR_HYH_BLUE                      [UIColor colorWithRed:65.0f/255.0f green:155.0f/255.0f blue:240.0f/255.0f alpha:1.0f]
 static NSString* JSHandler;
@@ -195,7 +196,9 @@ UIScrollViewDelegate
 #pragma mark - >=iOS8 WKNavigationDelegate 页面加载过程跟踪
 // 页面开始加载时调用
 - (void)webView:(WKWebView *)webView didStartProvisionalNavigation:(WKNavigation *)navigation {
-    
+    MBProgressHUD *hud = [MBProgressHUD showHUDAddedTo:self.view animated:YES];
+    hud.mode = MBProgressHUDModeAnnularDeterminate;
+    hud.label.text = @"加载中";
 }
 // 当内容开始返回时调用
 - (void)webView:(WKWebView *)webView didCommitNavigation:(WKNavigation *)navigation {
@@ -204,11 +207,14 @@ UIScrollViewDelegate
 // 页面加载完成之后调用
 - (void)webView:(WKWebView *)webView didFinishNavigation:(WKNavigation *)navigation {
   //  [self closeFirstLoadingHUD];
+    [MBProgressHUD hideHUDForView:self.view animated:YES];
+
     
 }
 // 页面加载失败时调用
 - (void)webView:(WKWebView *)webView didFailProvisionalNavigation:(WKNavigation *)navigation {
-    
+    [MBProgressHUD hideHUDForView:self.view animated:YES];
+
 }
 
 #pragma mark - >=iOS8 WKNavigationDelegate 决定页面是否跳转
