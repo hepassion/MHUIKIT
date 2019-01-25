@@ -92,6 +92,8 @@ EOM
   esac
 }
 if [[ "$CONFIGURATION" == "Debug" ]]; then
+  install_resource "${PODS_ROOT}/MHUIKIT/Classes/MHCoreKit/Assets/arrow_icon@2x.png"
+  install_resource "${PODS_ROOT}/MHUIKIT/Classes/MHCoreKit/Assets/arrow_icon@3x.png"
   install_resource "${PODS_ROOT}/MHUIKIT/Classes/MHCoreKit/Assets/icon_back@2x.png"
   install_resource "${PODS_ROOT}/MHUIKIT/Classes/MHCoreKit/Assets/icon_back@3x.png"
   install_resource "${PODS_ROOT}/MHUIKIT/Classes/MHCoreKit/Assets/icon_close@2x.png"
@@ -99,6 +101,8 @@ if [[ "$CONFIGURATION" == "Debug" ]]; then
   install_resource "${PODS_ROOT}/MJRefresh/MJRefresh/MJRefresh.bundle"
 fi
 if [[ "$CONFIGURATION" == "Release" ]]; then
+  install_resource "${PODS_ROOT}/MHUIKIT/Classes/MHCoreKit/Assets/arrow_icon@2x.png"
+  install_resource "${PODS_ROOT}/MHUIKIT/Classes/MHCoreKit/Assets/arrow_icon@3x.png"
   install_resource "${PODS_ROOT}/MHUIKIT/Classes/MHCoreKit/Assets/icon_back@2x.png"
   install_resource "${PODS_ROOT}/MHUIKIT/Classes/MHCoreKit/Assets/icon_back@3x.png"
   install_resource "${PODS_ROOT}/MHUIKIT/Classes/MHCoreKit/Assets/icon_close@2x.png"

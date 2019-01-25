@@ -31,8 +31,10 @@
 /**
  提供给子类安全调用MHNetworkDataConstructorDelegate,不用Override
  */
+- (void) MH_startLoading;
 - (void) MH_responseSuccess:(id) data;
 - (void) MH_responseError:(id) error;
+
 
 @end
 

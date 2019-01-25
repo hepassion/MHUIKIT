@@ -45,6 +45,12 @@ Class object_getClass(id object);
     
 }
 
+- (void) MH_startLoading {
+    if (self.delegate && [self.delegate respondsToSelector:@selector(networkDataContructorStartLoading:)]) {
+        [self.delegate networkDataContructorStartLoading:self];
+    }
+}
+
 - (void)MH_responseError:(id)error {
     if (self.delegate &&
         [self.delegate respondsToSelector:@selector(networkDataContructor:didErrorWithData:)]) {

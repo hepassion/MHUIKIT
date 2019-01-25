@@ -14,7 +14,7 @@
             buildForArchiving = "YES">
             <BuildableReference
                BuildableIdentifier = "primary"
-               BlueprintIdentifier = "19310926A5E399740241CBFAF0E220C2"
+               BlueprintIdentifier = "2143FBFB295252025633173A74B1E49C"
                BlueprintName = "MHUIKIT"
                ReferencedContainer = "container:Pods.xcodeproj"
                BuildableName = "libMHUIKIT.a">

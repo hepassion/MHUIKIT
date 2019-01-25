@@ -1,6 +1,6 @@
 target :MHUIKIT do
     
-   pod 'MHUIKIT', '~> 0.2.9'
+   pod 'MHUIKIT', '~> 0.3.1'
    pod 'MJRefresh', '~> 3.1.15.7'
    # pod 'VideoPlayerKit', '~> 1.0.0'
    pod 'Masonry', '~> 1.1.0'
@@ -8,5 +8,5 @@ target :MHUIKIT do
    # pod 'SJVideoPlayer', '~> 2.2.3'
    # pod 'VKVideoPlayer', '~> 0.1.4'
     pod 'XMNetworking', '~> 1.1.0'
-    pod 'MBProgressHUD', '~> 1.1.0'
-end 
+#    pod 'MBProgressHUD', '~> 1.1.0'
+end

@@ -23,7 +23,7 @@
 - (MHDataModel *) modelByCellType:(NSString*)cellType;
 - (MHTableViewCell *) cellByCellType:(NSString*)cellType;
 
-- (id) valueForCellType:(NSString*)cellType;
+//- (id) valueForCellType:(NSString*)cellType;
 - (void) updateHighlightCell:(CGPoint)offset;
 
 - (void) indexPathByCellType:(NSString*)cellType block:(void (^)(NSIndexPath* indexPath))block;
