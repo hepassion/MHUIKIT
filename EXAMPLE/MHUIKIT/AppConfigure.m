@@ -33,7 +33,7 @@ static AppConfigure* instance = nil;
 
 - (void) initAppSchemaPublicParams {
     MHAppSchemaObserver* observers      = [MHAppSchemaObserver sharedInstance];
-
+//     mhuikit://Service/webSetting?nlogin=y&nkkkk=y
     [observers addPublicParamName:@"nlogin"
                            invoke:^(NSString *paramName,
                                     NSString *paramValue,
@@ -68,7 +68,6 @@ static AppConfigure* instance = nil;
                                     UIViewController *viewController,
                                     void(^callback)(BOOL complete) ) {
                                UINavigationController *naVC = [UIApplication dd_rootNavigationController ];
-                               NSLog(@"6 %@", viewController);
                               
                                ProductViewController *productVC = [ProductViewController new];
                                WEAK(productVC);
@@ -120,7 +119,13 @@ static AppConfigure* instance = nil;
                    serviceName:@"/webSetting"
                         invoke:^id (NSString *name, NSDictionary *parameters, UIViewController *viewController) {
                             NSLog(@"7 %@", viewController);
+                            NSLog(@"........%@", parameters);
+                           
+                            
+                            
                             return nil;
+                            
+                            // mhuikit://Service/webSetting?BgColor=0x0000ff
                         }];
 }
 

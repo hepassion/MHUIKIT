@@ -130,12 +130,15 @@ static inline UIEdgeInsets sgm_safeAreaInset(UIView *view) {
         [webBrowser.wkWebView loadHTMLString:htmlStr baseURL:baseURL];
     } else if ([cellType isEqualToString:@"cell.type.baidu"]) {
       //  NSURL *url = [NSURL URLWithString:@"https://www.tutorialspoint.com/ios/ios_tutorial.pdf" ];
-        NSURL *url = [NSURL URLWithString:@"https://www.baidu.com"];
-        [[MHAppSchemaObserver sharedInstance] openURL:url];
+        NSString *url = @"https://test.95590.cn/nloan_test/test/#/index";
+        [[MHAppSchemaObserver sharedInstance] openURLString:url];
     } else if ([cellType isEqualToString:@"cell.type.task"]) {
-        NSURL *url = [NSURL URLWithString:@"mhuikit://Service/webSetting?nlogin=y&nauth=y" ];
+        
+        NSString* string = @"mhuikit://Service/webSetting?nlogin=y&nauth=y&TitleIcon=标)*+,-./:;=?@_~%题" ;
+        
+        
 //        NSURL *url = [NSURL URLWithString:@"mhuikit://Service/webSetting?nlogin=y" ];
-        [[MHAppSchemaObserver sharedInstance] openURL:url];
+        [[MHAppSchemaObserver sharedInstance] openURLString:string];
     }
     
     

@@ -228,8 +228,7 @@ UIScrollViewDelegate
     //    NSString* service       = url.path;
     //    NSString* paramStr      = url.query;
     if ([[MHAppSchemaObserver sharedInstance] hasAppSchema:scheme]) {
-        [[MHAppSchemaObserver sharedInstance] openURL:url controller:self];
-        //[[MHAppSchemaObserver sharedInstance] openURL:url];
+        [[MHAppSchemaObserver sharedInstance] openURLString:url.absoluteString controller:self];
         decisionHandler(WKNavigationActionPolicyCancel);
     }else {
         decisionHandler(WKNavigationActionPolicyAllow);

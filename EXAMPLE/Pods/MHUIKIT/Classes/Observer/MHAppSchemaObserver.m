@@ -10,6 +10,7 @@
 #import "NSDictionary+Category.h"
 #import "NSString+Category.h"
 #import "UIApplication+Helper.h"
+#import "NSString+Category.h"
 @interface MHAppSchemaObserver ()
 
 @property (nonatomic, strong) NSMutableDictionary* dictObserver;
@@ -204,14 +205,14 @@ static MHAppSchemaObserver* instance = nil;
 }
 
 - (void) openURLString:(NSString *)urlString {
-    [self openURL:[NSURL URLWithString:urlString]];
+    UIViewController *currentVC = [UIApplication dd_currentViewController];
+    [self openURLString:urlString controller:currentVC];
 }
 
-- (void) openURL:(NSURL *)url {
-    [self openURL:url controller:nil];
-}
 
-- (void) openURL:(NSURL *)url controller:(id) controller {
+- (void) openURLString:(NSString *)urlString controller:(id) controller{
+     urlString = [urlString URLEncodedChineseString];
+    NSURL *url = [NSURL URLWithString:urlString];
     BOOL result = [[MHAppSchemaObserver sharedInstance] handleOpenURL:url controller:controller];
     
     if (result) {
@@ -219,9 +220,8 @@ static MHAppSchemaObserver* instance = nil;
         if ([scheme isEqualToString:@"http"] ||
             [scheme isEqualToString:@"https"]) {
             
-            NSURL* urlWeb   = [NSURL URLWithString:[NSString stringWithFormat:@"%@://Service/web?url=%@", self.appSchema, url.absoluteString]];
-          //  [[UIApplication sharedApplication] openURL:urlWeb];
-            [self openURL:urlWeb controller:controller];
+            NSString* urlWebStr   = [NSString stringWithFormat:@"%@://Service/web?url=%@", self.appSchema, url.absoluteString];
+            [self openURLString:urlWebStr controller:controller];
         }
     }
 }

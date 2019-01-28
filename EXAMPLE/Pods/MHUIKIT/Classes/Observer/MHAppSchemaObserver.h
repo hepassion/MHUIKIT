@@ -34,8 +34,9 @@
 
 
 /**
- 判断是否能打开u一个服务  在appdellegate调用
- 
+ 判断是否能打开一个服务
+ 1. 在appdellegate调用
+ 2. private method
  @param url 服务的URL
  */
 - (BOOL) handleOpenURL:(NSURL*)url;
@@ -44,11 +45,10 @@
 /**
   打开一个服务
  
- @param url 服务的URL
+ @param urlString 服务的URL
  */
-- (void) openURL:(NSURL*)url;
-- (void) openURL:(NSURL *)url controller:(id) controller;
 - (void) openURLString:(NSString *)urlString;
+- (void) openURLString:(NSString *)urlString controller:(id) controller;
 
 /**
  同步方式 打开一个服务 返回结果

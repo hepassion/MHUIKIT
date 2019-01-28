@@ -45,8 +45,7 @@
         if (self.completion) {
             self.completion(YES, @"lockvc");
         }
-        NSURL *url = [NSURL URLWithString:@"mhuikit://Service/webSetting" ];
-        [[MHAppSchemaObserver sharedInstance] handleOpenURL:url];
+    
       
     }
     
@@ -67,7 +66,7 @@
 }
 
 - (NSString *)getNavigationTitle {
-    return @"block test";
+    return @"lock test";
 }
 - (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];

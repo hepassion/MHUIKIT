@@ -36,6 +36,7 @@
     }];
     
 }
+
 - (void)constructData {
     [self.items removeAllObjects];
     MHTitleDataModel *model = [MHTitleDataModel new];

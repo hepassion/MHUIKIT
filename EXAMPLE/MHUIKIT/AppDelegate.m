@@ -16,6 +16,7 @@
 #import "PDHttpClient.h"
 #import "AppManger.h"
 #import "NSObject+Runtime.h"
+#import <MHUIKIT/NSString+Category.h>
 @interface AppDelegate ()
 
 @end
@@ -25,8 +26,6 @@
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions {
     [self runtimeConfig ];
-    
-   
     
     [MHDubugger Debug];
     

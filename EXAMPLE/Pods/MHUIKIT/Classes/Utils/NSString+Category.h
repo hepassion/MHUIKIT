@@ -41,8 +41,8 @@
 
 @interface NSString (urlEncode)
 - (NSString *)URLEncodedString;
-- (NSString *)URLEncodedChineseString;
-- (NSString *)URLDecodedChineseString;
+- (NSString *)URLEncodedChineseString;//中文加密解析
+- (NSString *)URLDecodedChineseString;//中文解密解析
 @end
 
 

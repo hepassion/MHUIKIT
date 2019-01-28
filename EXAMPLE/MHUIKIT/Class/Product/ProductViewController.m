@@ -38,7 +38,7 @@
 
 
 - (NSString *)getNavigationTitle {
-    return @"缓存本地存储";
+    return @"product";
 }
 
 

@@ -17,7 +17,7 @@
 
 - (void)dealloc
 {
-    NSLog(@"NVTaskQueue Dealloc");
+    NSLog(@"MHTaskQueue Dealloc");
 }
 
 - (NSMutableArray*) arrayTasks {
