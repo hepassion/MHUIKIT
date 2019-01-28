@@ -211,8 +211,11 @@ static MHAppSchemaObserver* instance = nil;
 
 
 - (void) openURLString:(NSString *)urlString controller:(id) controller{
-     urlString = [urlString URLEncodedChineseString];
     NSURL *url = [NSURL URLWithString:urlString];
+    if (!url) {
+        urlString = [urlString URLEncodedChineseString];
+        url = [NSURL URLWithString:urlString];
+    }
     BOOL result = [[MHAppSchemaObserver sharedInstance] handleOpenURL:url controller:controller];
     
     if (result) {

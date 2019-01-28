@@ -121,8 +121,7 @@ static MHAppSchemaObserver* instance = nil;
 }
 
 - (BOOL) handleOpenURL:(NSURL *)url {
-    UIViewController *cyrrrentVC = [UIApplication dd_currentViewController];
-    return [self handleOpenURL:url controller:cyrrrentVC];
+    return [self handleOpenURL:url controller:nil];
 }
 
 /**
@@ -160,7 +159,13 @@ static MHAppSchemaObserver* instance = nil;
                 NSArray* parametersSorted       = [paramStr parametersSorted];
                 NSArray* publicParams            = [self hasPublicParamExisted:parametersSorted];
                 
+                UIViewController* currentController ;
                 
+                if (controller) {
+                    currentController = controller;
+                } else {
+                    currentController = [UIApplication dd_currentViewController];
+                }
                 
                 NSString* const kTaskNamePublicParams       = @"task.name.public.params";
                 [[MHTaskManager sharedInstance] removeAllTaskWithName:kTaskNamePublicParams];
@@ -173,7 +178,7 @@ static MHAppSchemaObserver* instance = nil;
 
                         NSString* value         = [parameters nvObjectForKey:paramObject.name];
                         task.userInfo           = @{@"value": value,
-                                                    @"viewController": controller};
+                                                    @"viewController": currentController};
 
                         [[MHTaskManager sharedInstance] addTask:task
                                                            name:kTaskNamePublicParams];
@@ -181,12 +186,12 @@ static MHAppSchemaObserver* instance = nil;
 
 
                     [[MHTaskManager sharedInstance] start:kTaskNamePublicParams finish:^(BOOL completed) {
-                        observedObject.invokeBlock(observedObject.name, parameters, controller);
+                        observedObject.invokeBlock(observedObject.name, parameters, currentController);
                     }];
                     
                     
                 } else {
-                    observedObject.invokeBlock(observedObject.name, parameters, controller);
+                    observedObject.invokeBlock(observedObject.name, parameters, currentController);
                 }
                 
                 
@@ -206,8 +211,11 @@ static MHAppSchemaObserver* instance = nil;
 
 
 - (void) openURLString:(NSString *)urlString controller:(id) controller{
-     urlString = [urlString URLEncodedChineseString];
     NSURL *url = [NSURL URLWithString:urlString];
+    if (!url) {
+        urlString = [urlString URLEncodedChineseString];
+        url = [NSURL URLWithString:urlString];
+    }
     BOOL result = [[MHAppSchemaObserver sharedInstance] handleOpenURL:url controller:controller];
     
     if (result) {
