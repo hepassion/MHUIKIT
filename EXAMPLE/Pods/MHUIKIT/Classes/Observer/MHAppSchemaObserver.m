@@ -121,7 +121,8 @@ static MHAppSchemaObserver* instance = nil;
 }
 
 - (BOOL) handleOpenURL:(NSURL *)url {
-    return [self handleOpenURL:url controller:nil];
+    UIViewController *cyrrrentVC = [UIApplication dd_currentViewController];
+    return [self handleOpenURL:url controller:cyrrrentVC];
 }
 
 /**
@@ -159,13 +160,7 @@ static MHAppSchemaObserver* instance = nil;
                 NSArray* parametersSorted       = [paramStr parametersSorted];
                 NSArray* publicParams            = [self hasPublicParamExisted:parametersSorted];
                 
-                UIViewController* currentController ;
                 
-                if (controller) {
-                    currentController = controller;
-                } else {
-                    currentController = [UIApplication dd_currentViewController];
-                }
                 
                 NSString* const kTaskNamePublicParams       = @"task.name.public.params";
                 [[MHTaskManager sharedInstance] removeAllTaskWithName:kTaskNamePublicParams];
@@ -178,7 +173,7 @@ static MHAppSchemaObserver* instance = nil;
 
                         NSString* value         = [parameters nvObjectForKey:paramObject.name];
                         task.userInfo           = @{@"value": value,
-                                                    @"viewController": currentController};
+                                                    @"viewController": controller};
 
                         [[MHTaskManager sharedInstance] addTask:task
                                                            name:kTaskNamePublicParams];
@@ -186,12 +181,12 @@ static MHAppSchemaObserver* instance = nil;
 
 
                     [[MHTaskManager sharedInstance] start:kTaskNamePublicParams finish:^(BOOL completed) {
-                        observedObject.invokeBlock(observedObject.name, parameters, currentController);
+                        observedObject.invokeBlock(observedObject.name, parameters, controller);
                     }];
                     
                     
                 } else {
-                    observedObject.invokeBlock(observedObject.name, parameters, currentController);
+                    observedObject.invokeBlock(observedObject.name, parameters, controller);
                 }
                 
                 
