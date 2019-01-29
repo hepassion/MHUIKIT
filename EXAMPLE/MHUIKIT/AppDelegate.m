@@ -65,23 +65,11 @@
 
 
 
-- (BOOL)application:(UIApplication *)application handleOpenURL:(NSURL *)url {
-    
-    return  YES;
-}
 
 - (BOOL) application:(UIApplication *)app openURL:(NSURL *)url options:(NSDictionary<NSString *,id> *)options {
-    BOOL result = [[MHAppSchemaObserver sharedInstance] handleOpenURL:url];
+   // BOOL result = [[MHAppSchemaObserver sharedInstance] handleOpenURL:url];
     
-    return result;
-}
-
-
-- (BOOL)application:(UIApplication *)application openURL:(NSURL *)url sourceApplication:(NSString *)sourceApplication
- annotation:(id)annotation {
-    BOOL result = [[MHAppSchemaObserver sharedInstance] handleOpenURL:url];
-    
-    return result;
+    return YES;
 }
 
 

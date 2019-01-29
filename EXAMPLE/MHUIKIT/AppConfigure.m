@@ -33,7 +33,6 @@ static AppConfigure* instance = nil;
 
 - (void) initAppSchemaPublicParams {
     MHAppSchemaObserver* observers      = [MHAppSchemaObserver sharedInstance];
-//     mhuikit://Service/webSetting?nlogin=y&nkkkk=y
     [observers addPublicParamName:@"nlogin"
                            invoke:^(NSString *paramName,
                                     NSString *paramValue,
@@ -58,8 +57,6 @@ static AppConfigure* instance = nil;
                                    }
                                };
                                [naVC presentViewController:lockVC animated:YES completion:nil];
-
-                               
                            }];
     
     [observers addPublicParamName:@"nauth"

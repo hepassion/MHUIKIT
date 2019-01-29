@@ -31,13 +31,17 @@ static inline UIEdgeInsets sgm_safeAreaInset(UIView *view) {
 - (void)viewDidLoad {
     [super viewDidLoad];
     self.view.backgroundColor = HEX(0xfffff1);
-    NSLog(@"%@", self.navigationController);
     WEAK_SELF;
-    if (@available(iOS 11.0, *)) {
-        self.uiTableView.contentInsetAdjustmentBehavior = UIScrollViewContentInsetAdjustmentNever;
-    }
+   
     
-    WKWebViewConfiguration *cc = [WKWebViewConfiguration new];
+    
+    [[NSURLCache sharedURLCache] removeAllCachedResponses];
+    NSURLCache * cache = [NSURLCache sharedURLCache];
+    [cache removeAllCachedResponses];
+    [cache setDiskCapacity:0];
+    [cache setMemoryCapacity:0];
+    
+   
 
     self.uiTableView.mj_header = [MJRefreshNormalHeader headerWithRefreshingBlock:^{
         [weakself.dataConstructor loadData];
@@ -129,22 +133,17 @@ static inline UIEdgeInsets sgm_safeAreaInset(UIView *view) {
         NSString* htmlStr = [NSString stringWithContentsOfFile:path encoding:NSUTF8StringEncoding error:nil];
         [webBrowser.wkWebView loadHTMLString:htmlStr baseURL:baseURL];
     } else if ([cellType isEqualToString:@"cell.type.baidu"]) {
-      //  NSURL *url = [NSURL URLWithString:@"https://www.tutorialspoint.com/ios/ios_tutorial.pdf" ];
-        NSString *url = @"https://test.95590.cn/nloan_test/test/#/index";
-        [[MHAppSchemaObserver sharedInstance] openURLString:url];
+       // NSString *urlStr = @"https://www.tutorialspoint.com/ios/ios_tutorial.pdf";
+        NSString *urlStr = @"https://test.95590.cn/nloan_test/test/#/index";
+//        NSString *urlStr = @"https://test.95590.cn/nloan_test/test/index1.html";
+        //        NSString *urlStr = @"https://app.ddsd-ccic.com/loan/shortMessage.html?channel=FC001&activity=001";
+//        NSString *appstrore = @"https://itunes.apple.com/cn/app/id1439399498";
+    [[MHAppSchemaObserver sharedInstance] openURLString:urlStr];
     } else if ([cellType isEqualToString:@"cell.type.task"]) {
-        
-        NSString* string = @"mhuikit://Service/webSetting?nlogin=y&nauth=y&TitleIcon=标)*+,-./:;=?@_~%题" ;
-        
-        
+        NSString* string = @"mhuikit://Service/webSetting?nlogin=y&nauth=y&TitleIcon=标题" ;
 //        NSURL *url = [NSURL URLWithString:@"mhuikit://Service/webSetting?nlogin=y" ];
         [[MHAppSchemaObserver sharedInstance] openURLString:string];
     }
-    
-    
-    
-    
-    
 }
 
 
