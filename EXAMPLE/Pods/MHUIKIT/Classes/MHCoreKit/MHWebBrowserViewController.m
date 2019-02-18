@@ -71,13 +71,7 @@ UIScrollViewDelegate
                         context:nil];
     
    // [self injectOCMethod];//category   method   注册oc方法 将下方法放入
-    [self.bridge registerHandler:@"jsoc2" handler:^(id data, WVJBResponseCallback responseCallback) {
-        // data 的类型与 JS中传的参数有关
-        NSDictionary *dic = (NSDictionary *)data;
-        NSString *string = [dic valueForKey:@"name"];
-        // 将加密的结果返回到JS中
-        responseCallback(string);
-    }];
+    [self injectMethod];
 }
 
 

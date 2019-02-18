@@ -93,16 +93,7 @@ static inline UIEdgeInsets sgm_safeAreaInset(UIView *view) {
     
     if ([cellType isEqualToString:@"cell.type.block"]) {
         BlockViewController *blockVC  = [[BlockViewController alloc] init];
-       // [self.navigationController pushViewController:blockVC animated:YES];
-        if ([CLLocationManager locationServicesEnabled] && ([CLLocationManager authorizationStatus] == kCLAuthorizationStatusAuthorizedWhenInUse || [CLLocationManager authorizationStatus] == kCLAuthorizationStatusNotDetermined || [CLLocationManager authorizationStatus] == kCLAuthorizationStatusAuthorized)) {
-            NSLog(@"可用");
-        }else if ([CLLocationManager authorizationStatus] ==kCLAuthorizationStatusDenied) {
-            NSLog(@"定位不能用");
-        }
-        
-        
-        
-        
+        [self.navigationController pushViewController:blockVC animated:YES];
     } else if ([cellType isEqualToString:@"cell.type.lock"]) {
        
         LockViewController *lockVC = [LockViewController new];
@@ -144,7 +135,7 @@ static inline UIEdgeInsets sgm_safeAreaInset(UIView *view) {
         [webBrowser.wkWebView loadHTMLString:htmlStr baseURL:baseURL];
     } else if ([cellType isEqualToString:@"cell.type.baidu"]) {
        // NSString *urlStr = @"https://www.tutorialspoint.com/ios/ios_tutorial.pdf";
-        NSString *urlStr = @"https://test.95590.cn/nloan_test/test/#/index";
+        NSString *urlStr = @"https://test.95590.cn/nloan_test/test/index.html#/index";
 //        NSString *urlStr = @"https://test.95590.cn/nloan_test/test/index1.html";
         //        NSString *urlStr = @"https://app.ddsd-ccic.com/loan/shortMessage.html?channel=FC001&activity=001";
 //        NSString *appstrore = @"https://itunes.apple.com/cn/app/id1439399498";

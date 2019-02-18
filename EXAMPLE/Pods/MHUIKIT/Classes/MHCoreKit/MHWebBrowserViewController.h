@@ -72,7 +72,7 @@ UIKIT_EXTERN  NSString* _Nonnull  const kNotificationWebViewControllerWillClosed
 
 - (void) reload;
 - (void) reloadUrl:(NSString* _Nullable)url;
-
+- (void)injectMethod ; //注册oc method
 /**
  返回按钮事件，可重写
  

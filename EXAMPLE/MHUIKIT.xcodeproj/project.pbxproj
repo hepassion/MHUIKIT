@@ -46,6 +46,7 @@
 		426CEC81219BC674000FC911 /* SBPauseOrPlayView.m in Sources */ = {isa = PBXBuildFile; fileRef = 426CEC77219BC674000FC911 /* SBPauseOrPlayView.m */; };
 		426CEC82219BC674000FC911 /* SBControlView.m in Sources */ = {isa = PBXBuildFile; fileRef = 426CEC78219BC674000FC911 /* SBControlView.m */; };
 		429A7543221A823600089E66 /* JavaScriptCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 429A7542221A823600089E66 /* JavaScriptCore.framework */; };
+		429A754A221A97CF00089E66 /* MHWebBrowserViewController+Inject.m in Sources */ = {isa = PBXBuildFile; fileRef = 429A7549221A97CF00089E66 /* MHWebBrowserViewController+Inject.m */; };
 		42A725C121E591A100FACA20 /* AppManger.m in Sources */ = {isa = PBXBuildFile; fileRef = 42A725C021E591A100FACA20 /* AppManger.m */; };
 		42A725C421E591E800FACA20 /* UsrModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 42A725C321E591E800FACA20 /* UsrModel.m */; };
 		42A725C721E5DE4B00FACA20 /* MHFileDataModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 42A725C621E5DE4B00FACA20 /* MHFileDataModel.m */; };
@@ -144,6 +145,8 @@
 		426CEC77219BC674000FC911 /* SBPauseOrPlayView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SBPauseOrPlayView.m; sourceTree = "<group>"; };
 		426CEC78219BC674000FC911 /* SBControlView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SBControlView.m; sourceTree = "<group>"; };
 		429A7542221A823600089E66 /* JavaScriptCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = JavaScriptCore.framework; path = System/Library/Frameworks/JavaScriptCore.framework; sourceTree = SDKROOT; };
+		429A7548221A97CF00089E66 /* MHWebBrowserViewController+Inject.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "MHWebBrowserViewController+Inject.h"; sourceTree = "<group>"; };
+		429A7549221A97CF00089E66 /* MHWebBrowserViewController+Inject.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = "MHWebBrowserViewController+Inject.m"; sourceTree = "<group>"; };
 		42A3BA65216C8277006CD33F /* PrefixHeader.pch */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = PrefixHeader.pch; sourceTree = "<group>"; };
 		42A725BF21E591A100FACA20 /* AppManger.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppManger.h; sourceTree = "<group>"; };
 		42A725C021E591A100FACA20 /* AppManger.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AppManger.m; sourceTree = "<group>"; };
@@ -321,6 +324,8 @@
 				42A725C021E591A100FACA20 /* AppManger.m */,
 				42A725C221E591E800FACA20 /* UsrModel.h */,
 				42A725C321E591E800FACA20 /* UsrModel.m */,
+				429A7548221A97CF00089E66 /* MHWebBrowserViewController+Inject.h */,
+				429A7549221A97CF00089E66 /* MHWebBrowserViewController+Inject.m */,
 				42A3BA65216C8277006CD33F /* PrefixHeader.pch */,
 				42A725CE21E5E91200FACA20 /* Common.h */,
 				42DDDBC12193FD6A003C4E1E /* NSObject+Runtime.h */,
@@ -633,6 +638,7 @@
 				420227242175802D00D2B3A5 /* BaseTableViewController.m in Sources */,
 				42DDDBC22193FD6A003C4E1E /* NSObject+Runtime.m in Sources */,
 				42196001214BA68300446DD9 /* AppDelegate.m in Sources */,
+				429A754A221A97CF00089E66 /* MHWebBrowserViewController+Inject.m in Sources */,
 				4202271E2175802D00D2B3A5 /* HomeViewController.m in Sources */,
 				42A725C421E591E800FACA20 /* UsrModel.m in Sources */,
 				420227202175802D00D2B3A5 /* LockViewController.m in Sources */,
