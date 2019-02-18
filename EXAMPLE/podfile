@@ -8,4 +8,5 @@ target :MHUIKIT do
    # pod 'SJVideoPlayer', '~> 2.2.3'
    # pod 'VKVideoPlayer', '~> 0.1.4'
     pod 'XMNetworking', '~> 1.1.0'
+    pod 'WebViewJavascriptBridge', '~> 6.0.3'
 end

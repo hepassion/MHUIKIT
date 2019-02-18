@@ -6,13 +6,25 @@
 		<meta name="viewport" content="width=device-width, initial-scale=1,maximum-scale=1, user-scalable=no">
 		<title>this is title</title>
 		<script type="text/javascript">
-			// alert/prompt/confirm
+			
+            function setupWebViewJavascriptBridge(callback) {
+                if (window.WebViewJavascriptBridge) { return callback(WebViewJavascriptBridge); }
+                if (window.WVJBCallbacks) { return window.WVJBCallbacks.push(callback); }
+                window.WVJBCallbacks = [callback];
+                var WVJBIframe = document.createElement('iframe');
+                WVJBIframe.style.display = 'none';
+                WVJBIframe.src = 'wvjbscheme://__BRIDGE_LOADED__';
+                document.documentElement.appendChild(WVJBIframe);
+                setTimeout(function() { document.documentElement.removeChild(WVJBIframe) }, 0)
+            }
+        
+            setupWebViewJavascriptBridge(function(bridge) {})
+            
+            // alert/prompt/confirm
 			function onClicked () {
-<!--                alert("Hello World");-->
 				var params = prompt("mhuikit://Service/promt","1234567");
-				alert(params);
-<!--                var confirmed = confirm("你确定吗");-->
-<!--                alert(confirmed);-->
+                var confirmed = confirm("你确定吗");
+                alert(confirmed);
 			}
 			
 			function onChangedTitle () {
@@ -20,24 +32,27 @@
 			}
 			
 			// oc call js
-			
 			function ocCallJs(msg) {
-			  //  alert('你好 ' + msg)
-              //  window.webkit.messageHandlers.removeNavigationBar.postMessage('remove navigationBar');
+			    alert('你好 ' + msg)
                 return "js返回"
 			}
 			
 			
 			// js call oc
 			function JSToOC1 () {
-				window.webkit.messageHandlers.jsoc1.postMessage('jsToOc');
+                
+			  window.webkit.messageHandlers.jsoc1.postMessage('jsToOc');
 			}
 			
-			function JSToOC2 () {
-				//window.webkit.messageHandlers.jsoc2.postMessage(['13300001111', 'Go Climbing This Weekend !!!']);
-                window.webkit.messageHandlers.jsoc2.postMessage({"key":"valuue"});
+            function JSToOC2 () {
+              WebViewJavascriptBridge.callHandler('jsoc2', {'name': 'Tony'}, function(response) {
+                                          alert('OC返回结果:' + response);
+                                })
             }
-			
+        
+        
+      
+          
 			// 协议
 			
 			function onDeviceInfo() {

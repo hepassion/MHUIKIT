@@ -9,7 +9,7 @@
 #import "MHGlassMainViewController.h"
 #import <WebKit/WebKit.h>
 #import <WebKit/WKFoundation.h>
-
+#import <WebViewJavascriptBridge/WebViewJavascriptBridge.h>
 
 UIKIT_EXTERN  NSString* _Nonnull  const kNotificationWebViewControllerWillClosed;
 
@@ -38,6 +38,7 @@ UIKIT_EXTERN  NSString* _Nonnull  const kNotificationWebViewControllerWillClosed
 @interface MHWebBrowserViewController : MHGlassMainViewController
 
 @property (nonatomic, strong) MHWebBrowserConfig* _Nullable config;
+@property (nonatomic ,strong) WebViewJavascriptBridge* bridge;
 @property (nonatomic, strong) WKWebView* _Nullable  wkWebView;
 @property (nonatomic, assign) id<MHWebBrowserViewControllerDelegate> _Nullable delegate;
 

@@ -15,6 +15,7 @@
 #import <MJRefresh/MJRefresh.h>
 #import "MHWebBrowserView.h"
 #import <WebKit/WebKit.h>
+#import <CoreLocation/CoreLocation.h>
 @interface HomeViewController ()
 @property (nonatomic, strong) HomeDataConstructor *dataConstructor;
 @end
@@ -92,7 +93,16 @@ static inline UIEdgeInsets sgm_safeAreaInset(UIView *view) {
     
     if ([cellType isEqualToString:@"cell.type.block"]) {
         BlockViewController *blockVC  = [[BlockViewController alloc] init];
-        [self.navigationController pushViewController:blockVC animated:YES];
+       // [self.navigationController pushViewController:blockVC animated:YES];
+        if ([CLLocationManager locationServicesEnabled] && ([CLLocationManager authorizationStatus] == kCLAuthorizationStatusAuthorizedWhenInUse || [CLLocationManager authorizationStatus] == kCLAuthorizationStatusNotDetermined || [CLLocationManager authorizationStatus] == kCLAuthorizationStatusAuthorized)) {
+            NSLog(@"可用");
+        }else if ([CLLocationManager authorizationStatus] ==kCLAuthorizationStatusDenied) {
+            NSLog(@"定位不能用");
+        }
+        
+        
+        
+        
     } else if ([cellType isEqualToString:@"cell.type.lock"]) {
        
         LockViewController *lockVC = [LockViewController new];

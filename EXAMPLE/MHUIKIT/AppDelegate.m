@@ -26,6 +26,7 @@
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions {
     [self runtimeConfig ];
+  
     
     [MHDubugger Debug];
     
@@ -33,8 +34,11 @@
     self.window.backgroundColor =  [UIColor whiteColor];
     [self.window makeKeyAndVisible];
     
+    NSDecimalNumber *numbwe;
     
-   
+    NSDecimalNumberHandler *handler = [NSDecimalNumberHandler decimalNumberHandlerWithRoundingMode:NSRoundPlain scale:2 raiseOnExactness:YES raiseOnOverflow:YES raiseOnUnderflow:YES raiseOnDivideByZero:YES];
+    
+    
     [[AppConfigure sharedInstance] initialize];
 
 #if T_DEPLOY

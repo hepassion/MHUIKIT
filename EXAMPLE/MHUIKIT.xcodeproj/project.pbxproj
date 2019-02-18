@@ -45,6 +45,7 @@
 		426CEC80219BC674000FC911 /* SBPlayer.m in Sources */ = {isa = PBXBuildFile; fileRef = 426CEC76219BC674000FC911 /* SBPlayer.m */; };
 		426CEC81219BC674000FC911 /* SBPauseOrPlayView.m in Sources */ = {isa = PBXBuildFile; fileRef = 426CEC77219BC674000FC911 /* SBPauseOrPlayView.m */; };
 		426CEC82219BC674000FC911 /* SBControlView.m in Sources */ = {isa = PBXBuildFile; fileRef = 426CEC78219BC674000FC911 /* SBControlView.m */; };
+		429A7543221A823600089E66 /* JavaScriptCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 429A7542221A823600089E66 /* JavaScriptCore.framework */; };
 		42A725C121E591A100FACA20 /* AppManger.m in Sources */ = {isa = PBXBuildFile; fileRef = 42A725C021E591A100FACA20 /* AppManger.m */; };
 		42A725C421E591E800FACA20 /* UsrModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 42A725C321E591E800FACA20 /* UsrModel.m */; };
 		42A725C721E5DE4B00FACA20 /* MHFileDataModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 42A725C621E5DE4B00FACA20 /* MHFileDataModel.m */; };
@@ -142,6 +143,7 @@
 		426CEC76219BC674000FC911 /* SBPlayer.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SBPlayer.m; sourceTree = "<group>"; };
 		426CEC77219BC674000FC911 /* SBPauseOrPlayView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SBPauseOrPlayView.m; sourceTree = "<group>"; };
 		426CEC78219BC674000FC911 /* SBControlView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SBControlView.m; sourceTree = "<group>"; };
+		429A7542221A823600089E66 /* JavaScriptCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = JavaScriptCore.framework; path = System/Library/Frameworks/JavaScriptCore.framework; sourceTree = SDKROOT; };
 		42A3BA65216C8277006CD33F /* PrefixHeader.pch */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = PrefixHeader.pch; sourceTree = "<group>"; };
 		42A725BF21E591A100FACA20 /* AppManger.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppManger.h; sourceTree = "<group>"; };
 		42A725C021E591A100FACA20 /* AppManger.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AppManger.m; sourceTree = "<group>"; };
@@ -167,6 +169,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				429A7543221A823600089E66 /* JavaScriptCore.framework in Frameworks */,
 				3613EC0EF94FE9AE697F88EB /* libPods-MHUIKIT.a in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -404,6 +407,7 @@
 		C03FE69930BEE904E907AE1C /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				429A7542221A823600089E66 /* JavaScriptCore.framework */,
 				BBECBFF965E1119655205CC7 /* libPods-MHUIKIT.a */,
 			);
 			name = Frameworks;
