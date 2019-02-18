@@ -18,8 +18,12 @@
                 setTimeout(function() { document.documentElement.removeChild(WVJBIframe) }, 0)
             }
         
-            setupWebViewJavascriptBridge(function(bridge) {})
-            
+            setupWebViewJavascriptBridge(function(bridge) {
+                                     bridge.registerHandler('ocCallJs', function(data, responseCallback) {
+                                                            alert('JS方法被调用:'+data);
+                                                            responseCallback('js执行过了');
+                                                            })
+                                     })
             // alert/prompt/confirm
 			function onClicked () {
 				var params = prompt("mhuikit://Service/promt","1234567");
@@ -92,7 +96,7 @@
 		<button onclick="onClicked();">Click me! alert/confirm/prompt</button>
 		<button onclick="onChangedTitle();">修改标题</button>
         <button onclick="JSToOC1();">js to oc :字符串</button>
-		<button onclick="JSToOC2();">js to oc :数组</button>
+		<button onclick="JSToOC2();">js to oc2</button>
 		<button onclick="onDeviceInfo();">同步协议-获取DeviceID</button>
 		<a href="mhuikit://Service/deviceInfo">异步协议-deviceInfo</a>
         <a href="http://www.baidu.com/">百度一下</a>

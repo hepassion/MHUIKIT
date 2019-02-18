@@ -63,12 +63,13 @@ UIScrollViewDelegate
     
 
     [self.wkWebView.configuration.userContentController addScriptMessageHandler:self name:@"jsoc1"];//js调用oc注册
-    [self.wkWebView.configuration.userContentController addScriptMessageHandler:self name:@"jsoc2"];//js调用oc注册
 
     [self.wkWebView addObserver:self
                      forKeyPath:@"title"
                         options:NSKeyValueObservingOptionNew|NSKeyValueObservingOptionOld
                         context:nil];
+    
+    [self injectOcMethod];
    
 }
 
@@ -120,10 +121,6 @@ UIScrollViewDelegate
     }
 }
 
-- (void)webviewNeedExecJavaScriptBussiness:(NSNotification *) notification {
-    NSDictionary *userObject = notification.object;
-    
-}
 
 #pragma mark - ScrollView Delegate
 - (void)scrollViewDidScroll:(UIScrollView *)scrollView {
@@ -208,8 +205,6 @@ UIScrollViewDelegate
 - (void)webView:(WKWebView *)webView didFinishNavigation:(WKNavigation *)navigation {
   //  [self closeFirstLoadingHUD];
     [MBProgressHUD hideHUDForView:self.view animated:YES];
-
-    
 }
 // 页面加载失败时调用
 - (void)webView:(WKWebView *)webView didFailProvisionalNavigation:(WKNavigation *)navigation {
@@ -263,9 +258,6 @@ UIScrollViewDelegate
     if ([message.name isEqualToString:@"jsoc1"]) {
         NSLog(@"js调oc:%@", message.body);
     }
-    else if ([message.name isEqualToString:@"jsoc2"]) {
-       NSLog(@"js调oc:%@", message.body);
-    }
    
 }
 
@@ -303,17 +295,18 @@ UIScrollViewDelegate
 
 
 
-- (NSString *)getCustomNavigationBarRightButtonTitle {
-    return @"oc调用js";
-}
+//- (NSString *)getCustomNavigationBarRightButtonTitle {
+//    return @"oc调用js";
+//}
 
 - (void)customNavigationBarRightButtonAction:(id)sender {
-    [self.wkWebView evaluateJavaScript:@"ocCallJs('oc字段')" completionHandler:^(id _Nullable item, NSError * _Nullable error) {
-        NSLog(@"js返回字段 = %@", item);
-    }];
- //   [[MHAppSchemaObserver sharedInstance] openURLString:@"mhuikit://service/deviceInfo"];
+//    [self.wkWebView evaluateJavaScript:@"ocCallJs('oc字段')" completionHandler:^(id _Nullable item, NSError * _Nullable error) {
+//        NSLog(@"js返回字段 = %@", item);
+//    }];
+//    [self.wkWebView evaluateJavaScript:@"ocCallJs('oc字段')" completionHandler:^(id _Nullable item, NSError * _Nullable error) {
+//        NSLog(@"js返回字段 = %@", item);
+//    }];
 
-    //mhuikit://camera
 }
 
 
@@ -384,8 +377,9 @@ UIScrollViewDelegate
         _wkWebView =  [[WKWebView alloc] initWithFrame:CGRectMake(0.0f, 0.0f, SCREEN_WIDTH, SCREEN_HEIGHT - NAVIGATION_BAR_DEFAULT_HEIGHT - Status_Bar_Height) configuration:configuration];
         _wkWebView.backgroundColor = [UIColor whiteColor];
         _wkWebView.UIDelegate = self;
-        _wkWebView.navigationDelegate = self;
-
+       // _wkWebView.navigationDelegate = self;
+        self.bridge =  [WebViewJavascriptBridge bridgeForWebView:_wkWebView];
+        [self.bridge setWebViewDelegate:self];
     }return _wkWebView;
 }
 

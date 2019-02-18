@@ -53,7 +53,6 @@ UIScrollViewDelegate
 - (void)viewDidLoad {
     [super viewDidLoad];
     [self.view addSubview:self.wkWebView];
-    
     if (self.urlPath != nil ) {
         self.urlPath = [self.urlPath stringByTrimmingCharactersInSet:[NSCharacterSet whitespaceAndNewlineCharacterSet]];
         [self doRequestWithUserAndToken];
@@ -70,8 +69,8 @@ UIScrollViewDelegate
                         options:NSKeyValueObservingOptionNew|NSKeyValueObservingOptionOld
                         context:nil];
     
-   // [self injectOCMethod];//category   method   注册oc方法 将下方法放入
-    [self injectMethod];
+    [self injectOcMethod];
+   
 }
 
 
@@ -121,6 +120,7 @@ UIScrollViewDelegate
         [super backButtonAction:sender];
     }
 }
+
 
 #pragma mark - ScrollView Delegate
 - (void)scrollViewDidScroll:(UIScrollView *)scrollView {
@@ -205,8 +205,6 @@ UIScrollViewDelegate
 - (void)webView:(WKWebView *)webView didFinishNavigation:(WKNavigation *)navigation {
   //  [self closeFirstLoadingHUD];
     [MBProgressHUD hideHUDForView:self.view animated:YES];
-
-    
 }
 // 页面加载失败时调用
 - (void)webView:(WKWebView *)webView didFailProvisionalNavigation:(WKNavigation *)navigation {
@@ -259,9 +257,7 @@ UIScrollViewDelegate
     
     if ([message.name isEqualToString:@"jsoc1"]) {
         NSLog(@"js调oc:%@", message.body);
-      
     }
-   
    
 }
 
@@ -296,7 +292,9 @@ UIScrollViewDelegate
 - (UIColor *)getNavigationTitleColor {
     return self.config.navigationBarTitleColor ? self.config.navigationBarTitleColor : MHDefaultTitleColor;
 }
-//
+
+
+
 //- (NSString *)getCustomNavigationBarRightButtonTitle {
 //    return @"oc调用js";
 //}
@@ -305,10 +303,10 @@ UIScrollViewDelegate
 //    [self.wkWebView evaluateJavaScript:@"ocCallJs('oc字段')" completionHandler:^(id _Nullable item, NSError * _Nullable error) {
 //        NSLog(@"js返回字段 = %@", item);
 //    }];
-    [self.bridge callHandler:@"ocCallJs" data:@"一个字符串" responseCallback:^(id responseData) {
-        NSLog(@"调用完JS后的回调：%@",responseData);
-    }];
-    
+//    [self.wkWebView evaluateJavaScript:@"ocCallJs('oc字段')" completionHandler:^(id _Nullable item, NSError * _Nullable error) {
+//        NSLog(@"js返回字段 = %@", item);
+//    }];
+
 }
 
 
@@ -379,10 +377,9 @@ UIScrollViewDelegate
         _wkWebView =  [[WKWebView alloc] initWithFrame:CGRectMake(0.0f, 0.0f, SCREEN_WIDTH, SCREEN_HEIGHT - NAVIGATION_BAR_DEFAULT_HEIGHT - Status_Bar_Height) configuration:configuration];
         _wkWebView.backgroundColor = [UIColor whiteColor];
         _wkWebView.UIDelegate = self;
-     //   _wkWebView.navigationDelegate = self;
+       // _wkWebView.navigationDelegate = self;
         self.bridge =  [WebViewJavascriptBridge bridgeForWebView:_wkWebView];
         [self.bridge setWebViewDelegate:self];
-        
     }return _wkWebView;
 }
 

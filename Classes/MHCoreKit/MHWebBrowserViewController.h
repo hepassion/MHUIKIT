@@ -9,6 +9,7 @@
 #import "MHGlassMainViewController.h"
 #import <WebKit/WebKit.h>
 #import <WebKit/WKFoundation.h>
+#import <WebViewJavascriptBridge/WebViewJavascriptBridge.h>
 
 
 UIKIT_EXTERN  NSString* _Nonnull  const kNotificationWebViewControllerWillClosed;
@@ -39,6 +40,7 @@ UIKIT_EXTERN  NSString* _Nonnull  const kNotificationWebViewControllerWillClosed
 
 @property (nonatomic, strong) MHWebBrowserConfig* _Nullable config;
 @property (nonatomic, strong) WKWebView* _Nullable  wkWebView;
+@property (nonatomic ,strong) WebViewJavascriptBridge* bridge;
 @property (nonatomic, assign) id<MHWebBrowserViewControllerDelegate> _Nullable delegate;
 
 /**
@@ -71,6 +73,13 @@ UIKIT_EXTERN  NSString* _Nonnull  const kNotificationWebViewControllerWillClosed
 
 - (void) reload;
 - (void) reloadUrl:(NSString* _Nullable)url;
+
+
+
+/**
+ 注册oc method
+ */
+- (void)injectOcMethod ;
 
 /**
  返回按钮事件，可重写
