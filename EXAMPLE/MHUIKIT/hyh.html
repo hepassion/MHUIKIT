@@ -1,6 +1,5 @@
 <!DOCTYPE html>
 <html>
-
 	<head>
 		<meta charset="utf-8">
 		<meta name="viewport" content="width=device-width, initial-scale=1,maximum-scale=1, user-scalable=no">
@@ -19,10 +18,7 @@
             }
         
             setupWebViewJavascriptBridge(function(bridge) {
-                                     bridge.registerHandler('ocCallJs', function(data, responseCallback) {
-                                                            alert('JS方法被调用:'+data);
-                                                            responseCallback('js执行过了');
-                                                            })
+                                  
                                      })
             // alert/prompt/confirm
 			function onClicked () {
@@ -41,21 +37,17 @@
                 return "js返回"
 			}
 			
-			
-			// js call oc
+           // js call oc
 			function JSToOC1 () {
-                
 			  window.webkit.messageHandlers.jsoc1.postMessage('jsToOc');
-			}
+            }
 			
             function JSToOC2 () {
               WebViewJavascriptBridge.callHandler('jsoc2', {'name': 'Tony'}, function(response) {
-                                          alert('OC返回结果:' + response);
-                                })
+                                          alert('OC返回结果:' + response['name']);
+                        })
             }
         
-        
-      
           
 			// 协议
 			

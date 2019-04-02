@@ -226,6 +226,7 @@ UIScrollViewDelegate
         [[MHAppSchemaObserver sharedInstance] openURLString:url.absoluteString controller:self];
         decisionHandler(WKNavigationActionPolicyCancel);
     }else {
+        
         decisionHandler(WKNavigationActionPolicyAllow);
     }
     if (self.config && self.config.useSystemNavigationBar) {

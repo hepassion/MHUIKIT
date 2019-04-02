@@ -75,8 +75,14 @@ static inline UIEdgeInsets sgm_safeAreaInset(UIView *view) {
 //}
 //
 
+
 - (void)decorateNavigationBar:(UINavigationBar *)navigationBar {
     [super decorateNavigationBar:navigationBar];
+    if (1) {
+        
+    } else {
+    
+    }
 }
 
 
@@ -135,7 +141,7 @@ static inline UIEdgeInsets sgm_safeAreaInset(UIView *view) {
         [webBrowser.wkWebView loadHTMLString:htmlStr baseURL:baseURL];
     } else if ([cellType isEqualToString:@"cell.type.baidu"]) {
        // NSString *urlStr = @"https://www.tutorialspoint.com/ios/ios_tutorial.pdf";
-        NSString *urlStr = @"https://test.95590.cn/nloan_test/test/index.html#/index";
+        NSString *urlStr = @"https://test.95590.cn/nloan_test/test/index.html#/test1";
 //        NSString *urlStr = @"https://test.95590.cn/nloan_test/test/index1.html";
         //        NSString *urlStr = @"https://app.ddsd-ccic.com/loan/shortMessage.html?channel=FC001&activity=001";
 //        NSString *appstrore = @"https://itunes.apple.com/cn/app/id1439399498";
