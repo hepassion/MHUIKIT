@@ -16,6 +16,8 @@
 #import "MHWebBrowserView.h"
 #import <WebKit/WebKit.h>
 #import <CoreLocation/CoreLocation.h>
+#import "GRMustache.h"
+
 @interface HomeViewController ()
 @property (nonatomic, strong) HomeDataConstructor *dataConstructor;
 @end
@@ -90,7 +92,20 @@ static inline UIEdgeInsets sgm_safeAreaInset(UIView *view) {
     [self.uiTableView.mj_header endRefreshing];
     [self.uiTableView.mj_footer endRefreshing];
 }
-
+//给template.html中对应的标签格式化内容
+-(NSString *)demoFormatWithName:(NSString *)name value:(NSString *)value{
+    NSString *fileName = @"hyh.html";
+    NSString *path = [[[NSBundle mainBundle] bundlePath] stringByAppendingPathComponent:fileName];
+    NSString *template = [NSString stringWithContentsOfFile:path encoding:NSUTF8StringEncoding error:nil];
+    NSDictionary *renderObject = @{
+                                   @"name":name,
+                                   @"content":value,
+                                   @"contentImage":@"http://d.hiphotos.baidu.com/image/h%3D300/sign=fa89f3be5c66d01661199828a72ad498/8601a18b87d6277f5d7d424b26381f30e924fc52.jpg"
+                                   
+                                   };
+    NSString *content = [GRMustacheTemplate renderObject:renderObject fromString:template error:nil];
+    return content;
+}
 #pragma mark NVTableViewAdaptor Delegate
 
 - (void) tableView:(UITableView *)tableView didSelectObject:(id<MHTableViewCellItemProtocol>)object rowAtIndexPath:(NSIndexPath *)indexPath {
@@ -106,19 +121,23 @@ static inline UIEdgeInsets sgm_safeAreaInset(UIView *view) {
         [self.navigationController pushViewController:lockVC animated:YES];
     
     }  else if ([cellType isEqualToString:@"cell.type.html"]) {
-        MHWebBrowserViewController *webBrowserController = [[MHWebBrowserViewController alloc] init];
-        NSString* path = [[NSBundle mainBundle] pathForResource:@"hyh" ofType:@"html"];
-        NSString* htmlStr = [NSString stringWithContentsOfFile:path encoding:NSUTF8StringEncoding error:nil];
-        webBrowserController.loadHTMLString = htmlStr;
-        webBrowserController.defaultTitle = @"默认标题";
+      MHWebBrowserViewController *webBrowserController = [[MHWebBrowserViewController alloc] init];
+//        NSString* path = [[NSBundle mainBundle] pathForResource:@"hyh" ofType:@"html"];
+//        NSString* htmlStr = [NSString stringWithContentsOfFile:path encoding:NSUTF8StringEncoding error:nil];
+//        webBrowserController.loadHTMLString = htmlStr;
+//        webBrowserController.defaultTitle = @"默认标题";
    
 //        MHWebBrowserConfig *config = [MHWebBrowserConfig new];
 //        config.navigationBarHidden = YES;
 //        config.useSystemNavigationBar = NO;
 //        webBrowserController.config = config;
         
-        
-       
+        NSString *rendering = [self demoFormatWithName:@"minghe" value:@"zhao"];
+        NSString *path = [[NSBundle mainBundle] bundlePath];
+        NSURL *baseUrl = [NSURL fileURLWithPath:path];
+        webBrowserController.loadHTMLString = rendering;
+        webBrowserController.baseURL = baseUrl;
+        webBrowserController.defaultTitle = @"默认标题";
         
         [self.navigationController pushViewController:webBrowserController animated:YES];
     } else if ([cellType isEqualToString:@"cell.type.failure"]) {

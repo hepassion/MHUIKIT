@@ -69,7 +69,7 @@ UIScrollViewDelegate
                         options:NSKeyValueObservingOptionNew|NSKeyValueObservingOptionOld
                         context:nil];
     
-    [self injectOcMethod];
+//    [self injectOcMethod];
    
 }
 
