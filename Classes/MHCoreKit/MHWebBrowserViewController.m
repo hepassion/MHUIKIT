@@ -40,7 +40,7 @@ UIScrollViewDelegate
  */
 
 @property (nonatomic, assign) BOOL shouldShowingFirstLoadHtmlHUD;
-
+@property (nonatomic, strong) MBProgressHUD *hud ;
 @end
 
 @implementation MHWebBrowserViewController
@@ -193,9 +193,13 @@ UIScrollViewDelegate
 #pragma mark - >=iOS8 WKNavigationDelegate 页面加载过程跟踪
 // 页面开始加载时调用
 - (void)webView:(WKWebView *)webView didStartProvisionalNavigation:(WKNavigation *)navigation {
-    MBProgressHUD *hud = [MBProgressHUD showHUDAddedTo:self.view animated:YES];
-    hud.mode = MBProgressHUDModeAnnularDeterminate;
-    hud.label.text = @"加载中";
+    
+    if (!self.hud) {
+         self.hud = [MBProgressHUD showHUDAddedTo:self.view animated:YES];
+       self.hud.mode = MBProgressHUDModeAnnularDeterminate;
+        self.hud.label.text = @"加载中";
+    }
+    [self.hud showAnimated:YES];
 }
 // 当内容开始返回时调用
 - (void)webView:(WKWebView *)webView didCommitNavigation:(WKNavigation *)navigation {

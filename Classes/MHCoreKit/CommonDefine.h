@@ -13,10 +13,15 @@
 
 #define StatusRect                                  [[UIApplication sharedApplication] statusBarFrame]
 #define Status_Bar_Height                            StatusRect.size.height
-#define Status_Bar_Width                             StatusRect.size.width
+
 
 #define NAVIGATION_BAR_DEFAULT_HEIGHT               44
-#define TAB_BAR_HEIGHT                            [UIApplication dd_rootTabBarController].tabBar.bounds.size.height
+#define TAB_BAR_HEIGHT                              49
+
+#define Bottom_DangerArea_Height (@available(iOS 11.0, *) ? [[[UIApplication sharedApplication] delegate] window].safeAreaInsets.bottom :0)
+
+#define NAVIGATION_TOP_ALL_HEIGHT                       (NAVIGATION_BAR_DEFAULT_HEIGHT + Status_Bar_Height)
+#define TAB_BAR_BOTTOM_ALL_HEIGHT                       (TAB_BAR_HEIGHT + Bottom_DangerArea_Height)
 
 
 #define SCREEN_SIZE                                  [[UIScreen mainScreen] bounds].size
