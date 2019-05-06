@@ -41,12 +41,15 @@ UIScrollViewDelegate
 
 @property (nonatomic, assign) BOOL shouldShowingFirstLoadHtmlHUD;
 @property (nonatomic, strong) MBProgressHUD *hud ;
+@property (nonatomic, strong) UIProgressView *progressView;
+
 @end
 
 @implementation MHWebBrowserViewController
 
 - (void)dealloc{
     [self.wkWebView removeObserver:self forKeyPath:@"title"];
+    [self.wkWebView removeObserver:self forKeyPath:@"estimatedProgress"];
 }
 
 
@@ -60,7 +63,11 @@ UIScrollViewDelegate
         [self.wkWebView loadHTMLString:self.loadHTMLString baseURL:self.baseURL];
     }
 
-    
+    //进度条初始化
+    self.progressView = [[UIProgressView alloc] initWithFrame:CGRectMake(0, 0, [[UIScreen mainScreen] bounds].size.width, 2)];
+    self.progressView.progressTintColor = [UIColor redColor];
+    self.progressView.trackTintColor = self.wkWebView.backgroundColor;
+    [self.wkWebView addSubview:self.progressView];
 
     [self.wkWebView.configuration.userContentController addScriptMessageHandler:self name:@"jsoc1"];//js调用oc注册
 
@@ -68,6 +75,8 @@ UIScrollViewDelegate
                      forKeyPath:@"title"
                         options:NSKeyValueObservingOptionNew|NSKeyValueObservingOptionOld
                         context:nil];
+    [self.wkWebView addObserver:self forKeyPath:@"estimatedProgress" options:NSKeyValueObservingOptionNew context:nil];
+
     
 //    [self injectOcMethod];
    
@@ -140,6 +149,13 @@ UIScrollViewDelegate
         } else {
             // nothing todo
         }
+    } else  if ([keyPath isEqualToString:@"estimatedProgress"]) {
+        self.progressView.progress = self.wkWebView.estimatedProgress;
+        if (self.progressView.progress == 0.5) {
+            
+        }
+    }else{
+        [super observeValueForKeyPath:keyPath ofObject:object change:change context:context];
     }
 }
 
@@ -194,12 +210,21 @@ UIScrollViewDelegate
 // 页面开始加载时调用
 - (void)webView:(WKWebView *)webView didStartProvisionalNavigation:(WKNavigation *)navigation {
     
-    if (!self.hud) {
-         self.hud = [MBProgressHUD showHUDAddedTo:self.view animated:YES];
-       self.hud.mode = MBProgressHUDModeAnnularDeterminate;
-        self.hud.label.text = @"加载中";
-    }
-    [self.hud showAnimated:YES];
+//    if (!self.hud) {
+//         self.hud = [MBProgressHUD showHUDAddedTo:self.view animated:YES];
+//       self.hud.mode = MBProgressHUDModeAnnularDeterminate;
+//        self.hud.label.text = @"加载中";
+//    }
+//    [self.hud showAnimated:YES];
+    
+    
+    //开始加载网页时展示出progressView
+    self.progressView.hidden = NO;
+    //开始加载网页的时候将progressView的Height恢复为1.5倍
+    //防止progressView被网页挡住
+    [self.wkWebView bringSubviewToFront:self.progressView];
+    
+    
 }
 // 当内容开始返回时调用
 - (void)webView:(WKWebView *)webView didCommitNavigation:(WKNavigation *)navigation {
@@ -208,12 +233,14 @@ UIScrollViewDelegate
 // 页面加载完成之后调用
 - (void)webView:(WKWebView *)webView didFinishNavigation:(WKNavigation *)navigation {
   //  [self closeFirstLoadingHUD];
-    [MBProgressHUD hideHUDForView:self.view animated:YES];
+//    [MBProgressHUD hideHUDForView:self.view animated:YES];
+    self.progressView.hidden = YES;
+
 }
 // 页面加载失败时调用
 - (void)webView:(WKWebView *)webView didFailProvisionalNavigation:(WKNavigation *)navigation {
     [MBProgressHUD hideHUDForView:self.view animated:YES];
-
+    self.progressView.hidden = YES;
 }
 
 #pragma mark - >=iOS8 WKNavigationDelegate 决定页面是否跳转
@@ -300,9 +327,9 @@ UIScrollViewDelegate
 
 
 
-//- (NSString *)getCustomNavigationBarRightButtonTitle {
-//    return @"oc调用js";
-//}
+- (NSString *)getCustomNavigationBarRightButtonTitle {
+    return @"oc调用js";
+}
 
 - (void)customNavigationBarRightButtonAction:(id)sender {
 //    [self.wkWebView evaluateJavaScript:@"ocCallJs('oc字段')" completionHandler:^(id _Nullable item, NSError * _Nullable error) {

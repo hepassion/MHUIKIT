@@ -92,8 +92,7 @@ static AppConfigure* instance = nil;
                    serviceName:@"/web"
                         invoke:^id (NSString *name, NSDictionary *parameters, UIViewController *viewController) {
                             NSLog(@"web");
-                         // NSString *url = [parameters objectForKey:@"url"];
-                            NSString *url = @"https://test.95590.cn/nloan_test/test/index.html#/test1";
+                          NSString *url = [parameters objectForKey:@"url"];
                             MHWebBrowserViewController *web = [[MHWebBrowserViewController alloc] initWithURLString:url];
                              [[UIApplication dd_rootNavigationController] pushViewController:web animated:YES];
                             return nil;

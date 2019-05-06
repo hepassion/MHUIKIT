@@ -80,11 +80,6 @@ static inline UIEdgeInsets sgm_safeAreaInset(UIView *view) {
 
 - (void)decorateNavigationBar:(UINavigationBar *)navigationBar {
     [super decorateNavigationBar:navigationBar];
-    if (1) {
-        
-    } else {
-    
-    }
 }
 
 
@@ -160,7 +155,7 @@ static inline UIEdgeInsets sgm_safeAreaInset(UIView *view) {
         [webBrowser.wkWebView loadHTMLString:htmlStr baseURL:baseURL];
     } else if ([cellType isEqualToString:@"cell.type.baidu"]) {
        // NSString *urlStr = @"https://www.tutorialspoint.com/ios/ios_tutorial.pdf";
-        NSString *urlStr = @"https://test.95590.cn/nloan_test/test/index.html#/test1";
+        NSString *urlStr = @"https://test.95590.cn/OLI/H5/#/lhb/replayLhb";
 //        NSString *urlStr = @"https://test.95590.cn/nloan_test/test/index1.html";
         //        NSString *urlStr = @"https://app.ddsd-ccic.com/loan/shortMessage.html?channel=FC001&activity=001";
 //        NSString *appstrore = @"https://itunes.apple.com/cn/app/id1439399498";
@@ -168,7 +163,13 @@ static inline UIEdgeInsets sgm_safeAreaInset(UIView *view) {
     } else if ([cellType isEqualToString:@"cell.type.task"]) {
         NSString* string = @"mhuikit://Service/webSetting?nlogin=y&nauth=y&TitleIcon=标题" ;
 //        NSURL *url = [NSURL URLWithString:@"mhuikit://Service/webSetting?nlogin=y" ];
-        [[MHAppSchemaObserver sharedInstance] openURLString:string];
+//        [[MHAppSchemaObserver sharedInstance] openURLString:string];
+        
+        MHWebBrowserViewController *web = [[MHWebBrowserViewController alloc] init];
+        web.urlPath = @"https://www.baidu.com/";
+        [self.navigationController pushViewController:web animated:YES];
+        
+        
     }
 }
 
