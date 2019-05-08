@@ -68,7 +68,7 @@ static inline UIEdgeInsets sgm_safeAreaInset(UIView *view) {
 }
 
 - (BOOL)getCustomNavigationBar {
-    return YES;
+    return NO;
     
 }
 //

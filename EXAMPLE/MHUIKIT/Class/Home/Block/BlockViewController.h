@@ -11,10 +11,11 @@
 
 
 
+// 1 原生   返回头  颜色不一样
+//2 自定义    去原生时 
 
 
-
-@interface BlockViewController : MHGlassMainViewController
+@interface BlockViewController : MHTableViewController
 
 @property (nonatomic, strong) BlockDataConstructor *dataConstructor;
 
