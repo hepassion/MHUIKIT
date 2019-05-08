@@ -12,9 +12,9 @@
 #import "UIView+Utils.h"
 #import "MHAppSchemaObserver.h"
 #import "UIImage+Category.h"
-#import "MBProgressHUD.h"
-#define COLOR_HYH_RED                       [UIColor colorWithRed:227.0f/255.0f green:100.0f/255.0f blue:102.0f/255.0f alpha:1.0f]
-#define COLOR_HYH_BLUE                      [UIColor colorWithRed:65.0f/255.0f green:155.0f/255.0f blue:240.0f/255.0f alpha:1.0f]
+
+#define NavBarProgressLineDefaultColor          HEX(0x3d9dff)
+
 static NSString* JSHandler;
 
 NSString* const kNotificationWebViewControllerWillClosed = @"kNotificationWebViewControllerWillClosed";
@@ -31,16 +31,7 @@ WKUIDelegate,
 UIScrollViewDelegate
 >
 
-@property (nonatomic ,strong) UIButton *closeButton;
 
-- (void) onClose:(id)sender;
-
-/**
- 第一次load页面的时候，增加MBProgressHUD来表示正在加载中，优化用户体验
- */
-
-@property (nonatomic, assign) BOOL shouldShowingFirstLoadHtmlHUD;
-@property (nonatomic, strong) MBProgressHUD *hud ;
 @property (nonatomic, strong) UIProgressView *progressView;
 
 @end
@@ -56,6 +47,11 @@ UIScrollViewDelegate
 - (void)viewDidLoad {
     [super viewDidLoad];
     [self.view addSubview:self.wkWebView];
+    
+    if (!self.config) {
+        self.config = [[MHWebBrowserConfig alloc] init];
+    }
+    
     if (self.urlPath != nil ) {
         self.urlPath = [self.urlPath stringByTrimmingCharactersInSet:[NSCharacterSet whitespaceAndNewlineCharacterSet]];
         [self doRequestWithUserAndToken];
@@ -65,23 +61,38 @@ UIScrollViewDelegate
 
     //进度条初始化
     self.progressView = [[UIProgressView alloc] initWithFrame:CGRectMake(0, 0, [[UIScreen mainScreen] bounds].size.width, 2)];
-    self.progressView.progressTintColor = [UIColor redColor];
+    self.progressView.progressTintColor = NavBarProgressLineDefaultColor;
     self.progressView.trackTintColor = self.wkWebView.backgroundColor;
     [self.wkWebView addSubview:self.progressView];
 
-    [self.wkWebView.configuration.userContentController addScriptMessageHandler:self name:@"jsoc1"];//js调用oc注册
+//    [self.wkWebView.configuration.userContentController addScriptMessageHandler:self name:@"jsoc1"];//js调用oc注册
 
     [self.wkWebView addObserver:self
                      forKeyPath:@"title"
                         options:NSKeyValueObservingOptionNew|NSKeyValueObservingOptionOld
                         context:nil];
     [self.wkWebView addObserver:self forKeyPath:@"estimatedProgress" options:NSKeyValueObservingOptionNew context:nil];
-
-    
-//    [self injectOcMethod];
-   
 }
 
+
+- (void)viewWillAppear:(BOOL)animated  {
+    [super viewWillAppear:animated];
+    //如果显示底部tabbar，wkWebView.height需要重写
+    if (self.config.navigationBarHidden) { //导航栏隐藏
+        [self.navigationController setNavigationBarHidden:YES];
+        self.navigationController.navigationBar.hidden = YES;
+        self.wkWebView.top = 0;
+        self.wkWebView.height = SCREEN_HEIGHT;
+    } else {
+        if (self.config.useSystemNavigationBar) {
+            self.wkWebView.top = 0;
+        } else {
+            self.wkWebView.top = NAVIGATION_BAR_DEFAULT_HEIGHT + Status_Bar_Height;
+        }
+        self.wkWebView.height = SCREEN_HEIGHT - NAVIGATION_BAR_DEFAULT_HEIGHT - Status_Bar_Height;
+    }
+    
+}
 
 - (instancetype)initWithURLString:(NSString *) urlString
 {
@@ -118,46 +129,162 @@ UIScrollViewDelegate
 }
 
 - (void)backButtonAction:(id)sender {
-    
+//    NSLog(@"count: %ld",self.wkWebView.backForwardList.backList.count );
+//或者调用h5的方法
     if ([self.wkWebView canGoBack]) {
        [self.wkWebView goBack];
-       // WKBackForwardListItem *item= self.wkWebView.backForwardList.backList.firstObject;
-        if (self.wkWebView.backForwardList.backList.count == 1) {
-            [self.closeButton removeFromSuperview];
-        }
     } else {
         [super backButtonAction:sender];
     }
 }
 
 
-#pragma mark - ScrollView Delegate
-- (void)scrollViewDidScroll:(UIScrollView *)scrollView {
-    
-}
+
+
 #pragma mark - >=iOS8 标题改变
 
 - (void)observeValueForKeyPath:(NSString *)keyPath ofObject:(id)object change:(NSDictionary *)change context:(void *)context {
     if ([keyPath isEqualToString:@"title"]) {
         NSString *title = [change objectForKey:@"new"];
-        if (!self.defaultTitle || !self.defaultTitle.length) {
-            if (self.config && self.config.useSystemNavigationBar) {
+        if (self.defaultTitle && self.defaultTitle.length) {
+              // nothing todo
+        } else {
+            if (self.config.useSystemNavigationBar) {
                 self.title = title;
             } else {
                 self.pageNavigationBar.titleLabel.text = title;
             }
-        } else {
-            // nothing todo
         }
     } else  if ([keyPath isEqualToString:@"estimatedProgress"]) {
         self.progressView.progress = self.wkWebView.estimatedProgress;
-        if (self.progressView.progress == 0.5) {
-            
-        }
     }else{
         [super observeValueForKeyPath:keyPath ofObject:object change:change context:context];
     }
 }
+
+#pragma mark - >=iOS8 WKNavigationDelegate 页面加载过程跟踪
+// 页面开始加载时调用
+- (void)webView:(WKWebView *)webView didStartProvisionalNavigation:(WKNavigation *)navigation {
+    self.progressView.hidden = NO;
+    [self.wkWebView bringSubviewToFront:self.progressView];
+}
+// 当内容开始返回时调用
+- (void)webView:(WKWebView *)webView didCommitNavigation:(WKNavigation *)navigation {
+    
+}
+// 页面加载完成之后调用
+- (void)webView:(WKWebView *)webView didFinishNavigation:(WKNavigation *)navigation {
+    self.progressView.hidden = YES;
+}
+// 页面加载失败时调用
+- (void)webView:(WKWebView *)webView didFailProvisionalNavigation:(WKNavigation *)navigation {
+    self.progressView.hidden = YES;
+}
+
+#pragma mark - >=iOS8 WKNavigationDelegate 决定页面是否跳转
+// 在发送请求之前，决定是否跳转
+- (void)webView:(WKWebView *)webView decidePolicyForNavigationAction:(WKNavigationAction *)navigationAction decisionHandler:(void (^)(WKNavigationActionPolicy))decisionHandler {
+    NSURLRequest *request = navigationAction.request;
+    NSURL* url = request.URL;
+   // mhuikit://camera
+    NSString* scheme        = url.scheme;
+    //    NSString* host          = url.host;
+    //    NSString* service       = url.path;
+    //    NSString* paramStr      = url.query;
+    if ([[MHAppSchemaObserver sharedInstance] hasAppSchema:scheme]) {
+        [[MHAppSchemaObserver sharedInstance] openURLString:url.absoluteString controller:self];
+        decisionHandler(WKNavigationActionPolicyCancel);
+    }else {
+        
+        decisionHandler(WKNavigationActionPolicyAllow);
+    }
+}
+// 接收到服务器跳转请求之后调用
+- (void)webView:(WKWebView *)webView didReceiveServerRedirectForProvisionalNavigation:(WKNavigation *)navigation {
+    
+}
+
+// 在收到响应后，决定是否跳转
+- (void)webView:(WKWebView *)webView decidePolicyForNavigationResponse:(WKNavigationResponse *)navigationResponse decisionHandler:(void (^)(WKNavigationResponsePolicy))decisionHandler {
+    decisionHandler(WKNavigationResponsePolicyAllow);
+}
+
+// https证书验证
+- (void)webView:(WKWebView *)webView didReceiveAuthenticationChallenge:(NSURLAuthenticationChallenge *)challenge completionHandler:(void (^)(NSURLSessionAuthChallengeDisposition, NSURLCredential * _Nullable))completionHandler {
+    NSURLCredential * credential = [[NSURLCredential alloc] initWithTrust:[challenge protectionSpace].serverTrust];
+    completionHandler(NSURLSessionAuthChallengeUseCredential, credential);
+}
+
+
+#pragma mark - >=iOS8 JS回调OC
+- (void)userContentController:(WKUserContentController *)userContentController didReceiveScriptMessage:(WKScriptMessage *)message {
+    
+    if ([message.name isEqualToString:@"jsoc1"]) {
+        NSLog(@"js调oc:%@", message.body);
+    }
+   
+}
+
+#pragma mark - >=iOS8 新打开窗口
+- (WKWebView *)webView:(WKWebView *)webView createWebViewWithConfiguration:(WKWebViewConfiguration *)configuration forNavigationAction:(WKNavigationAction *)navigationAction windowFeatures:(WKWindowFeatures *)windowFeatures {
+    // <a href="http://www.baidu.com/" target="_blank"> a链接新开窗口问题。
+    [self.wkWebView loadRequest:navigationAction.request];
+    //  return  [[WKWebView alloc] initWithFrame:self.view.bounds configuration:configuration];
+    return nil;
+}
+
+#pragma mark NavigationBar ----------------------
+- (BOOL)getCustomNavigationBar  {
+    return  !self.config.useSystemNavigationBar;
+}
+
+- (BOOL) hidenNavigationBar {
+    return self.config.navigationBarHidden;
+}
+
+- (BOOL)getNavigationBarEdgePanBack {
+    return NO;
+}
+
+- (NSString *)getNavigationTitle {
+    return self.defaultTitle;
+}
+
+
+- (UIColor *)getNavigationBarBackgroundColor {
+    return self.config.navigationBarBackgroundColor ? self.config.navigationBarBackgroundColor : MHDefaultNavBackGroundColor;
+}
+
+- (UIColor *)getNavigationTitleColor {
+    return self.config.navigationBarTitleColor ? self.config.navigationBarTitleColor : MHDefaultTitleColor;
+}
+
+
+#pragma mark lazy loading -------------
+
+- (WKWebView *)wkWebView {
+    if (_wkWebView == nil) {
+        
+     WKWebViewConfiguration *  configuration  = [[WKWebViewConfiguration alloc] init];
+     configuration.userContentController      = [WKUserContentController new];
+     configuration.preferences              = [[WKPreferences alloc] init];
+     configuration.preferences.minimumFontSize = 10;
+     configuration.preferences.javaScriptEnabled = YES;              configuration.preferences.javaScriptCanOpenWindowsAutomatically = YES;
+     configuration.userContentController       = [[WKUserContentController alloc] init];
+     configuration.processPool               = [[WKProcessPool alloc] init];
+        
+        //高度 默认 从导航栏下开始   到底部
+        _wkWebView =  [[WKWebView alloc] initWithFrame:CGRectMake(0.0f, NAVIGATION_BAR_DEFAULT_HEIGHT + Status_Bar_Height, SCREEN_WIDTH, SCREEN_HEIGHT - NAVIGATION_BAR_DEFAULT_HEIGHT - Status_Bar_Height) configuration:configuration];
+        
+        
+        _wkWebView.backgroundColor = [UIColor whiteColor];
+        _wkWebView.UIDelegate = self;
+       // _wkWebView.navigationDelegate = self;
+        self.bridge =  [WebViewJavascriptBridge bridgeForWebView:_wkWebView];
+        [self.bridge setWebViewDelegate:self];
+    }return _wkWebView;
+}
+
 
 #pragma mark - >=iOS8 WKUIDelegate 定制Alert、Prompt、Confirm
 
@@ -204,235 +331,6 @@ UIScrollViewDelegate
         completionHandler(NO);
     }]];
     [self presentViewController:alertC animated:YES completion:nil];
-}
-
-#pragma mark - >=iOS8 WKNavigationDelegate 页面加载过程跟踪
-// 页面开始加载时调用
-- (void)webView:(WKWebView *)webView didStartProvisionalNavigation:(WKNavigation *)navigation {
-    
-//    if (!self.hud) {
-//         self.hud = [MBProgressHUD showHUDAddedTo:self.view animated:YES];
-//       self.hud.mode = MBProgressHUDModeAnnularDeterminate;
-//        self.hud.label.text = @"加载中";
-//    }
-//    [self.hud showAnimated:YES];
-    
-    
-    //开始加载网页时展示出progressView
-    self.progressView.hidden = NO;
-    //开始加载网页的时候将progressView的Height恢复为1.5倍
-    //防止progressView被网页挡住
-    [self.wkWebView bringSubviewToFront:self.progressView];
-    
-    
-}
-// 当内容开始返回时调用
-- (void)webView:(WKWebView *)webView didCommitNavigation:(WKNavigation *)navigation {
-    
-}
-// 页面加载完成之后调用
-- (void)webView:(WKWebView *)webView didFinishNavigation:(WKNavigation *)navigation {
-  //  [self closeFirstLoadingHUD];
-//    [MBProgressHUD hideHUDForView:self.view animated:YES];
-    self.progressView.hidden = YES;
-
-}
-// 页面加载失败时调用
-- (void)webView:(WKWebView *)webView didFailProvisionalNavigation:(WKNavigation *)navigation {
-    [MBProgressHUD hideHUDForView:self.view animated:YES];
-    self.progressView.hidden = YES;
-}
-
-#pragma mark - >=iOS8 WKNavigationDelegate 决定页面是否跳转
-// 在发送请求之前，决定是否跳转
-- (void)webView:(WKWebView *)webView decidePolicyForNavigationAction:(WKNavigationAction *)navigationAction decisionHandler:(void (^)(WKNavigationActionPolicy))decisionHandler {
-    NSURLRequest *request = navigationAction.request;
-    NSURL* url = request.URL;
-   // mhuikit://camera
-    NSString* scheme        = url.scheme;
-    //    NSString* host          = url.host;
-    //    NSString* service       = url.path;
-    //    NSString* paramStr      = url.query;
-    if ([[MHAppSchemaObserver sharedInstance] hasAppSchema:scheme]) {
-        [[MHAppSchemaObserver sharedInstance] openURLString:url.absoluteString controller:self];
-        decisionHandler(WKNavigationActionPolicyCancel);
-    }else {
-        
-        decisionHandler(WKNavigationActionPolicyAllow);
-    }
-    if (self.config && self.config.useSystemNavigationBar) {
-        [self decorateLeftButtonNavigationBar:self.navigationController.navigationBar];
-    } else {
-        [self decorateCustomNavigationBar:self.pageNavigationBar];
-    }
-   
-}
-// 接收到服务器跳转请求之后调用
-- (void)webView:(WKWebView *)webView didReceiveServerRedirectForProvisionalNavigation:(WKNavigation *)navigation {
-    
-}
-
-// 在收到响应后，决定是否跳转
-- (void)webView:(WKWebView *)webView decidePolicyForNavigationResponse:(WKNavigationResponse *)navigationResponse decisionHandler:(void (^)(WKNavigationResponsePolicy))decisionHandler {
-    decisionHandler(WKNavigationResponsePolicyAllow);
-}
-
-// https证书验证
-- (void)webView:(WKWebView *)webView didReceiveAuthenticationChallenge:(NSURLAuthenticationChallenge *)challenge completionHandler:(void (^)(NSURLSessionAuthChallengeDisposition, NSURLCredential * _Nullable))completionHandler {
-    NSURLCredential * credential = [[NSURLCredential alloc] initWithTrust:[challenge protectionSpace].serverTrust];
-    completionHandler(NSURLSessionAuthChallengeUseCredential, credential);
-}
-
-
-#pragma mark - >=iOS8 JS回调OC
-- (void)userContentController:(WKUserContentController *)userContentController didReceiveScriptMessage:(WKScriptMessage *)message {
-    
-    if ([message.name isEqualToString:@"jsoc1"]) {
-        NSLog(@"js调oc:%@", message.body);
-    }
-   
-}
-
-#pragma mark - >=iOS8 新打开窗口
-- (WKWebView *)webView:(WKWebView *)webView createWebViewWithConfiguration:(WKWebViewConfiguration *)configuration forNavigationAction:(WKNavigationAction *)navigationAction windowFeatures:(WKWindowFeatures *)windowFeatures {
-    // <a href="http://www.baidu.com/" target="_blank"> a链接新开窗口问题。
-    [self.wkWebView loadRequest:navigationAction.request];
-    //  return  [[WKWebView alloc] initWithFrame:self.view.bounds configuration:configuration];
-    return nil;
-}
-#pragma mark NavigationBar ----------------------
-- (BOOL)getCustomNavigationBar  {
-    return self.config ? !self.config.useSystemNavigationBar : YES;
-}
-
-- (NSString *)getNavigationTitle {
-    return self.defaultTitle;
-}
-
-- (UIColor *)getCustomNavigationBarRightButtonTintColor {
-    return self.config.navigationRightItemColor ? self.config.navigationRightItemColor : MHDefaultLeftRightItemTitleColor;
-}
-
-- (UIImage *)getCustomNavigationBarRightButtonImage {
-    return self.config.navigationRightItemImage ? self.config.navigationRightItemImage : nil;
-}
-
-- (UIColor *)getNavigationBarBackgroundColor {
-    return self.config.navigationBarBackgroundColor ? self.config.navigationBarBackgroundColor : [UIColor orangeColor];
-}
-
-- (UIColor *)getNavigationTitleColor {
-    return self.config.navigationBarTitleColor ? self.config.navigationBarTitleColor : MHDefaultTitleColor;
-}
-
-
-
-- (NSString *)getCustomNavigationBarRightButtonTitle {
-    return @"oc调用js";
-}
-
-- (void)customNavigationBarRightButtonAction:(id)sender {
-//    [self.wkWebView evaluateJavaScript:@"ocCallJs('oc字段')" completionHandler:^(id _Nullable item, NSError * _Nullable error) {
-//        NSLog(@"js返回字段 = %@", item);
-//    }];
-//    [self.wkWebView evaluateJavaScript:@"ocCallJs('oc字段')" completionHandler:^(id _Nullable item, NSError * _Nullable error) {
-//        NSLog(@"js返回字段 = %@", item);
-//    }];
-
-}
-
-
-#pragma mark 检查小叉是否显示
-- (void) decorateCustomNavigationBar:(MHNavigationBar *)navigationBar {
-    [super decorateCustomNavigationBar:navigationBar];
-    [self.closeButton removeFromSuperview];
-    if (self.wkWebView.canGoBack) {
-        [self.pageNavigationBar addSubview:self.closeButton];
-    } else {
-        [self.closeButton removeFromSuperview];
-    }
-    
-}
-
-- (void) decorateLeftButtonNavigationBar:(UINavigationBar*)navigationBar {
-    [super decorateLeftButtonNavigationBar:navigationBar];
-    UIBarButtonItem* backItem = [[UIBarButtonItem alloc]initWithCustomView:[self newBackButton]];
-    if (self.wkWebView.canGoBack) {
-        UIBarButtonItem* closeItem = [[UIBarButtonItem alloc]initWithCustomView:[self closeButton]];
-        self.navigationItem.leftBarButtonItems = @[backItem, closeItem];
-    } else {
-        self.navigationItem.leftBarButtonItem = backItem;
-    }
-}
-
-- (void)viewWillAppear:(BOOL)animated  {
-    [super viewWillAppear:animated];
-    if (self.config) {
-        if (self.config.navigationBarHidden) { //导航栏隐藏
-            if (self.config.useSystemNavigationBar) {
-                [self.navigationController setNavigationBarHidden:YES];
-            } else {
-                self.navigationController.navigationBar.hidden = YES;
-            }
-            self.wkWebView.top = 0;
-            self.wkWebView.height = SCREEN_HEIGHT;
-        } else {
-            if (self.config.useSystemNavigationBar) {
-                self.wkWebView.top = 0;
-            } else {
-                self.wkWebView.top = NAVIGATION_BAR_DEFAULT_HEIGHT + Status_Bar_Height;
-            }
-            self.wkWebView.height = SCREEN_HEIGHT - NAVIGATION_BAR_DEFAULT_HEIGHT - Status_Bar_Height;
-        }
-    } else {
-        self.wkWebView.top = NAVIGATION_BAR_DEFAULT_HEIGHT + Status_Bar_Height;
-        self.wkWebView.height = SCREEN_HEIGHT - NAVIGATION_BAR_DEFAULT_HEIGHT - Status_Bar_Height;
-    }
-}
-
-
-
-#pragma mark lazy loading -------------
-
-- (WKWebView *)wkWebView {
-    if (_wkWebView == nil) {
-        
-     WKWebViewConfiguration *  configuration  = [[WKWebViewConfiguration alloc] init];
-     configuration.userContentController      = [WKUserContentController new];
-     configuration.preferences              = [[WKPreferences alloc] init];
-     configuration.preferences.minimumFontSize = 10;
-     configuration.preferences.javaScriptEnabled = YES;              configuration.preferences.javaScriptCanOpenWindowsAutomatically = YES;
-     configuration.userContentController       = [[WKUserContentController alloc] init];
-     configuration.processPool               = [[WKProcessPool alloc] init];
-        
-        
-        _wkWebView =  [[WKWebView alloc] initWithFrame:CGRectMake(0.0f, 0.0f, SCREEN_WIDTH, SCREEN_HEIGHT - NAVIGATION_BAR_DEFAULT_HEIGHT - Status_Bar_Height) configuration:configuration];
-        _wkWebView.backgroundColor = [UIColor whiteColor];
-        _wkWebView.UIDelegate = self;
-       // _wkWebView.navigationDelegate = self;
-        self.bridge =  [WebViewJavascriptBridge bridgeForWebView:_wkWebView];
-        [self.bridge setWebViewDelegate:self];
-    }return _wkWebView;
-}
-
-- (UIButton *)closeButton  {
-    if (_closeButton == nil) {
-        UIImage *btnCloseImageSRC = [UIImage imageNamed:@"icon_close"];
-        UIImage *btnCloseImage = [btnCloseImageSRC imageWithColor:[self getNavigationBarBackButtonColor]];
-        
-        _closeButton = [UIButton buttonWithType:UIButtonTypeCustom];
-        _closeButton.frame = CGRectMake(0.0f, 0.0f, 30.0f, 40.0f);
-        _closeButton.tag = 1002;
-        [_closeButton setImage:btnCloseImage forState:UIControlStateNormal];
-        [_closeButton setImage:btnCloseImage forState:UIControlStateHighlighted];
-        [_closeButton addTarget:self action:@selector(onClose:) forControlEvents:UIControlEventTouchUpInside];
-        _closeButton.left = self.pageNavigationBar.leftButton.right ;
-        _closeButton.top = self.pageNavigationBar.leftButton.top;
-    }return _closeButton;
-}
-
-- (void)onClose:(UIButton *)button {
-    [self.navigationController popViewControllerAnimated:YES];
 }
 
 - (void)didReceiveMemoryWarning {

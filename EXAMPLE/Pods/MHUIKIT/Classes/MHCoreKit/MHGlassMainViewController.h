@@ -8,11 +8,12 @@
 
 #import "MHViewController.h"
 
-#define MHDefaultTitleColor   [UIColor blackColor]
+#define MHDefaultTitleColor        HEX(0x3d9dff)
 #define MHDefaultNavBackGroundColor    [UIColor whiteColor]
-#define MHDefaultBackButtonColor      HEX(0xaaaaaa)
-#define MHDefaultLeftRightItemTitleColor    HEX(0xaaaaaa)
-#define NavBarBottomLineDefaultColor         HEX(0xaaaaaa)
+#define MHDefaultBackButtonColor         HEX(0x3d9dff)
+#define MHDefaultLeftRightItemTitleColor     HEX(0x3d9dff)
+#define NavBarBottomLineDefaultColor          HEX(0xaaaaaa)
+
 
 
 
@@ -38,6 +39,12 @@
 @return NO 使用系统导航；YES 使用自定义导航
 */
 - (BOOL) getCustomNavigationBar;
+
+/**
+是否隐藏导航栏
+ 默认：NO 不隐藏
+ */
+- (BOOL) hidenNavigationBar;
 
 
 /**

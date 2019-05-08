@@ -57,9 +57,6 @@
     return YES;
 }
 
-- (UIColor *)getNavigationBarBottomLineColor {
-    return [UIColor greenColor];
-}
 
 //- (UITableViewStyle )getTableViewStyle {
 //    return UITableViewStyleGrouped;

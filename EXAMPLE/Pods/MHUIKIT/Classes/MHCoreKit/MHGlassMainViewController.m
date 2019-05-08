@@ -154,7 +154,13 @@
 - (void)viewWillAppear:(BOOL)animated {
     [super viewWillAppear:animated];
     
-    //保证给个控制器导航有固定的样式
+    if ([self  hidenNavigationBar]) {
+        self.pageNavigationBar.hidden = YES;
+        self.navigationController.navigationBar.hidden = YES;
+        return;
+    }
+    
+    
     if ([self getCustomNavigationBar]) {
         [self decorateCustomNavigationBar:self.pageNavigationBar];
     } else {
@@ -172,10 +178,13 @@
 - (BOOL) getCustomNavigationBar {
     return YES;
 }
-
+- (BOOL) hidenNavigationBar {
+    return NO;
+}
 - (NSString*) getNavigationTitle {
     return @"";
 }
+
 - (UIColor*) getNavigationTitleColor {
     return MHDefaultTitleColor;
 }

@@ -116,16 +116,21 @@ static inline UIEdgeInsets sgm_safeAreaInset(UIView *view) {
         [self.navigationController pushViewController:lockVC animated:YES];
     
     }  else if ([cellType isEqualToString:@"cell.type.html"]) {
+        
+        
+        
       MHWebBrowserViewController *webBrowserController = [[MHWebBrowserViewController alloc] init];
 //        NSString* path = [[NSBundle mainBundle] pathForResource:@"hyh" ofType:@"html"];
 //        NSString* htmlStr = [NSString stringWithContentsOfFile:path encoding:NSUTF8StringEncoding error:nil];
 //        webBrowserController.loadHTMLString = htmlStr;
 //        webBrowserController.defaultTitle = @"默认标题";
    
-//        MHWebBrowserConfig *config = [MHWebBrowserConfig new];
-//        config.navigationBarHidden = YES;
-//        config.useSystemNavigationBar = NO;
-//        webBrowserController.config = config;
+        MHWebBrowserConfig *config = [MHWebBrowserConfig new];
+        config.useSystemNavigationBar = YES;
+        webBrowserController.config = config;
+        
+        
+        
         
         NSString *rendering = [self demoFormatWithName:@"minghe" value:@"zhao"];
         NSString *path = [[NSBundle mainBundle] bundlePath];
@@ -166,7 +171,7 @@ static inline UIEdgeInsets sgm_safeAreaInset(UIView *view) {
 //        [[MHAppSchemaObserver sharedInstance] openURLString:string];
         
         MHWebBrowserViewController *web = [[MHWebBrowserViewController alloc] init];
-        web.urlPath = @"https://www.baidu.com/";
+        web.urlPath = @"https://test.95590.cn/OLI/yjb/#/insurApplyAndAuthor";
         [self.navigationController pushViewController:web animated:YES];
         
         

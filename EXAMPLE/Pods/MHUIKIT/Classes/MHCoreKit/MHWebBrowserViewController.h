@@ -29,8 +29,6 @@ UIKIT_EXTERN  NSString* _Nonnull  const kNotificationWebViewControllerWillClosed
  */
 @property (nonatomic, assign) BOOL useSystemNavigationBar;
 @property (nonatomic, assign) BOOL navigationBarHidden;
-@property (nonatomic, strong) UIColor* _Nullable navigationRightItemColor;
-@property (nonatomic, strong) UIImage* _Nullable navigationRightItemImage;
 @property (nonatomic, strong) UIColor* _Nullable navigationBarBackgroundColor;
 @property (nonatomic, strong) UIColor* _Nullable navigationBarTitleColor;
 
@@ -74,12 +72,6 @@ UIKIT_EXTERN  NSString* _Nonnull  const kNotificationWebViewControllerWillClosed
 - (void) reload;
 - (void) reloadUrl:(NSString* _Nullable)url;
 
-
-
-/**
- 注册oc method
- */
-- (void)injectOcMethod ;
 
 /**
  返回按钮事件，可重写
