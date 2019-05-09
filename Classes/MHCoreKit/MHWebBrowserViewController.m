@@ -12,6 +12,7 @@
 #import "UIView+Utils.h"
 #import "MHAppSchemaObserver.h"
 #import "UIImage+Category.h"
+#import "MBProgressHUD.h"
 
 #define NavBarProgressLineDefaultColor          HEX(0x3d9dff)
 
@@ -32,15 +33,15 @@ UIScrollViewDelegate
 >
 
 
-@property (nonatomic, strong) UIProgressView *progressView;
-
+//@property (nonatomic, strong) UIProgressView *progressView;
+@property (nonatomic, strong) MBProgressHUD *hud ;
 @end
 
 @implementation MHWebBrowserViewController
 
 - (void)dealloc{
     [self.wkWebView removeObserver:self forKeyPath:@"title"];
-    [self.wkWebView removeObserver:self forKeyPath:@"estimatedProgress"];
+//    [self.wkWebView removeObserver:self forKeyPath:@"estimatedProgress"];
 }
 
 
@@ -60,10 +61,10 @@ UIScrollViewDelegate
     }
 
     //进度条初始化
-    self.progressView = [[UIProgressView alloc] initWithFrame:CGRectMake(0, 0, [[UIScreen mainScreen] bounds].size.width, 2)];
-    self.progressView.progressTintColor = NavBarProgressLineDefaultColor;
-    self.progressView.trackTintColor = self.wkWebView.backgroundColor;
-    [self.wkWebView addSubview:self.progressView];
+//    self.progressView = [[UIProgressView alloc] initWithFrame:CGRectMake(0, 0, [[UIScreen mainScreen] bounds].size.width, 2)];
+//    self.progressView.progressTintColor = NavBarProgressLineDefaultColor;
+//    self.progressView.trackTintColor = self.wkWebView.backgroundColor;
+//    [self.wkWebView addSubview:self.progressView];
 
 //    [self.wkWebView.configuration.userContentController addScriptMessageHandler:self name:@"jsoc1"];//js调用oc注册
 
@@ -153,18 +154,25 @@ UIScrollViewDelegate
                 self.title = title;
             }
         }
-    } else  if ([keyPath isEqualToString:@"estimatedProgress"]) {
-        self.progressView.progress = self.wkWebView.estimatedProgress;
-    }else{
-        [super observeValueForKeyPath:keyPath ofObject:object change:change context:context];
     }
+//    else  if ([keyPath isEqualToString:@"estimatedProgress"]) {
+//        self.progressView.progress = self.wkWebView.estimatedProgress;
+  //  }
+    
 }
 
 #pragma mark - >=iOS8 WKNavigationDelegate 页面加载过程跟踪
 // 页面开始加载时调用
 - (void)webView:(WKWebView *)webView didStartProvisionalNavigation:(WKNavigation *)navigation {
-    self.progressView.hidden = NO;
-    [self.wkWebView bringSubviewToFront:self.progressView];
+//    self.progressView.hidden = NO;
+//    [self.wkWebView bringSubviewToFront:self.progressView];
+    if (!self.hud) {
+        self.hud = [MBProgressHUD showHUDAddedTo:self.view animated:YES];
+        self.hud.mode = MBProgressHUDModeAnnularDeterminate;
+        self.hud.label.text = @"加载中";
+    }
+    [self.hud showAnimated:YES];
+
 }
 // 当内容开始返回时调用
 - (void)webView:(WKWebView *)webView didCommitNavigation:(WKNavigation *)navigation {
@@ -172,11 +180,13 @@ UIScrollViewDelegate
 }
 // 页面加载完成之后调用
 - (void)webView:(WKWebView *)webView didFinishNavigation:(WKNavigation *)navigation {
-    self.progressView.hidden = YES;
+   // self.progressView.hidden = YES;
+    [MBProgressHUD hideHUDForView:self.view animated:YES];
 }
 // 页面加载失败时调用
 - (void)webView:(WKWebView *)webView didFailProvisionalNavigation:(WKNavigation *)navigation {
-    self.progressView.hidden = YES;
+   // self.progressView.hidden = YES;
+    [MBProgressHUD hideHUDForView:self.view animated:YES];
 }
 
 #pragma mark - >=iOS8 WKNavigationDelegate 决定页面是否跳转

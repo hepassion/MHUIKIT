@@ -171,7 +171,8 @@ static inline UIEdgeInsets sgm_safeAreaInset(UIView *view) {
 //        [[MHAppSchemaObserver sharedInstance] openURLString:string];
         
         BaseMHHtmlViewController *web = [[BaseMHHtmlViewController alloc] init];
-        web.urlPath = @"https://test.95590.cn/OLI/yjb/#/insurApplyAndAuthor";
+//        web.urlPath = @"https://test.95590.cn/OLI/yjb/#/insurApplyAndAuthor";
+        web.urlPath = @"https://www.baidu.com";
         [self.navigationController pushViewController:web animated:YES];
         
         
