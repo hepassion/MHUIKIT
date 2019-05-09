@@ -119,17 +119,17 @@ static inline UIEdgeInsets sgm_safeAreaInset(UIView *view) {
         
         
         
-      MHWebBrowserViewController *webBrowserController = [[MHWebBrowserViewController alloc] init];
+      BaseMHHtmlViewController *webBrowserController = [[BaseMHHtmlViewController alloc] init];
 //        NSString* path = [[NSBundle mainBundle] pathForResource:@"hyh" ofType:@"html"];
 //        NSString* htmlStr = [NSString stringWithContentsOfFile:path encoding:NSUTF8StringEncoding error:nil];
 //        webBrowserController.loadHTMLString = htmlStr;
 //        webBrowserController.defaultTitle = @"默认标题";
-   
-        MHWebBrowserConfig *config = [MHWebBrowserConfig new];
-        config.useSystemNavigationBar = YES;
-        webBrowserController.config = config;
-        
-        
+//
+//        MHWebBrowserConfig *config = [MHWebBrowserConfig new];
+//        config.useSystemNavigationBar = YES;
+//        webBrowserController.config = config;
+//
+//        
         
         
         NSString *rendering = [self demoFormatWithName:@"minghe" value:@"zhao"];
@@ -137,7 +137,7 @@ static inline UIEdgeInsets sgm_safeAreaInset(UIView *view) {
         NSURL *baseUrl = [NSURL fileURLWithPath:path];
         webBrowserController.loadHTMLString = rendering;
         webBrowserController.baseURL = baseUrl;
-        webBrowserController.defaultTitle = @"默认标题";
+//        webBrowserController.defaultTitle = @"默认标题";
         
         [self.navigationController pushViewController:webBrowserController animated:YES];
     } else if ([cellType isEqualToString:@"cell.type.failure"]) {
@@ -170,7 +170,7 @@ static inline UIEdgeInsets sgm_safeAreaInset(UIView *view) {
 //        NSURL *url = [NSURL URLWithString:@"mhuikit://Service/webSetting?nlogin=y" ];
 //        [[MHAppSchemaObserver sharedInstance] openURLString:string];
         
-        MHWebBrowserViewController *web = [[MHWebBrowserViewController alloc] init];
+        BaseMHHtmlViewController *web = [[BaseMHHtmlViewController alloc] init];
         web.urlPath = @"https://test.95590.cn/OLI/yjb/#/insurApplyAndAuthor";
         [self.navigationController pushViewController:web animated:YES];
         

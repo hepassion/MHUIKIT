@@ -20,25 +20,25 @@ PODS:
   - JRSwizzle (1.0)
   - Masonry (1.1.0)
   - MBProgressHUD (1.1.0)
-  - MHUIKIT (0.4.6):
-    - MHUIKIT/Encryption (= 0.4.6)
-    - MHUIKIT/MHCoreKit (= 0.4.6)
-    - MHUIKIT/MHDubgger (= 0.4.6)
-    - MHUIKIT/Observer (= 0.4.6)
-    - MHUIKIT/Utils (= 0.4.6)
-  - MHUIKIT/Encryption (0.4.6)
-  - MHUIKIT/MHCoreKit (0.4.6):
+  - MHUIKIT (0.5.0):
+    - MHUIKIT/Encryption (= 0.5.0)
+    - MHUIKIT/MHCoreKit (= 0.5.0)
+    - MHUIKIT/MHDubgger (= 0.5.0)
+    - MHUIKIT/Observer (= 0.5.0)
+    - MHUIKIT/Utils (= 0.5.0)
+  - MHUIKIT/Encryption (0.5.0)
+  - MHUIKIT/MHCoreKit (0.5.0):
     - MBProgressHUD (~> 1.1.0)
     - MHUIKIT/Encryption
     - MHUIKIT/Observer
     - MHUIKIT/Utils
     - WebViewJavascriptBridge (~> 6.0.3)
-  - MHUIKIT/MHDubgger (0.4.6):
+  - MHUIKIT/MHDubgger (0.5.0):
     - Aspects (~> 1.4.1)
-  - MHUIKIT/Observer (0.4.6):
+  - MHUIKIT/Observer (0.5.0):
     - MHUIKIT/Encryption
     - MHUIKIT/Utils
-  - MHUIKIT/Utils (0.4.6)
+  - MHUIKIT/Utils (0.5.0)
   - MJRefresh (3.1.15.7)
   - WebViewJavascriptBridge (6.0.3)
   - XMNetworking (1.1.0):
@@ -47,7 +47,7 @@ PODS:
 DEPENDENCIES:
   - GRMustache (~> 7.3.2)
   - Masonry (~> 1.1.0)
-  - MHUIKIT (~> 0.4.6)
+  - MHUIKIT (~> 0.5.0)
   - MJRefresh (~> 3.1.15.7)
   - XMNetworking (~> 1.1.0)
 
@@ -71,11 +71,11 @@ SPEC CHECKSUMS:
   JRSwizzle: dd5ead5d913a0f29e7f558200165849f006bb1e3
   Masonry: 678fab65091a9290e40e2832a55e7ab731aad201
   MBProgressHUD: e7baa36a220447d8aeb12769bf0585582f3866d9
-  MHUIKIT: 445a618d602eb091fbafff2bee5ec8735d0fedd6
+  MHUIKIT: c901324cdf9c4f4a1a6705cd580a41f9fc5c58a3
   MJRefresh: 697f8ec75ebdbe9207767bb682cf0f51b0d8a41f
   WebViewJavascriptBridge: 7f5bc4d3581e672e8f32bd0f812d54bc69bb8e29
   XMNetworking: 7160cc06f504f325eec515a1e687ee1aa89bc462
 
-PODFILE CHECKSUM: a934338a50815c1e7cc9a4fe62b579775b896d2b
+PODFILE CHECKSUM: fd10244bbddd1137a91a368ec0e767fd88aa062d
 
 COCOAPODS: 1.5.3

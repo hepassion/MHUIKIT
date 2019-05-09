@@ -78,16 +78,14 @@ UIScrollViewDelegate
 - (void)viewWillAppear:(BOOL)animated  {
     [super viewWillAppear:animated];
     //如果显示底部tabbar，wkWebView.height需要重写
-    if (self.config.navigationBarHidden) { //导航栏隐藏
-        [self.navigationController setNavigationBarHidden:YES];
-        self.navigationController.navigationBar.hidden = YES;
+    if ([self hidenNavigationBar]) { //导航栏隐藏
         self.wkWebView.top = 0;
         self.wkWebView.height = SCREEN_HEIGHT;
     } else {
-        if (self.config.useSystemNavigationBar) {
-            self.wkWebView.top = 0;
-        } else {
+        if ([self getCustomNavigationBar]) {
             self.wkWebView.top = NAVIGATION_BAR_DEFAULT_HEIGHT + Status_Bar_Height;
+        } else {
+            self.wkWebView.top =0;
         }
         self.wkWebView.height = SCREEN_HEIGHT - NAVIGATION_BAR_DEFAULT_HEIGHT - Status_Bar_Height;
     }
@@ -149,10 +147,10 @@ UIScrollViewDelegate
         if (self.defaultTitle && self.defaultTitle.length) {
               // nothing todo
         } else {
-            if (self.config.useSystemNavigationBar) {
-                self.title = title;
-            } else {
+            if ([self getCustomNavigationBar]) {
                 self.pageNavigationBar.titleLabel.text = title;
+            } else {
+                self.title = title;
             }
         }
     } else  if ([keyPath isEqualToString:@"estimatedProgress"]) {

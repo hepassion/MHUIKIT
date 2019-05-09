@@ -46,6 +46,7 @@
 		426CEC81219BC674000FC911 /* SBPauseOrPlayView.m in Sources */ = {isa = PBXBuildFile; fileRef = 426CEC77219BC674000FC911 /* SBPauseOrPlayView.m */; };
 		426CEC82219BC674000FC911 /* SBControlView.m in Sources */ = {isa = PBXBuildFile; fileRef = 426CEC78219BC674000FC911 /* SBControlView.m */; };
 		4283BB19225CAC0E005C3074 /* accountSelect.png in Resources */ = {isa = PBXBuildFile; fileRef = 4283BB18225CAC0E005C3074 /* accountSelect.png */; };
+		42842C272283F1410081942E /* BaseMHHtmlViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 42842C262283F1410081942E /* BaseMHHtmlViewController.m */; };
 		429A7543221A823600089E66 /* JavaScriptCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 429A7542221A823600089E66 /* JavaScriptCore.framework */; };
 		429A754A221A97CF00089E66 /* MHWebBrowserViewController+Inject.m in Sources */ = {isa = PBXBuildFile; fileRef = 429A7549221A97CF00089E66 /* MHWebBrowserViewController+Inject.m */; };
 		42A725C121E591A100FACA20 /* AppManger.m in Sources */ = {isa = PBXBuildFile; fileRef = 42A725C021E591A100FACA20 /* AppManger.m */; };
@@ -146,6 +147,8 @@
 		426CEC77219BC674000FC911 /* SBPauseOrPlayView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SBPauseOrPlayView.m; sourceTree = "<group>"; };
 		426CEC78219BC674000FC911 /* SBControlView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SBControlView.m; sourceTree = "<group>"; };
 		4283BB18225CAC0E005C3074 /* accountSelect.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = accountSelect.png; sourceTree = "<group>"; };
+		42842C252283F1410081942E /* BaseMHHtmlViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = BaseMHHtmlViewController.h; sourceTree = "<group>"; };
+		42842C262283F1410081942E /* BaseMHHtmlViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = BaseMHHtmlViewController.m; sourceTree = "<group>"; };
 		429A7542221A823600089E66 /* JavaScriptCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = JavaScriptCore.framework; path = System/Library/Frameworks/JavaScriptCore.framework; sourceTree = SDKROOT; };
 		429A7548221A97CF00089E66 /* MHWebBrowserViewController+Inject.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "MHWebBrowserViewController+Inject.h"; sourceTree = "<group>"; };
 		429A7549221A97CF00089E66 /* MHWebBrowserViewController+Inject.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = "MHWebBrowserViewController+Inject.m"; sourceTree = "<group>"; };
@@ -211,6 +214,8 @@
 				42022736217587C000D2B3A5 /* MHWebBrowserView.m */,
 				420227382178876100D2B3A5 /* UIViewController+Exception.h */,
 				420227392178876100D2B3A5 /* UIViewController+Exception.m */,
+				42842C252283F1410081942E /* BaseMHHtmlViewController.h */,
+				42842C262283F1410081942E /* BaseMHHtmlViewController.m */,
 				420226FC2175802D00D2B3A5 /* Home */,
 				4202270E2175802D00D2B3A5 /* Product */,
 				420227132175802D00D2B3A5 /* More */,
@@ -623,6 +628,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				423C2D8F21CCC34B005EDE99 /* PDHttpClient.m in Sources */,
+				42842C272283F1410081942E /* BaseMHHtmlViewController.m in Sources */,
 				420227272175802D00D2B3A5 /* ProductViewController.m in Sources */,
 				426CEC81219BC674000FC911 /* SBPauseOrPlayView.m in Sources */,
 				420227292175802D00D2B3A5 /* AccountDataConstructor.m in Sources */,
