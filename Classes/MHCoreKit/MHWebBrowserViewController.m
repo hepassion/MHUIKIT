@@ -151,7 +151,7 @@ UIScrollViewDelegate
             if ([self getCustomNavigationBar]) {
                 self.pageNavigationBar.titleLabel.text = title;
             } else {
-                self.navigationController.title = title;
+                self.navigationItem.title = title;
             }
         }
     }
