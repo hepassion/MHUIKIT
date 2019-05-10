@@ -285,7 +285,7 @@
     }
     
     self.navigationItem.titleView = nil;
-    self.title = [self getNavigationTitle];
+    self.navigationController.title = [self getNavigationTitle];
 
 }
  //自定义导航栏

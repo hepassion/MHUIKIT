@@ -72,7 +72,7 @@ UIScrollViewDelegate
                      forKeyPath:@"title"
                         options:NSKeyValueObservingOptionNew|NSKeyValueObservingOptionOld
                         context:nil];
-    [self.wkWebView addObserver:self forKeyPath:@"estimatedProgress" options:NSKeyValueObservingOptionNew context:nil];
+//    [self.wkWebView addObserver:self forKeyPath:@"estimatedProgress" options:NSKeyValueObservingOptionNew context:nil];
 }
 
 
@@ -151,7 +151,7 @@ UIScrollViewDelegate
             if ([self getCustomNavigationBar]) {
                 self.pageNavigationBar.titleLabel.text = title;
             } else {
-                self.title = title;
+                self.navigationController.title = title;
             }
         }
     }
