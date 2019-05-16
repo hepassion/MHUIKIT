@@ -273,16 +273,17 @@
     
     //设置背景色
     UIColor* colorBackground = [self getNavigationBarBackgroundColor];
-    [navigationBar setBackgroundImage:[UIImage imageWithColor:colorBackground] forBarMetrics:UIBarMetricsDefault];
+//    [navigationBar setBackgroundImage:[UIImage imageWithColor:colorBackground] forBarMetrics:UIBarMetricsDefault];
+    navigationBar.barTintColor = colorBackground;
     
    
 //
-    if ([self getShowNavigationBarBottomLine]) {
-           [navigationBar setShadowImage:[UIImage imageWithColor:[self getNavigationBarBottomLineColor]]];
-    } else { //去除发丝线
-        UIImage* image = [[UIImage alloc] init];
-        navigationBar.shadowImage = image;
-    }
+//    if ([self getShowNavigationBarBottomLine]) {
+//           [navigationBar setShadowImage:[UIImage imageWithColor:[self getNavigationBarBottomLineColor]]];
+//    } else { //去除发丝线
+//        UIImage* image = [[UIImage alloc] init];
+//        navigationBar.shadowImage = image;
+//    }
     
     self.navigationItem.titleView = nil;
     self.navigationItem.title = [self getNavigationTitle];

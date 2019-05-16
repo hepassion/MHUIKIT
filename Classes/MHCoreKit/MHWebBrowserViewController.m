@@ -40,7 +40,7 @@ UIScrollViewDelegate
 @implementation MHWebBrowserViewController
 
 - (void)dealloc{
-    [self.wkWebView removeObserver:self forKeyPath:@"title"];
+//    [self.wkWebView removeObserver:self forKeyPath:@"title"];
 //    [self.wkWebView removeObserver:self forKeyPath:@"estimatedProgress"];
 }
 
@@ -68,10 +68,10 @@ UIScrollViewDelegate
 
 //    [self.wkWebView.configuration.userContentController addScriptMessageHandler:self name:@"jsoc1"];//js调用oc注册
 
-    [self.wkWebView addObserver:self
-                     forKeyPath:@"title"
-                        options:NSKeyValueObservingOptionNew|NSKeyValueObservingOptionOld
-                        context:nil];
+//    [self.wkWebView addObserver:self
+//                     forKeyPath:@"title"
+//                        options:NSKeyValueObservingOptionNew|NSKeyValueObservingOptionOld
+//                        context:nil];
 //    [self.wkWebView addObserver:self forKeyPath:@"estimatedProgress" options:NSKeyValueObservingOptionNew context:nil];
 }
 
