@@ -40,14 +40,14 @@
         self.uiTableView.contentInsetAdjustmentBehavior = UIScrollViewContentInsetAdjustmentNever;
     }
     if ([self getCustomNavigationBar]) {
-        self.uiTableView.top = NAVIGATION_BAR_DEFAULT_HEIGHT + Status_Bar_Height;
+        self.uiTableView.top = MH_NAVIGATION_BAR_DEFAULT_HEIGHT + MH_Status_Bar_Height;
     } else {
         self.uiTableView.top = 0;
     }
     if ([UIApplication dd_rootNavigationController] == [UIApplication dd_currentNavigationViewController]) { //子页面 不在tabbar最外层
-        self.uiTableView.height = SCREEN_HEIGHT - NAVIGATION_BAR_DEFAULT_HEIGHT - Status_Bar_Height;
+        self.uiTableView.height = MH_SCREEN_HEIGHT - MH_NAVIGATION_BAR_DEFAULT_HEIGHT - MH_Status_Bar_Height;
     } else {
-        self.uiTableView.height = SCREEN_HEIGHT - NAVIGATION_BAR_DEFAULT_HEIGHT - Status_Bar_Height - TAB_BAR_HEIGHT;
+        self.uiTableView.height = MH_SCREEN_HEIGHT - MH_NAVIGATION_BAR_DEFAULT_HEIGHT - MH_Status_Bar_Height - MH_TAB_BAR_HEIGHT;
     }
     
 
@@ -84,7 +84,7 @@
     
     //NSString* tableViewClassName = [self.adaptor tableViewClassName];
     //Class tableViewClass = NSClassFromString(tableViewClassName);
-    CGRect fram = CGRectMake(0, 0 , SCREEN_WIDTH, SCREEN_HEIGHT);
+    CGRect fram = CGRectMake(0, 0 , MH_SCREEN_WIDTH, MH_SCREEN_HEIGHT);
    // _uiTableView = [[MHTableView alloc] initWithFrame:fram];
     _uiTableView = [[MHTableView alloc] initWithFrame:fram style:[self getTableViewStyle]];
     [_uiTableView setBackgroundColor:[UIColor clearColor]];

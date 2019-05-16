@@ -11,26 +11,26 @@
 
 
 
-#define StatusRect                                  [[UIApplication sharedApplication] statusBarFrame]
-#define Status_Bar_Height                            StatusRect.size.height
+#define MH_StatusRect                                  [[UIApplication sharedApplication] statusBarFrame]
+#define MH_Status_Bar_Height                            MH_StatusRect.size.height
 
 
-#define NAVIGATION_BAR_DEFAULT_HEIGHT               44
-#define TAB_BAR_HEIGHT                              49
+#define MH_NAVIGATION_BAR_DEFAULT_HEIGHT               44
+#define MH_TAB_BAR_HEIGHT                              49
 
-#define Bottom_DangerArea_Height (@available(iOS 11.0, *) ? [[[UIApplication sharedApplication] delegate] window].safeAreaInsets.bottom :0)
+#define MH_Bottom_DangerArea_Height (@available(iOS 11.0, *) ? [[[UIApplication sharedApplication] delegate] window].safeAreaInsets.bottom :0)
 
-#define NAVIGATION_TOP_ALL_HEIGHT                       (NAVIGATION_BAR_DEFAULT_HEIGHT + Status_Bar_Height)
-#define TAB_BAR_BOTTOM_ALL_HEIGHT                       (TAB_BAR_HEIGHT + Bottom_DangerArea_Height)
+#define MH_NAVIGATION_TOP_ALL_HEIGHT                       (MH_NAVIGATION_BAR_DEFAULT_HEIGHT + MH_Status_Bar_Height)
+#define MH_TAB_BAR_BOTTOM_ALL_HEIGHT                       (MH_TAB_BAR_HEIGHT + MH_Bottom_DangerArea_Height)
 
 
-#define SCREEN_SIZE                                  [[UIScreen mainScreen] bounds].size
-#define SCREEN_WIDTH                                  SCREEN_SIZE.width
-#define SCREEN_HEIGHT                                 SCREEN_SIZE.height
+#define MH_SCREEN_SIZE                                  [[UIScreen mainScreen] bounds].size
+#define MH_SCREEN_WIDTH                                  MH_SCREEN_SIZE.width
+#define MH_SCREEN_HEIGHT                                 MH_SCREEN_SIZE.height
 
-#define FIT5(x)                 ((x)/640.0f)*SCREEN_WIDTH
-#define FIT6(x)                 ((x)/750.0f)*SCREEN_WIDTH
-#define FIT6P(x)                ((x)/1242.0f)*SCREEN_WIDTH
+#define FIT5(x)                 ((x)/640.0f)*MH_SCREEN_WIDTH
+#define FIT6(x)                 ((x)/750.0f)*MH_SCREEN_WIDTH
+#define FIT6P(x)                ((x)/1242.0f)*MH_SCREEN_WIDTH
 
 #define FONT_SYSTEM_SIZE(s)                 [UIFont systemFontOfSize:s]
 #define FONT_BOLD_SYSTEM_SIZE(s)            [UIFont boldSystemFontOfSize:s]

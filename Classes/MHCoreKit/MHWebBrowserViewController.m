@@ -1,3 +1,4 @@
+
 //
 //  MHWebBrowserViewController.m
 //  MHUIKIT
@@ -13,7 +14,7 @@
 #import "MHAppSchemaObserver.h"
 #import "UIImage+Category.h"
 #import "MBProgressHUD.h"
-
+#import "NSString+Category.h"
 #define NavBarProgressLineDefaultColor          HEX(0x3d9dff)
 
 static NSString* JSHandler;
@@ -40,8 +41,8 @@ UIScrollViewDelegate
 @implementation MHWebBrowserViewController
 
 - (void)dealloc{
-//    [self.wkWebView removeObserver:self forKeyPath:@"title"];
-//    [self.wkWebView removeObserver:self forKeyPath:@"estimatedProgress"];
+    //    [self.wkWebView removeObserver:self forKeyPath:@"title"];
+    //    [self.wkWebView removeObserver:self forKeyPath:@"estimatedProgress"];
 }
 
 
@@ -59,20 +60,20 @@ UIScrollViewDelegate
     } else if (self.loadHTMLString != nil) {
         [self.wkWebView loadHTMLString:self.loadHTMLString baseURL:self.baseURL];
     }
-
+    
     //进度条初始化
-//    self.progressView = [[UIProgressView alloc] initWithFrame:CGRectMake(0, 0, [[UIScreen mainScreen] bounds].size.width, 2)];
-//    self.progressView.progressTintColor = NavBarProgressLineDefaultColor;
-//    self.progressView.trackTintColor = self.wkWebView.backgroundColor;
-//    [self.wkWebView addSubview:self.progressView];
-
-//    [self.wkWebView.configuration.userContentController addScriptMessageHandler:self name:@"jsoc1"];//js调用oc注册
-
-//    [self.wkWebView addObserver:self
-//                     forKeyPath:@"title"
-//                        options:NSKeyValueObservingOptionNew|NSKeyValueObservingOptionOld
-//                        context:nil];
-//    [self.wkWebView addObserver:self forKeyPath:@"estimatedProgress" options:NSKeyValueObservingOptionNew context:nil];
+    //    self.progressView = [[UIProgressView alloc] initWithFrame:CGRectMake(0, 0, [[UIScreen mainScreen] bounds].size.width, 2)];
+    //    self.progressView.progressTintColor = NavBarProgressLineDefaultColor;
+    //    self.progressView.trackTintColor = self.wkWebView.backgroundColor;
+    //    [self.wkWebView addSubview:self.progressView];
+    
+    //    [self.wkWebView.configuration.userContentController addScriptMessageHandler:self name:@"jsoc1"];//js调用oc注册
+    
+    //    [self.wkWebView addObserver:self
+    //                     forKeyPath:@"title"
+    //                        options:NSKeyValueObservingOptionNew|NSKeyValueObservingOptionOld
+    //                        context:nil];
+    //    [self.wkWebView addObserver:self forKeyPath:@"estimatedProgress" options:NSKeyValueObservingOptionNew context:nil];
 }
 
 
@@ -81,14 +82,14 @@ UIScrollViewDelegate
     //如果显示底部tabbar，wkWebView.height需要重写
     if ([self hidenNavigationBar]) { //导航栏隐藏
         self.wkWebView.top = 0;
-        self.wkWebView.height = SCREEN_HEIGHT;
+        self.wkWebView.height = MH_SCREEN_HEIGHT;
     } else {
         if ([self getCustomNavigationBar]) {
-            self.wkWebView.top = NAVIGATION_BAR_DEFAULT_HEIGHT + Status_Bar_Height;
+            self.wkWebView.top = MH_NAVIGATION_BAR_DEFAULT_HEIGHT + MH_Status_Bar_Height;
         } else {
             self.wkWebView.top =0;
         }
-        self.wkWebView.height = SCREEN_HEIGHT - NAVIGATION_BAR_DEFAULT_HEIGHT - Status_Bar_Height;
+        self.wkWebView.height = MH_SCREEN_HEIGHT - MH_NAVIGATION_BAR_DEFAULT_HEIGHT - MH_Status_Bar_Height;
     }
     
 }
@@ -103,15 +104,20 @@ UIScrollViewDelegate
 }
 
 - (void)doRequestWithUserAndToken {
-   // self.urlPath = [[MHH5Comunicator sharedInstance] appendUserInfoWithURL:self.urlPath
-//                                  /                                      userid:@"userid"
-                             //                                            token:@"token"];
+    // self.urlPath = [[MHH5Comunicator sharedInstance] appendUserInfoWithURL:self.urlPath
+    //                                  /                                      userid:@"userid"
+    //                                            token:@"token"];
     NSURL *url = [NSURL URLWithString:self.urlPath];
+    if (!url) {
+        self.urlPath = [self.urlPath URLEncodedChineseString];
+        url = [NSURL URLWithString:self.urlPath];
+        NSLog(@"-------%@", self.urlPath);
+    }
     NSMutableURLRequest *request = [NSMutableURLRequest requestWithURL:url];
     [request setValue:@"iPhone OS" forHTTPHeaderField:@"device"];
     
     [self.wkWebView loadRequest:request];
-
+    
 }
 
 #pragma mark - 公开方法
@@ -128,10 +134,10 @@ UIScrollViewDelegate
 }
 
 - (void)backButtonAction:(id)sender {
-//    NSLog(@"count: %ld",self.wkWebView.backForwardList.backList.count );
-//或者调用h5的方法
+    //    NSLog(@"count: %ld",self.wkWebView.backForwardList.backList.count );
+    //或者调用h5的方法
     if ([self.wkWebView canGoBack]) {
-       [self.wkWebView goBack];
+        [self.wkWebView goBack];
     } else {
         [super backButtonAction:sender];
     }
@@ -146,7 +152,7 @@ UIScrollViewDelegate
     if ([keyPath isEqualToString:@"title"]) {
         NSString *title = [change objectForKey:@"new"];
         if (self.defaultTitle && self.defaultTitle.length) {
-              // nothing todo
+            // nothing todo
         } else {
             if ([self getCustomNavigationBar]) {
                 self.pageNavigationBar.titleLabel.text = title;
@@ -155,24 +161,24 @@ UIScrollViewDelegate
             }
         }
     }
-//    else  if ([keyPath isEqualToString:@"estimatedProgress"]) {
-//        self.progressView.progress = self.wkWebView.estimatedProgress;
-  //  }
+    //    else  if ([keyPath isEqualToString:@"estimatedProgress"]) {
+    //        self.progressView.progress = self.wkWebView.estimatedProgress;
+    //  }
     
 }
 
 #pragma mark - >=iOS8 WKNavigationDelegate 页面加载过程跟踪
 // 页面开始加载时调用
 - (void)webView:(WKWebView *)webView didStartProvisionalNavigation:(WKNavigation *)navigation {
-//    self.progressView.hidden = NO;
-//    [self.wkWebView bringSubviewToFront:self.progressView];
+    //    self.progressView.hidden = NO;
+    //    [self.wkWebView bringSubviewToFront:self.progressView];
     if (!self.hud) {
         self.hud = [MBProgressHUD showHUDAddedTo:self.view animated:YES];
         self.hud.mode = MBProgressHUDModeAnnularDeterminate;
         self.hud.label.text = @"加载中";
     }
     [self.hud showAnimated:YES];
-
+    
 }
 // 当内容开始返回时调用
 - (void)webView:(WKWebView *)webView didCommitNavigation:(WKNavigation *)navigation {
@@ -180,12 +186,12 @@ UIScrollViewDelegate
 }
 // 页面加载完成之后调用
 - (void)webView:(WKWebView *)webView didFinishNavigation:(WKNavigation *)navigation {
-   // self.progressView.hidden = YES;
+    // self.progressView.hidden = YES;
     [MBProgressHUD hideHUDForView:self.view animated:YES];
 }
 // 页面加载失败时调用
 - (void)webView:(WKWebView *)webView didFailProvisionalNavigation:(WKNavigation *)navigation {
-   // self.progressView.hidden = YES;
+    // self.progressView.hidden = YES;
     [MBProgressHUD hideHUDForView:self.view animated:YES];
 }
 
@@ -194,7 +200,7 @@ UIScrollViewDelegate
 - (void)webView:(WKWebView *)webView decidePolicyForNavigationAction:(WKNavigationAction *)navigationAction decisionHandler:(void (^)(WKNavigationActionPolicy))decisionHandler {
     NSURLRequest *request = navigationAction.request;
     NSURL* url = request.URL;
-   // mhuikit://camera
+    // mhuikit://camera
     NSString* scheme        = url.scheme;
     //    NSString* host          = url.host;
     //    NSString* service       = url.path;
@@ -230,7 +236,7 @@ UIScrollViewDelegate
     if ([message.name isEqualToString:@"jsoc1"]) {
         NSLog(@"js调oc:%@", message.body);
     }
-   
+    
 }
 
 #pragma mark - >=iOS8 新打开窗口
@@ -273,21 +279,20 @@ UIScrollViewDelegate
 - (WKWebView *)wkWebView {
     if (_wkWebView == nil) {
         
-     WKWebViewConfiguration *  configuration  = [[WKWebViewConfiguration alloc] init];
-     configuration.userContentController      = [WKUserContentController new];
-     configuration.preferences              = [[WKPreferences alloc] init];
-     configuration.preferences.minimumFontSize = 10;
-     configuration.preferences.javaScriptEnabled = YES;              configuration.preferences.javaScriptCanOpenWindowsAutomatically = YES;
-     configuration.userContentController       = [[WKUserContentController alloc] init];
-     configuration.processPool               = [[WKProcessPool alloc] init];
+        WKWebViewConfiguration *  configuration  = [[WKWebViewConfiguration alloc] init];
+        configuration.userContentController      = [WKUserContentController new];
+        configuration.preferences              = [[WKPreferences alloc] init];
+        configuration.preferences.minimumFontSize = 10;
+             configuration.preferences.javaScriptEnabled = YES;              configuration.preferences.javaScriptCanOpenWindowsAutomatically = YES;
+             configuration.userContentController       = [[WKUserContentController alloc] init];
+        configuration.processPool               = [[WKProcessPool alloc] init];
         
         //高度 默认 从导航栏下开始   到底部
-        _wkWebView =  [[WKWebView alloc] initWithFrame:CGRectMake(0.0f, NAVIGATION_BAR_DEFAULT_HEIGHT + Status_Bar_Height, SCREEN_WIDTH, SCREEN_HEIGHT - NAVIGATION_BAR_DEFAULT_HEIGHT - Status_Bar_Height) configuration:configuration];
+        _wkWebView =  [[WKWebView alloc] initWithFrame:CGRectMake(0.0f,  0, MH_SCREEN_WIDTH, MH_SCREEN_HEIGHT  ) configuration:configuration];
         
         
-        _wkWebView.backgroundColor = [UIColor whiteColor];
         _wkWebView.UIDelegate = self;
-       // _wkWebView.navigationDelegate = self;
+        // _wkWebView.navigationDelegate = self;
         self.bridge =  [WebViewJavascriptBridge bridgeForWebView:_wkWebView];
         [self.bridge setWebViewDelegate:self];
     }return _wkWebView;

@@ -57,7 +57,7 @@
 #pragma mark lazy loading ---------
 - (UILabel *)uiTitle {
     if (_uiTitle == nil) {
-        _uiTitle                = [[UILabel alloc] initWithFrame:CGRectMake(10.0f, 0.0f, SCREEN_WIDTH/2, [MHTableViewHeaderView heightForHeaderView])];
+        _uiTitle                = [[UILabel alloc] initWithFrame:CGRectMake(10.0f, 0.0f, MH_SCREEN_WIDTH/2, [MHTableViewHeaderView heightForHeaderView])];
         _uiTitle.font           = FONT_SYSTEM_SIZE(FIT6(24));
         _uiTitle.textColor      = [UIColor blackColor];
     }return _uiTitle;
