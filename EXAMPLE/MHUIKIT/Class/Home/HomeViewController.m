@@ -20,6 +20,8 @@
 
 @interface HomeViewController ()
 @property (nonatomic, strong) HomeDataConstructor *dataConstructor;
+@property (nonatomic, strong) NSDictionary *headDict;
+
 @end
 
 @implementation HomeViewController
@@ -109,6 +111,8 @@ static inline UIEdgeInsets sgm_safeAreaInset(UIView *view) {
     
     if ([cellType isEqualToString:@"cell.type.block"]) {
         BlockViewController *blockVC  = [[BlockViewController alloc] init];
+        
+        
         [self.navigationController pushViewController:blockVC animated:YES];
     } else if ([cellType isEqualToString:@"cell.type.lock"]) {
        
@@ -143,8 +147,8 @@ static inline UIEdgeInsets sgm_safeAreaInset(UIView *view) {
     } else if ([cellType isEqualToString:@"cell.type.failure"]) {
         MHWebBrowserView* webBrowser    = [[MHWebBrowserView alloc] initWithFrame:CGRectMake(0.0f,
                                                                                              0.0f,
-                                                                                             SCREEN_WIDTH,
-                                                                                             SCREEN_HEIGHT)];
+                                                                                             MH_SCREEN_WIDTH,
+                                                                                              MH_SCREEN_HEIGHT)];
         [self.view addSubview:webBrowser];
         
         webBrowser.linkClickedBlock = ^(NSURL* url) {
@@ -172,10 +176,14 @@ static inline UIEdgeInsets sgm_safeAreaInset(UIView *view) {
         
         BaseMHHtmlViewController *web = [[BaseMHHtmlViewController alloc] init];
 //        web.urlPath = @"https://test.95590.cn/OLI/yjb/#/insurApplyAndAuthor";
-        web.urlPath = @"https://www.baidu.com";
+//        web.urlPath = @"https://www.baidu.com";
+        web.urlPath = @"https://test.95590.cn/OLI_ver/H5/#/lhb/mineNoLogin";
         [self.navigationController pushViewController:web animated:YES];
+    } else if ([cellType isEqualToString:@"cell.type.fish"]) {
+       
         
         
+
     }
 }
 

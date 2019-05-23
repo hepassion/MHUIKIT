@@ -36,6 +36,8 @@ UIScrollViewDelegate
 
 //@property (nonatomic, strong) UIProgressView *progressView;
 @property (nonatomic, strong) MBProgressHUD *hud ;
+@property (nonatomic, assign) BOOL loadFaile ;
+
 @end
 
 @implementation MHWebBrowserViewController
@@ -104,9 +106,22 @@ UIScrollViewDelegate
 }
 
 - (void)doRequestWithUserAndToken {
-    // self.urlPath = [[MHH5Comunicator sharedInstance] appendUserInfoWithURL:self.urlPath
-    //                                  /                                      userid:@"userid"
-    //                                            token:@"token"];
+
+    NSString *notch;
+    if (MH_Status_Bar_Height > 20) {
+        notch = @"true";
+    } else {
+        notch = @"false";
+    }
+    if ([self.urlPath rangeOfString:@"?"].location == NSNotFound) {
+        self.urlPath = [NSString stringWithFormat:@"%@?notch=%@", self.urlPath,notch];
+    } else {
+        if ([self.urlPath rangeOfString:@"notch"].location == NSNotFound ) {//不包含
+            self.urlPath = [NSString stringWithFormat:@"%@&notch=%@", self.urlPath,notch];
+        } else {
+            // nothing to do
+        }
+    }
     NSURL *url = [NSURL URLWithString:self.urlPath];
     if (!url) {
         self.urlPath = [self.urlPath URLEncodedChineseString];
@@ -114,6 +129,7 @@ UIScrollViewDelegate
         NSLog(@"-------%@", self.urlPath);
     }
     NSMutableURLRequest *request = [NSMutableURLRequest requestWithURL:url];
+    request = [[NSMutableURLRequest alloc] initWithURL:url cachePolicy:NSURLRequestReloadIgnoringLocalCacheData timeoutInterval:60];
     [request setValue:@"iPhone OS" forHTTPHeaderField:@"device"];
     
     [self.wkWebView loadRequest:request];
@@ -123,7 +139,11 @@ UIScrollViewDelegate
 #pragma mark - 公开方法
 
 - (void)reload {
-    [self.wkWebView reload];
+    if (self.loadFaile) {
+        [self doRequestWithUserAndToken];
+    } else {
+        [self.wkWebView reload];
+    }
 }
 
 - (void) reloadUrl:(NSString*)url {
@@ -187,13 +207,34 @@ UIScrollViewDelegate
 // 页面加载完成之后调用
 - (void)webView:(WKWebView *)webView didFinishNavigation:(WKNavigation *)navigation {
     // self.progressView.hidden = YES;
+    self.loadFaile = YES;
     [MBProgressHUD hideHUDForView:self.view animated:YES];
 }
 // 页面加载失败时调用
-- (void)webView:(WKWebView *)webView didFailProvisionalNavigation:(WKNavigation *)navigation {
-    // self.progressView.hidden = YES;
+- (void)webView:(WKWebView *)webView didFailProvisionalNavigation:(null_unspecified WKNavigation *)navigation withError:(NSError *)error {
+    [MBProgressHUD hideHUDForView:self.view animated:YES];
+    self.loadFaile = YES;
+    
+    [MBProgressHUD hideHUDForView:[UIApplication sharedApplication].keyWindow animated:NO];
+    MBProgressHUD *hud = [MBProgressHUD showHUDAddedTo:[UIApplication sharedApplication].keyWindow animated:YES];
+    hud.userInteractionEnabled = NO;
+    hud.removeFromSuperViewOnHide =YES;
+    hud.mode = MBProgressHUDModeText;
+    [hud setDimBackground:NO];
+    hud.detailsLabel.text = @"加载失败，请检查您的网络";
+    hud.detailsLabel.font=FONT_SYSTEM_SIZE(14);
+    hud.detailsLabel.textColor=HEX(0xffffff);
+    hud.bezelView.style = MBProgressHUDBackgroundStyleSolidColor;
+    hud.bezelView.color = [UIColor colorWithWhite:0.f alpha:0.7f];
+    [hud hideAnimated:YES afterDelay:2.25f];
+}
+
+- (void)webView:(WKWebView *)webView didFailNavigation:(null_unspecified WKNavigation *)navigation withError:(NSError *)error {
     [MBProgressHUD hideHUDForView:self.view animated:YES];
 }
+
+
+
 
 #pragma mark - >=iOS8 WKNavigationDelegate 决定页面是否跳转
 // 在发送请求之前，决定是否跳转
@@ -292,7 +333,7 @@ UIScrollViewDelegate
         
         
         _wkWebView.UIDelegate = self;
-        // _wkWebView.navigationDelegate = self;
+         _wkWebView.navigationDelegate = self;
         self.bridge =  [WebViewJavascriptBridge bridgeForWebView:_wkWebView];
         [self.bridge setWebViewDelegate:self];
     }return _wkWebView;

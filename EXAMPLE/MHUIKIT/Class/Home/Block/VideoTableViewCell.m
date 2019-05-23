@@ -16,8 +16,8 @@
     [super initUI];
     
     
-    SBPlayer *player = [[SBPlayer alloc]initWithUrl:[NSURL URLWithString:@"http://download.3g.joy.cn/video/236/60236937/1451280942752_hd.mp4"]  frame:CGRectMake(0, NAVIGATION_BAR_DEFAULT_HEIGHT + Status_Bar_Height, SCREEN_WIDTH, 250)];
-    //设置标题
+    SBPlayer *player = [[SBPlayer alloc]initWithUrl:[NSURL URLWithString:@"http://download.3g.joy.cn/video/236/60236937/1451280942752_hd.mp4"]  frame:CGRectMake(0, MH_NAVIGATION_BAR_DEFAULT_HEIGHT + MH_Status_Bar_Height, MH_SCREEN_WIDTH, 250)];
+    //设置标题ı
     [player setTitle:@"这是一个标题"];
     //设置播放器填充模式 默认SBLayerVideoGravityResizeAspectFill，可以不添加此语句
     player.mode = SBLayerVideoGravityResizeAspectFill;
