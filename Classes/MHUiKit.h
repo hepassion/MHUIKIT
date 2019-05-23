@@ -45,7 +45,7 @@
 
 #import "NSDictionary+Category.h"
 #import "NSString+Category.h"
-//#import "UIView+Utils.h"
+#import "UIView+Utils.h"
 #import "NSObject+Category.h"
 #import "UIImage+Category.h"
 #import "UIApplication+Helper.h"
