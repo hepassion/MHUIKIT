@@ -207,7 +207,7 @@ UIScrollViewDelegate
 // 页面加载完成之后调用
 - (void)webView:(WKWebView *)webView didFinishNavigation:(WKNavigation *)navigation {
     // self.progressView.hidden = YES;
-    self.loadFaile = YES;
+    self.loadFaile = NO;
     [MBProgressHUD hideHUDForView:self.view animated:YES];
 }
 // 页面加载失败时调用
@@ -231,6 +231,7 @@ UIScrollViewDelegate
 
 - (void)webView:(WKWebView *)webView didFailNavigation:(null_unspecified WKNavigation *)navigation withError:(NSError *)error {
     [MBProgressHUD hideHUDForView:self.view animated:YES];
+    self.loadFaile = YES;
 }
 
 
