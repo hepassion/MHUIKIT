@@ -129,7 +129,7 @@ UIScrollViewDelegate
         NSLog(@"-------%@", self.urlPath);
     }
     NSMutableURLRequest *request = [NSMutableURLRequest requestWithURL:url];
-    request = [[NSMutableURLRequest alloc] initWithURL:url cachePolicy:NSURLRequestReloadIgnoringLocalCacheData timeoutInterval:60];
+    request = [[NSMutableURLRequest alloc] initWithURL:url cachePolicy:NSURLRequestUseProtocolCachePolicy timeoutInterval:60];
     [request setValue:@"iPhone OS" forHTTPHeaderField:@"device"];
     
     [self.wkWebView loadRequest:request];
