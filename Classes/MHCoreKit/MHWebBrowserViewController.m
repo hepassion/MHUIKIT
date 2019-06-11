@@ -15,9 +15,7 @@
 #import "UIImage+Category.h"
 #import "MBProgressHUD.h"
 #import "NSString+Category.h"
-#define NavBarProgressLineDefaultColor          HEX(0x00a0ff)
-#define NavBarProgressLineBackColor             HEX(0xf5f5f5)
-
+#define NavBarProgressLineDefaultColor          HEX(0x3d9dff)
 
 static NSString* JSHandler;
 
@@ -36,7 +34,7 @@ UIScrollViewDelegate
 >
 
 
-@property (nonatomic, strong) UIProgressView *progressView;
+//@property (nonatomic, strong) UIProgressView *progressView;
 @property (nonatomic, assign) BOOL loadFaile ;
 
 @end
@@ -44,8 +42,8 @@ UIScrollViewDelegate
 @implementation MHWebBrowserViewController
 
 - (void)dealloc{
-        [self.wkWebView removeObserver:self forKeyPath:@"title"];
-        [self.wkWebView removeObserver:self forKeyPath:@"estimatedProgress"];
+    //    [self.wkWebView removeObserver:self forKeyPath:@"title"];
+    //    [self.wkWebView removeObserver:self forKeyPath:@"estimatedProgress"];
 }
 
 
@@ -65,17 +63,18 @@ UIScrollViewDelegate
     }
     
     //进度条初始化
-        self.progressView = [[UIProgressView alloc] initWithFrame:CGRectMake(0, 0, [[UIScreen mainScreen] bounds].size.width, 2)];
-        self.progressView.progressTintColor = NavBarProgressLineDefaultColor;
-        self.progressView.trackTintColor = NavBarProgressLineBackColor;
-        [self.wkWebView addSubview:self.progressView];
-        [self.wkWebView.configuration.userContentController addScriptMessageHandler:self name:@"jsoc1"];//js调用oc注册
+    //    self.progressView = [[UIProgressView alloc] initWithFrame:CGRectMake(0, 0, [[UIScreen mainScreen] bounds].size.width, 2)];
+    //    self.progressView.progressTintColor = NavBarProgressLineDefaultColor;
+    //    self.progressView.trackTintColor = self.wkWebView.backgroundColor;
+    //    [self.wkWebView addSubview:self.progressView];
     
-        [self.wkWebView addObserver:self
-                         forKeyPath:@"title"
-                            options:NSKeyValueObservingOptionNew|NSKeyValueObservingOptionOld
-                            context:nil];
-        [self.wkWebView addObserver:self forKeyPath:@"estimatedProgress" options:NSKeyValueObservingOptionNew context:nil];
+    //    [self.wkWebView.configuration.userContentController addScriptMessageHandler:self name:@"jsoc1"];//js调用oc注册
+    
+    //    [self.wkWebView addObserver:self
+    //                     forKeyPath:@"title"
+    //                        options:NSKeyValueObservingOptionNew|NSKeyValueObservingOptionOld
+    //                        context:nil];
+    //    [self.wkWebView addObserver:self forKeyPath:@"estimatedProgress" options:NSKeyValueObservingOptionNew context:nil];
 }
 
 
@@ -180,17 +179,19 @@ UIScrollViewDelegate
                 self.navigationItem.title = title;
             }
         }
-    }  else  if ([keyPath isEqualToString:@"estimatedProgress"]) {
-         self.progressView.progress = self.wkWebView.estimatedProgress;
-      }
+    }
+    //    else  if ([keyPath isEqualToString:@"estimatedProgress"]) {
+    //        self.progressView.progress = self.wkWebView.estimatedProgress;
+    //  }
     
 }
 
 #pragma mark - >=iOS8 WKNavigationDelegate 页面加载过程跟踪
 // 页面开始加载时调用
 - (void)webView:(WKWebView *)webView didStartProvisionalNavigation:(WKNavigation *)navigation {
-        self.progressView.hidden = NO;
-        [self.wkWebView bringSubviewToFront:self.progressView];
+    //    self.progressView.hidden = NO;
+    //    [self.wkWebView bringSubviewToFront:self.progressView];
+   
     
 }
 // 当内容开始返回时调用
@@ -199,12 +200,11 @@ UIScrollViewDelegate
 }
 // 页面加载完成之后调用
 - (void)webView:(WKWebView *)webView didFinishNavigation:(WKNavigation *)navigation {
-     self.progressView.hidden = YES;
+    // self.progressView.hidden = YES;
     self.loadFaile = NO;
 }
 // 页面加载失败时调用
 - (void)webView:(WKWebView *)webView didFailProvisionalNavigation:(null_unspecified WKNavigation *)navigation withError:(NSError *)error {
-    self.progressView.hidden = YES;
     self.loadFaile = YES;
     
     [MBProgressHUD hideHUDForView:[UIApplication sharedApplication].keyWindow animated:NO];
@@ -222,7 +222,6 @@ UIScrollViewDelegate
 }
 
 - (void)webView:(WKWebView *)webView didFailNavigation:(null_unspecified WKNavigation *)navigation withError:(NSError *)error {
-    self.progressView.hidden = YES;
     self.loadFaile = YES;
 }
 
