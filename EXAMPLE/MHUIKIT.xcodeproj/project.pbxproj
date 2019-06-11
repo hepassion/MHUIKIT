@@ -76,6 +76,18 @@
 		};
 /* End PBXContainerItemProxy section */
 
+/* Begin PBXCopyFilesBuildPhase section */
+		42487585228E48D800D226D9 /* CopyFiles */ = {
+			isa = PBXCopyFilesBuildPhase;
+			buildActionMask = 2147483647;
+			dstPath = "";
+			dstSubfolderSpec = 10;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXCopyFilesBuildPhase section */
+
 /* Begin PBXFileReference section */
 		12EE2DEFCF2485DCEB7444DC /* Pods-MHUIKIT.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-MHUIKIT.release.xcconfig"; path = "Pods/Target Support Files/Pods-MHUIKIT/Pods-MHUIKIT.release.xcconfig"; sourceTree = "<group>"; };
 		420226FD2175802D00D2B3A5 /* HomeDataConstructor.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HomeDataConstructor.h; sourceTree = "<group>"; };
@@ -446,6 +458,7 @@
 				42195FF9214BA68300446DD9 /* Frameworks */,
 				42195FFA214BA68300446DD9 /* Resources */,
 				5BC0488B76013CF5E000E1E2 /* [CP] Copy Pods Resources */,
+				42487585228E48D800D226D9 /* CopyFiles */,
 			);
 			buildRules = (
 			);
@@ -595,29 +608,16 @@
 			buildActionMask = 2147483647;
 			files = (
 			);
-			inputPaths = (
-				"${SRCROOT}/Pods/Target Support Files/Pods-MHUIKIT/Pods-MHUIKIT-resources.sh",
-				"${PODS_ROOT}/MHUIKIT/Classes/MHCoreKit/Assets/arrow_icon@2x.png",
-				"${PODS_ROOT}/MHUIKIT/Classes/MHCoreKit/Assets/arrow_icon@3x.png",
-				"${PODS_ROOT}/MHUIKIT/Classes/MHCoreKit/Assets/icon_back@2x.png",
-				"${PODS_ROOT}/MHUIKIT/Classes/MHCoreKit/Assets/icon_back@3x.png",
-				"${PODS_ROOT}/MHUIKIT/Classes/MHCoreKit/Assets/icon_close@2x.png",
-				"${PODS_ROOT}/MHUIKIT/Classes/MHCoreKit/Assets/icon_close@3x.png",
-				"${PODS_ROOT}/MJRefresh/MJRefresh/MJRefresh.bundle",
+			inputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-MHUIKIT/Pods-MHUIKIT-resources-${CONFIGURATION}-input-files.xcfilelist",
 			);
 			name = "[CP] Copy Pods Resources";
-			outputPaths = (
-				"${TARGET_BUILD_DIR}/${UNLOCALIZED_RESOURCES_FOLDER_PATH}/arrow_icon@2x.png",
-				"${TARGET_BUILD_DIR}/${UNLOCALIZED_RESOURCES_FOLDER_PATH}/arrow_icon@3x.png",
-				"${TARGET_BUILD_DIR}/${UNLOCALIZED_RESOURCES_FOLDER_PATH}/icon_back@2x.png",
-				"${TARGET_BUILD_DIR}/${UNLOCALIZED_RESOURCES_FOLDER_PATH}/icon_back@3x.png",
-				"${TARGET_BUILD_DIR}/${UNLOCALIZED_RESOURCES_FOLDER_PATH}/icon_close@2x.png",
-				"${TARGET_BUILD_DIR}/${UNLOCALIZED_RESOURCES_FOLDER_PATH}/icon_close@3x.png",
-				"${TARGET_BUILD_DIR}/${UNLOCALIZED_RESOURCES_FOLDER_PATH}/MJRefresh.bundle",
+			outputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-MHUIKIT/Pods-MHUIKIT-resources-${CONFIGURATION}-output-files.xcfilelist",
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-MHUIKIT/Pods-MHUIKIT-resources.sh\"\n";
+			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-MHUIKIT/Pods-MHUIKIT-resources.sh\"\n";
 			showEnvVarsInLog = 0;
 		};
 /* End PBXShellScriptBuildPhase section */
@@ -820,9 +820,11 @@
 			isa = XCBuildConfiguration;
 			baseConfigurationReference = C7C0533DB9100DF6E05CAF88 /* Pods-MHUIKIT.debug.xcconfig */;
 			buildSettings = {
+				ARCHS = "$(ARCHS_STANDARD)";
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = M4EB76S4W2;
+				ENABLE_BITCODE = NO;
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
 					"$(PROJECT_DIR)/MHUIKIT",
@@ -834,9 +836,11 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
+				ONLY_ACTIVE_ARCH = YES;
 				PRODUCT_BUNDLE_IDENTIFIER = minghe.MHUIKIT;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				TARGETED_DEVICE_FAMILY = "1,2";
+				VALID_ARCHS = "arm64 arm64e armv7 armv7s";
 			};
 			name = Debug;
 		};
@@ -847,6 +851,7 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = M4EB76S4W2;
+				ENABLE_BITCODE = NO;
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
 					"$(PROJECT_DIR)/MHUIKIT",
@@ -858,9 +863,11 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
+				ONLY_ACTIVE_ARCH = NO;
 				PRODUCT_BUNDLE_IDENTIFIER = minghe.MHUIKIT;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				TARGETED_DEVICE_FAMILY = "1,2";
+				VALID_ARCHS = "arm64 arm64e armv7 armv7s";
 			};
 			name = Release;
 		};
