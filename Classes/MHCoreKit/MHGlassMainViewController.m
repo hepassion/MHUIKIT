@@ -455,7 +455,7 @@
 
 
 - (UIButton *) newBackButton {
-    UIImage *btnImage = [[UIImage imageNamed:@"icon_back"] imageWithColor:[self getNavigationBarBackButtonColor]];
+    UIImage *btnImage = [[UIImage imageNamed:@"back-button"] imageWithColor:[self getNavigationBarBackButtonColor]];
     
     UIButton* btn = [UIButton buttonWithType:UIButtonTypeCustom];
     btn.frame = CGRectMake(0.0f, 0.0f, 30.0f, 40.0f);
