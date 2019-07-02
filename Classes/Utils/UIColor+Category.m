@@ -16,7 +16,9 @@
     NSRange range;
     range.length = 2;
     @try {
-        
+        if ([hexColorStr hasPrefix:@"#"]) {
+            hexColorStr = [hexColorStr stringByReplacingOccurrencesOfString:@"#" withString:@""];
+        }
         range.location = 0;
         [[NSScanner scannerWithString:[hexColorStr substringWithRange:range]] scanHexInt:&red];
         range.location = 2;
