@@ -174,6 +174,7 @@ UIScrollViewDelegate
         if (self.defaultTitle && self.defaultTitle.length) {
             // nothing todo
         } else {
+            self.config.navigationTitle = title;
             if (self.config.useSystemNavigationBar) {
                 self.navigationItem.title = title;
             } else {

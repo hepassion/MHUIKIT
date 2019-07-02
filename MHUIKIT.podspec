@@ -3,7 +3,7 @@ Pod::Spec.new do |s|
 
 
   s.name         = "MHUIKIT"
-  s.version      = "0.7.1"
+  s.version      = "0.7.2"
   s.summary      = "iOS一套UI开发框架"
   s.homepage     = "https://github.com/hepassion/MHUIKIT"
   s.license      = "MIT"

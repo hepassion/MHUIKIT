@@ -49,8 +49,7 @@
 #import "NSObject+Category.h"
 #import "UIImage+Category.h"
 #import "UIApplication+Helper.h"
-
-
+#import "UIColor+Category.h"
 
 
 #endif /* MHUiKity_h */

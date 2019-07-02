@@ -101,7 +101,6 @@
     }
     self.config.useSystemNavigationBar = NO;
     self.config.navigationBarHidden = NO;
-    self.config.navigationTitle = @"MHDefaultTitle";
     self.config.navigationTitleColor = MHDefaultTitleColor;
     self.config.navigationBarBackgroundColor = MHDefaultNavBackGroundColor;
     self.config.showNavigationBarBottomLine = YES;
