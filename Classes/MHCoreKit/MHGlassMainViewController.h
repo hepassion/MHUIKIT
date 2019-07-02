@@ -8,141 +8,91 @@
 
 #import "MHViewController.h"
 
-#define MHDefaultTitleColor        HEX(0x3d9dff)
-#define MHDefaultNavBackGroundColor    [UIColor whiteColor]
-#define MHDefaultBackButtonColor         HEX(0x3d9dff)
-#define MHDefaultLeftRightItemTitleColor     HEX(0x3d9dff)
-#define NavBarBottomLineDefaultColor          HEX(0xaaaaaa)
+#define MHDefaultNavLeftRightTitleFont       FONT_SYSTEM_SIZE(FIT6(30))//导航栏左右侧文字font
+#define MHDefaultNavTitleFont                FONT_BOLD_SYSTEM_SIZE(FIT6(36))//导航栏标题font   **固定值**
+
+#define MHDefaultTitleColor                  HEX(0x3d9dff)//导航栏标题颜色
+#define MHDefaultLeftRightTitleColor         HEX(0x3d9dff)//导航栏左右侧文字颜色
+
+#define MHDefaultNavBackGroundColor          [UIColor whiteColor]//导航栏背景色
+#define MHDefaultBackButtonColor             HEX(0x3d9dff)//返回按钮颜色
+#define NavBarBottomLineDefaultColor         HEX(0xaaaaaa)//底部线颜色   **固定值**
+
+
+#define MHNavigationBarButtonImageTextSpace         5.0f
+#define MHNavigationBarButtonDistanceToEdge         12.0f
 
 
 
+#define MHBackButtonTag                             11001
+#define MHLeftTitleButtonTag                        11002
+#define MHRightTitleButtonTag                       11003
+#define MHRightImageButtonTag                       11004
+
+
+NS_ASSUME_NONNULL_BEGIN
 
 @interface MHNavigationBar : UIView
 
 @property (nonatomic, strong) UILabel* titleLabel;
 @property (nonatomic, strong) UIButton* leftButton;
-@property (nonatomic, strong) UIButton* rightButton;
+
+@property (nonatomic, strong) UIButton* rightTitleButton;
+@property (nonatomic, strong) UIButton* rightImageButton;
+
 @property (nonatomic, strong) UIView* lineView;
 
 @end
 
 
+@interface MHWebBrowserConfig: NSObject
+
+/**
+ 导航栏透明；YES 则WebView Y轴起始点为 0.0f； NO 则 Y起始点为64.0f
+ */
+@property (nonatomic, assign) BOOL useSystemNavigationBar; // 是否使用系统导航栏，yes 系统导航，no 自定义导航；默认 NO
+@property (nonatomic, assign) BOOL navigationBarHidden;//是否隐藏导航栏    默认：NO 不隐藏
+@property (nonatomic, strong) NSString* navigationTitle;//NavigationBar标题
+@property (nonatomic, strong) UIColor* navigationTitleColor;//NavigationTitle标题颜色
+@property (nonatomic, strong) UIColor*  navigationBarBackgroundColor;//NavigationBar 背景色
+@property (nonatomic, assign) BOOL showNavigationBarBottomLine;// 是否显示NavigationBar底部线    yes 显示; no 不显示
+
+@property (nonatomic, strong) UIColor*  navigationBarBackButtonColor ;//返回按钮颜色
+@property (nonatomic, strong) UIColor*  navigationLeftRightTitleColor ;//左右侧文字color
+@property (nonatomic, strong) UIFont*  navigationLeftRightTitleFont ;//左右侧文字font
+
+@property (nonatomic, strong) NSString* navigationBarLeftTitle ;//左侧文字
+
+@property (nonatomic, strong) NSString* navigationBarRightTitle ;//右侧文字
+@property (nonatomic, strong) NSString* navigationBarRightImage ;//右侧图片
+
+@property (nonatomic, assign) BOOL  hidenBackButton ;//隐藏返回按钮，默认NO：不隐藏。yes：隐藏，
+
+@end
 
 
 @interface MHGlassMainViewController : MHViewController
+@property (nonatomic, strong) MHWebBrowserConfig*  config;
+@property (nonatomic, strong) MHNavigationBar*  pageNavigationBar;
 
-@property (nonatomic, strong) MHNavigationBar* pageNavigationBar;
-/**
-是否使用默认导航栏
-默认：NO 使用系统导航
-
-@return NO 使用系统导航；YES 使用自定义导航
-*/
-- (BOOL) getCustomNavigationBar;
 
 /**
-是否隐藏导航栏
- 默认：NO 不隐藏
+ 刷新、配置 NavigationBar。配置config后调用
  */
-- (BOOL) hidenNavigationBar;
-
-
-/**
- 子类设置NavigationBar标题
- 
- @return 标题
- */
-- (NSString*) getNavigationTitle;
-
-/**
- 子类设置NavigationBar标题颜色
- 
- @return 颜色
- */
-- (UIColor*) getNavigationTitleColor;
-
-
-/**
- 子类设置NavigationBar标题属性
- 
- @return 属性字典
- */
-- (UIFont*) getNavigationTitleFont;
-
-/**
- 子类设置NavigationBar背景色
- 
- @return 背景色
- */
-- (UIColor*) getNavigationBarBackgroundColor;
-
-/**
- 是否显示NavigationBar 底部线颜色
- 默认： yes 显示底部线颜色
- 
- */
-- (BOOL) getShowNavigationBarBottomLine;
-
-
-/**
- 子类设置NavigationBar 底部线颜色 背景色
- 
- @return 背景色
- */
-- (UIColor*) getNavigationBarBottomLineColor;
+- (void)relodNavigationBar;
 
 
 
 /**
- 自定义返回按钮颜色
- 
- @return 颜色
+ 点击事件
  */
-- (UIColor*) getNavigationBarBackButtonColor;
+- (void) backButtonAction:(id )sender;
+- (void) navigationBarLeftTitleAction:(id)sender;
+
+- (void) navigationBarRightTitleAction:(id)sender;
+- (void) navigationBarRightImageAction:(id)sender;
 
 
-/**
- 边缘返回手势
- 默认: NO 关闭
- 
- @return YES开启 NO关闭
- */
-- (BOOL) getNavigationBarEdgePanBack;
-
-
-/**
- 重构NavigationBar。
- @param navigationBar 配置导航栏
- */
-- (void) decorateNavigationBar:(UINavigationBar*)navigationBar;//系统导航栏
-- (void) decorateLeftButtonNavigationBar:(UINavigationBar*)navigationBar;
-- (void) decorateRightButtonNavigationBar:(UINavigationBar*)navigationBar;
-
-- (void) decorateCustomNavigationBar:(MHNavigationBar *)navigationBar;//自定义导航栏
-
-
-- (NSString *) getCustomNavigationBarRightButtonTitle;
-- (UIImage *) getCustomNavigationBarRightButtonImage;
-- (UIColor *) getCustomNavigationBarRightButtonTintColor;
-- (UIFont *) getCustomNavigationBarRightButtonFont;
-
-- (NSString *) getCustomNavigationBarLeftButtonTitle;
-- (UIImage *) getCustomNavigationBarLeftButtonImage;
-- (UIColor *) getCustomNavigationBarLeftButtonTintColor;
-- (UIFont *) getCustomNavigationBarLeftButtonFont;
-
-
-
-
-/**
- 拦截返回按钮点击事件，用于自定义事件操作处理
- 
- @param sender UIBarItem
- */
-- (void) backButtonAction:(id)sender;
-
-- (void) customNavigationBarRightButtonAction:(id)sender;
-- (void) customNavigationBarLeftButtonAction:(id)sender;
-- (UIButton *) newBackButton ;
 
 @end
+NS_ASSUME_NONNULL_END

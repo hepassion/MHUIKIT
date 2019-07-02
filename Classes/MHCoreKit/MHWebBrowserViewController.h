@@ -22,21 +22,9 @@ UIKIT_EXTERN  NSString* _Nonnull  const kNotificationWebViewControllerWillClosed
 
 @end
 
-@interface MHWebBrowserConfig: NSObject
-
-/**
- 导航栏透明；YES 则WebView Y轴起始点为 0.0f； NO 则 Y起始点为64.0f
- */
-@property (nonatomic, assign) BOOL useSystemNavigationBar;
-@property (nonatomic, assign) BOOL navigationBarHidden;
-@property (nonatomic, strong) UIColor* _Nullable navigationBarBackgroundColor;
-@property (nonatomic, strong) UIColor* _Nullable navigationBarTitleColor;
-
-@end
 
 @interface MHWebBrowserViewController : MHGlassMainViewController
 
-@property (nonatomic, strong) MHWebBrowserConfig* _Nullable config;
 @property (nonatomic, strong) WKWebView* _Nullable  wkWebView;
 @property (nonatomic ,strong) WebViewJavascriptBridge* bridge;
 @property (nonatomic, assign) id<MHWebBrowserViewControllerDelegate> _Nullable delegate;
@@ -72,12 +60,5 @@ UIKIT_EXTERN  NSString* _Nonnull  const kNotificationWebViewControllerWillClosed
 - (void) reload;
 - (void) reloadUrl:(NSString* _Nullable)url;
 
-
-/**
- 返回按钮事件，可重写
- 
- @param sender button
- */
-- (void) backButtonAction:(id)sender;
 
 @end
