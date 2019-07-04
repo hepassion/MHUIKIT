@@ -39,21 +39,26 @@
     if (@available(iOS 11.0, *)) {
         self.uiTableView.contentInsetAdjustmentBehavior = UIScrollViewContentInsetAdjustmentNever;
     }
-   
-   
-    
-
     [self setAutomaticallyAdjustsScrollViewInsets:YES];
     self.navigationController.navigationBar.translucent = NO;
-    // Do any additional setup after loading the view.
-    
 }
-- (void)viewWillAppear:(BOOL)animated {
-    [super viewWillAppear:animated];
-    if (self.config.useSystemNavigationBar) {
+
+- (void)relodNavigationBar {
+    [super relodNavigationBar];
+    if (self.config.navigationBarHidden) { //导航栏隐藏
         self.uiTableView.top = 0;
+        self.uiTableView.height = MH_SCREEN_HEIGHT;
     } else {
-        self.uiTableView.top = MH_NAVIGATION_BAR_DEFAULT_HEIGHT + MH_Status_Bar_Height;
+        if (self.config.useSystemNavigationBar) {
+            self.uiTableView.top =0;
+        } else {
+            self.uiTableView.top =  MH_NAVIGATION_TOP_ALL_HEIGHT;
+        }
+        self.uiTableView.height = MH_SCREEN_HEIGHT -  MH_NAVIGATION_TOP_ALL_HEIGHT;
+    }
+    
+    if (self.navigationController && self.navigationController.viewControllers.count < 2) {
+        self.uiTableView.height = self.uiTableView.height -  MH_TAB_BAR_BOTTOM_ALL_HEIGHT;
     }
 }
 

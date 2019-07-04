@@ -8,8 +8,8 @@
 
 #import "MHViewController.h"
 
-#define MHDefaultNavLeftRightTitleFont       FONT_SYSTEM_SIZE(FIT6(30))//导航栏左右侧文字font
-#define MHDefaultNavTitleFont                FONT_BOLD_SYSTEM_SIZE(FIT6(36))//导航栏标题font   **固定值**
+#define MHDefaultNavLeftRightTitleFont       FONT_SYSTEM_SIZE(FIT6(26))//导航栏左右侧文字font
+#define MHDefaultNavTitleFont                FONT_BOLD_SYSTEM_SIZE(FIT6(32))//导航栏标题font   **固定值**
 
 #define MHDefaultTitleColor                  HEX(0x3d9dff)//导航栏标题颜色
 #define MHDefaultLeftRightTitleColor         HEX(0x3d9dff)//导航栏左右侧文字颜色

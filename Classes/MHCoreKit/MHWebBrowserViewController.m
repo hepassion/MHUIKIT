@@ -48,17 +48,10 @@ UIScrollViewDelegate
         [self.wkWebView removeObserver:self forKeyPath:@"estimatedProgress"];
 }
 
-
 - (void)viewDidLoad {
     [super viewDidLoad];
     [self.view addSubview:self.wkWebView];
-    
-    if (self.defaultTitle && self.defaultTitle.length) {
-        self.config.navigationTitle = self.defaultTitle;
-    }
-    
-    if (self.urlPath != nil ) {
-        self.urlPath = [self.urlPath stringByTrimmingCharactersInSet:[NSCharacterSet whitespaceAndNewlineCharacterSet]];
+    if (self.urlPath && self.urlPath.length ) {
         [self doRequestWithUserAndToken];
     } else if (self.loadHTMLString != nil) {
         [self.wkWebView loadHTMLString:self.loadHTMLString baseURL:self.baseURL];
@@ -79,9 +72,11 @@ UIScrollViewDelegate
 }
 
 
-- (void)viewWillAppear:(BOOL)animated  {
-    [super viewWillAppear:animated];
-    //如果显示底部tabbar，wkWebView.height需要重写
+- (void)relodNavigationBar {
+    if (self.defaultTitle && self.defaultTitle.length) {
+        self.config.navigationTitle = self.defaultTitle;
+    }
+    [super relodNavigationBar];
     if (self.config.navigationBarHidden) { //导航栏隐藏
         self.wkWebView.top = 0;
         self.wkWebView.height = MH_SCREEN_HEIGHT;
@@ -89,44 +84,29 @@ UIScrollViewDelegate
         if (self.config.useSystemNavigationBar) {
             self.wkWebView.top =0;
         } else {
-            self.wkWebView.top = MH_NAVIGATION_BAR_DEFAULT_HEIGHT + MH_Status_Bar_Height;
+            self.wkWebView.top =  MH_NAVIGATION_TOP_ALL_HEIGHT;
         }
-        self.wkWebView.height = MH_SCREEN_HEIGHT - MH_NAVIGATION_BAR_DEFAULT_HEIGHT - MH_Status_Bar_Height;
+        self.wkWebView.height = MH_SCREEN_HEIGHT -  MH_NAVIGATION_TOP_ALL_HEIGHT;
     }
     
+    if (self.navigationController && self.navigationController.viewControllers.count < 2) {
+        self.wkWebView.height = self.wkWebView.height -  MH_TAB_BAR_BOTTOM_ALL_HEIGHT;
+    }
 }
 
-- (instancetype)initWithURLString:(NSString *) urlString
-{
-    self = [super init];
-    if (self) {
-        self.urlPath        = urlString;
-    }
-    return self;
+- (NSString *) mangeUrl:(NSString *)url {
+   
+    return url;
 }
 
 - (void)doRequestWithUserAndToken {
-
-    NSString *notch;
-    if (MH_Status_Bar_Height > 20) {
-        notch = @"true";
-    } else {
-        notch = @"false";
-    }
-    if ([self.urlPath rangeOfString:@"?"].location == NSNotFound) {
-        self.urlPath = [NSString stringWithFormat:@"%@?notch=%@", self.urlPath,notch];
-    } else {
-        if ([self.urlPath rangeOfString:@"notch"].location == NSNotFound ) {//不包含
-            self.urlPath = [NSString stringWithFormat:@"%@&notch=%@", self.urlPath,notch];
-        } else {
-            // nothing to do
-        }
-    }
-    NSURL *url = [NSURL URLWithString:self.urlPath];
+  NSString *mangerUrl = [self mangeUrl:self.urlPath];
+    NSLog(@"mangerUrl>>%@", mangerUrl);
+    NSURL *url = [NSURL URLWithString:mangerUrl];
     if (!url) {
-        self.urlPath = [self.urlPath URLEncodedChineseString];
-        url = [NSURL URLWithString:self.urlPath];
-        NSLog(@"-------%@", self.urlPath);
+        mangerUrl = [mangerUrl URLEncodedChineseString];
+        url = [NSURL URLWithString:mangerUrl];
+        NSLog(@"-------%@", mangerUrl);
     }
     NSMutableURLRequest *request = [NSMutableURLRequest requestWithURL:url];
     request = [[NSMutableURLRequest alloc] initWithURL:url cachePolicy:NSURLRequestReloadIgnoringCacheData timeoutInterval:60];

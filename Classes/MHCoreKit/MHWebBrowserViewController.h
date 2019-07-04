@@ -40,25 +40,15 @@ UIKIT_EXTERN  NSString* _Nonnull  const kNotificationWebViewControllerWillClosed
 @property (nonatomic, strong) NSString* _Nullable   loadHTMLString;     //html字符串
 @property (nonatomic, strong) NSURL* _Nullable      baseURL;            //html字符串的基础URL
 
-
-
 /**
  默认标题，有默认标题，将不能使用webview中Html的标题
  */
 @property (nonatomic, strong) NSString* _Nullable   defaultTitle;
 
 
-/**
- 通过一个URL初始化WebView
- 
- @param urlString 访问的URL地址
- @return 实例
- */
-- (instancetype _Nullable)initWithURLString:(NSString *_Nullable) urlString;
-
 
 - (void) reload;
 - (void) reloadUrl:(NSString* _Nullable)url;
-
+- (NSString *) mangeUrl:(NSString *)url;
 
 @end

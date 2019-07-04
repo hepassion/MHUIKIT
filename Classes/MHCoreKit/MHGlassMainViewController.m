@@ -134,6 +134,7 @@
 
 - (void)viewWillAppear:(BOOL)animated {
     [super viewWillAppear:animated];
+    [self relodNavigationBar];
 }
 
 
@@ -143,7 +144,7 @@
 #pragma mark  decorate    NavigationBar   left right button ---------
 
 - (void) decorateNavigationBar:(UINavigationBar *)navigationBar {
-    [self.navigationController setNavigationBarHidden:NO];
+    self.navigationController.navigationBar.hidden = NO;
     self.pageNavigationBar.hidden =  YES;
     //设置左右按钮
     [self decorateLeftButtonNavigationBar:navigationBar];
@@ -170,7 +171,7 @@
 }
 //自定义导航栏
 - (void) decorateCustomNavigationBar:(MHNavigationBar *)navigationBar {
-    [self.navigationController setNavigationBarHidden:YES];
+    self.navigationController.navigationBar.hidden = YES;
     self.pageNavigationBar.hidden = NO;
     
     navigationBar.backgroundColor = self.config.navigationBarBackgroundColor;
@@ -194,6 +195,9 @@
         self.pageNavigationBar.rightTitleButton = [self rightTitleButton];
     }  else  if (self.config.navigationBarRightImage && self.config.navigationBarRightImage.length && (!self.config.navigationBarRightTitle || !self.config.navigationBarRightTitle.length)) {
         self.pageNavigationBar.rightImageButton = [self rightImageButton];
+    } else {//什么都不显示
+        self.pageNavigationBar.rightImageButton  =  [UIButton new];
+        self.pageNavigationBar.rightTitleButton = [UIButton new];
     }
     
     if (self.config.showNavigationBarBottomLine) {
@@ -235,6 +239,9 @@
         UIButton *rightImageButton =  [self rightImageButton];
         UIBarButtonItem* rightImageItem = [[UIBarButtonItem alloc]initWithCustomView:rightImageButton];
         self.navigationItem.rightBarButtonItem = rightImageItem;
+    } else {
+        self.navigationItem.rightBarButtonItem = nil;
+        self.navigationItem.rightBarButtonItems = nil;
     }
 }
 
