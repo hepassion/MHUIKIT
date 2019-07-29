@@ -87,6 +87,12 @@
 
 @interface MHGlassMainViewController ()
 
+@property (nonatomic, strong) UIButton *leftTitleButton;
+@property (nonatomic, strong) UIButton *leftBackButton;
+@property (nonatomic, strong) UIButton *leftCloseButton;
+@property (nonatomic, strong) UIButton *rightTitleButton;
+@property (nonatomic, strong) UIButton *rightImageButton;
+
 @end
 
 @implementation MHGlassMainViewController
@@ -108,11 +114,9 @@
     self.config.navigationLeftRightTitleFont = MHDefaultNavLeftRightTitleFont;
     self.config.navigationLeftRightTitleColor = MHDefaultLeftRightTitleColor;
     self.config.hidenBackButton = NO;
-    
+    self.config.showCloseButton = NO;
     
     [self.view addSubview:self.pageNavigationBar];
-    
-   
 }
 /**
  刷新、配置 NavigationBar。配置config后调用
@@ -144,7 +148,7 @@
 #pragma mark  decorate    NavigationBar   left right button ---------
 
 - (void) decorateNavigationBar:(UINavigationBar *)navigationBar {
-    self.navigationController.navigationBar.hidden = NO;
+    [self.navigationController setNavigationBarHidden:NO];
     self.pageNavigationBar.hidden =  YES;
     //设置左右按钮
     [self decorateLeftButtonNavigationBar:navigationBar];
@@ -178,23 +182,30 @@
     navigationBar.titleLabel.text = self.config.navigationTitle;
     navigationBar.titleLabel.textColor = self.config.navigationTitleColor;
     navigationBar.titleLabel.font = MHDefaultNavTitleFont;
-    if (self.navigationController && [self.navigationController.viewControllers count] > 1 && !self.config.hidenBackButton) {//显示back button
-        self.pageNavigationBar.leftButton = [self leftBackButton];
+    
+    //左侧按钮
+    if (self.config.showCloseButton) {
+        self.pageNavigationBar.leftButton = self.leftCloseButton;
     } else {
-        self.pageNavigationBar.leftButton = [UIButton new];
-        if (self.config.navigationBarLeftTitle && self.config.navigationBarLeftTitle.length > 0) {//显示左侧按钮
-            self.pageNavigationBar.leftButton = [self leftTitleButton];
+        if (self.navigationController && [self.navigationController.viewControllers count] > 1 && !self.config.hidenBackButton) {//显示back button
+            self.pageNavigationBar.leftButton = self.leftBackButton;
+        } else {
+            self.pageNavigationBar.leftButton = [UIButton new];
+            if (self.config.navigationBarLeftTitle && self.config.navigationBarLeftTitle.length > 0) {//显示左侧按钮
+                self.pageNavigationBar.leftButton = self.leftTitleButton;
+            }
         }
     }
     
+    
     //右边按钮
     if ( self.config.navigationBarRightTitle && self.config.navigationBarRightTitle.length && self.config.navigationBarRightImage && self.config.navigationBarRightImage.length ) {
-        self.pageNavigationBar.rightTitleButton = [self rightTitleButton];
-        self.pageNavigationBar.rightImageButton = [self rightImageButton];
+        self.pageNavigationBar.rightTitleButton = self.rightTitleButton;
+        self.pageNavigationBar.rightImageButton = self.rightImageButton;
     } else  if (self.config.navigationBarRightTitle && self.config.navigationBarRightTitle.length && (!self.config.navigationBarRightImage || !self.config.navigationBarRightImage.length)) {
-        self.pageNavigationBar.rightTitleButton = [self rightTitleButton];
+        self.pageNavigationBar.rightTitleButton = self.rightTitleButton;
     }  else  if (self.config.navigationBarRightImage && self.config.navigationBarRightImage.length && (!self.config.navigationBarRightTitle || !self.config.navigationBarRightTitle.length)) {
-        self.pageNavigationBar.rightImageButton = [self rightImageButton];
+        self.pageNavigationBar.rightImageButton = self.rightImageButton;
     } else {//什么都不显示
         self.pageNavigationBar.rightImageButton  =  [UIButton new];
         self.pageNavigationBar.rightTitleButton = [UIButton new];
@@ -211,14 +222,19 @@
 
 
 - (void) decorateLeftButtonNavigationBar:(UINavigationBar *)navigationBar {
+    if (self.config.showCloseButton) {
+        UIBarButtonItem* backItem = [[UIBarButtonItem alloc]initWithCustomView:self.leftCloseButton];
+        self.navigationItem.leftBarButtonItem = backItem;
+        return;
+    }
+    
     if (self.navigationController && self.navigationController.viewControllers.count > 1 && !self.config.hidenBackButton) {
-        UIBarButtonItem* backItem = [[UIBarButtonItem alloc]initWithCustomView:[self leftBackButton]];
+        UIBarButtonItem* backItem = [[UIBarButtonItem alloc]initWithCustomView:self.leftBackButton];
         self.navigationItem.leftBarButtonItem = backItem;
     } else {
         self.navigationItem.leftBarButtonItem = nil;
         if ( self.config.navigationBarLeftTitle && self.config.navigationBarLeftTitle.length > 0) {
-            UIButton *btn =  [self leftTitleButton];
-            UIBarButtonItem* leftItem = [[UIBarButtonItem alloc]initWithCustomView:btn];
+            UIBarButtonItem* leftItem = [[UIBarButtonItem alloc]initWithCustomView:self.leftTitleButton];
             self.navigationItem.leftBarButtonItem = leftItem;
         }
     }
@@ -226,18 +242,14 @@
 
 - (void) decorateRightButtonNavigationBar:(UINavigationBar *)navigationBar {
     if ( self.config.navigationBarRightTitle && self.config.navigationBarRightTitle.length && self.config.navigationBarRightImage && self.config.navigationBarRightImage.length ) {
-        UIButton *rightTitleButton =  [self rightTitleButton];
-        UIBarButtonItem* rightTitleItem = [[UIBarButtonItem alloc]initWithCustomView:rightTitleButton];
-        UIButton *rightImageButton =  [self rightImageButton];
-        UIBarButtonItem* rightImageItem = [[UIBarButtonItem alloc]initWithCustomView:rightImageButton];
+        UIBarButtonItem* rightTitleItem = [[UIBarButtonItem alloc]initWithCustomView:self.rightTitleButton];
+        UIBarButtonItem* rightImageItem = [[UIBarButtonItem alloc]initWithCustomView:self.rightImageButton];
         self.navigationItem.rightBarButtonItems = [NSArray arrayWithObjects: rightTitleItem, rightImageItem,nil];
     } else  if (self.config.navigationBarRightTitle && self.config.navigationBarRightTitle.length && (!self.config.navigationBarRightImage || !self.config.navigationBarRightImage.length)) {
-        UIButton *rightTitleButton =  [self rightTitleButton];
-        UIBarButtonItem* rightTitleItem = [[UIBarButtonItem alloc]initWithCustomView:rightTitleButton];
+        UIBarButtonItem* rightTitleItem = [[UIBarButtonItem alloc]initWithCustomView:self.rightTitleButton];
         self.navigationItem.rightBarButtonItem = rightTitleItem;;
     }  else  if (self.config.navigationBarRightImage && self.config.navigationBarRightImage.length && (!self.config.navigationBarRightTitle || !self.config.navigationBarRightTitle.length)) {
-        UIButton *rightImageButton =  [self rightImageButton];
-        UIBarButtonItem* rightImageItem = [[UIBarButtonItem alloc]initWithCustomView:rightImageButton];
+        UIBarButtonItem* rightImageItem = [[UIBarButtonItem alloc]initWithCustomView:self.rightImageButton];
         self.navigationItem.rightBarButtonItem = rightImageItem;
     } else {
         self.navigationItem.rightBarButtonItem = nil;
@@ -265,6 +277,13 @@
     }
 }
 
+- (void) closeButtonAction:(id)sender {
+    if (self.navigationController) {
+        [self.navigationController popViewControllerAnimated:YES];
+    }
+}
+
+
 - (void) navigationBarLeftTitleAction:(id)sender {
     NSLog(@"navigationBarLeftTitleAction");
 }
@@ -287,7 +306,7 @@
 
 - (void)showBackButton {
     if (self.config.useSystemNavigationBar) {
-        UIBarButtonItem* backItem = [[UIBarButtonItem alloc]initWithCustomView:[self leftBackButton]];
+        UIBarButtonItem* backItem = [[UIBarButtonItem alloc]initWithCustomView:self.leftBackButton];
         self.navigationItem.leftBarButtonItem = backItem;
     } else {
         self.pageNavigationBar.leftButton.hidden = NO;
@@ -296,66 +315,86 @@
 
 #pragma mark ui ---------
 - (UIButton *) leftTitleButton {
-    
-    UIButton* btn = [UIButton buttonWithType:UIButtonTypeCustom];
-    btn.tag = MHLeftTitleButtonTag;
+    if (_leftTitleButton == nil) {
+         _leftTitleButton = [UIButton buttonWithType:UIButtonTypeCustom];
+        _leftTitleButton.tag = MHLeftTitleButtonTag;
+        [_leftTitleButton setTitle:self.config.navigationBarLeftTitle forState:UIControlStateNormal];
+        [_leftTitleButton addTarget:self action:@selector(navigationBarLeftTitleAction:) forControlEvents:UIControlEventTouchUpInside];
+    }
+    [_leftTitleButton setTitleColor:self.config.navigationLeftRightTitleColor forState:UIControlStateNormal];
+    [_leftTitleButton setTitleColor:self.config.navigationLeftRightTitleColor forState:UIControlStateHighlighted];
+    [_leftTitleButton.titleLabel setFont:self.config.navigationLeftRightTitleFont];
     //动态设置宽度
     NSDictionary *attribute = @{NSFontAttributeName:self.config.navigationLeftRightTitleFont};
     CGFloat textWidth = [self.config.navigationBarLeftTitle boundingRectWithSize:CGSizeMake(CGFLOAT_MAX, 40.0f) options:(NSStringDrawingUsesLineFragmentOrigin | NSStringDrawingTruncatesLastVisibleLine) attributes:attribute context:nil].size.width;
-    btn.frame = CGRectMake(0.0f, 0.0f, textWidth, 40.0f);
-    [btn.titleLabel setFont:self.config.navigationLeftRightTitleFont];
-    [btn setTitleColor:self.config.navigationLeftRightTitleColor forState:UIControlStateNormal];
-    [btn setTitleColor:self.config.navigationLeftRightTitleColor forState:UIControlStateHighlighted];
-    [btn setTitle:self.config.navigationBarLeftTitle forState:UIControlStateNormal];
-    [btn addTarget:self action:@selector(navigationBarLeftTitleAction:) forControlEvents:UIControlEventTouchUpInside];
-    return btn;
+    _leftTitleButton.frame = CGRectMake(0.0f, 0.0f, textWidth, 40.0f);
+    return _leftTitleButton;
+}
+
+- (UIButton *)leftBackButton {
+    if (_leftBackButton == nil) {
+        _leftBackButton = [UIButton buttonWithType:UIButtonTypeCustom];
+        _leftBackButton.frame = CGRectMake(0.0f, 0.0f, 40.0f, 40.0f);
+        _leftBackButton.tag = MHBackButtonTag;
+        [_leftBackButton addTarget:self action:@selector(backButtonAction:) forControlEvents:UIControlEventTouchUpInside];
+    }
+    UIImage *btnImage = [[UIImage imageNamed:@"back-button"] imageWithColor:self.config.navigationBarBackButtonColor];
+    [_leftBackButton setImage:btnImage forState:UIControlStateNormal];
+    if (self.config.useSystemNavigationBar) {
+        [_leftBackButton setImageEdgeInsets:UIEdgeInsetsMake(0.0f, -3.0f, 0.0f, 3.0f)];
+    }
+    return _leftBackButton;
 }
 
 
-- (UIButton *) leftBackButton {
-    UIImage *btnImage = [[UIImage imageNamed:@"back-button"] imageWithColor:self.config.navigationBarBackButtonColor];
-    UIButton* btn = [UIButton buttonWithType:UIButtonTypeCustom];
-    btn.frame = CGRectMake(0.0f, 0.0f, 40.0f, 40.0f);
-    btn.tag = MHBackButtonTag;
-    [btn setImage:btnImage forState:UIControlStateNormal];
-    if (self.config.useSystemNavigationBar) {
-        [btn setImageEdgeInsets:UIEdgeInsetsMake(0.0f, -3.0f, 0.0f, 3.0f)];
+- (UIButton *) leftCloseButton {
+    if (_leftCloseButton == nil) {
+         _leftCloseButton = [UIButton buttonWithType:UIButtonTypeCustom];
+        _leftCloseButton.frame = CGRectMake(0.0f, 0.0f, 40.0f, 40.0f);
+        _leftCloseButton.tag = MHCloseButtonTag;
+        [_leftCloseButton addTarget:self action:@selector(closeButtonAction:) forControlEvents:UIControlEventTouchUpInside];
     }
-    [btn addTarget:self action:@selector(backButtonAction:) forControlEvents:UIControlEventTouchUpInside];
-    return btn;
+    UIImage *btnImage = [[UIImage imageNamed:@"nav-close-button"] imageWithColor:self.config.navigationBarBackButtonColor];
+    [_leftCloseButton setImage:btnImage forState:UIControlStateNormal];
+    if (self.config.useSystemNavigationBar) {
+        [_leftCloseButton setImageEdgeInsets:UIEdgeInsetsMake(0.0f, -3.0f, 0.0f, 3.0f)];
+    }
+    return _leftCloseButton;
 }
 
 
 - (UIButton *) rightTitleButton {
-    UIButton* btn = [UIButton buttonWithType:UIButtonTypeCustom];
-    btn.frame = CGRectMake(0.0f, 0.0f, 0.0f, 40.0f);
-    btn.tag = MHRightTitleButtonTag;
-    [btn.titleLabel setFont:self.config.navigationLeftRightTitleFont];
-    [btn setTitleColor:self.config.navigationLeftRightTitleColor forState:UIControlStateNormal];
-    [btn setTitleColor:self.config.navigationLeftRightTitleColor forState:UIControlStateHighlighted];
-    [btn setTitle:self.config.navigationBarRightTitle forState:UIControlStateNormal];
-    [btn addTarget:self action:@selector(navigationBarRightTitleAction:) forControlEvents:UIControlEventTouchUpInside];
-
-    //动态设置宽度
+    if (_rightTitleButton == nil) {
+        _rightTitleButton = [UIButton buttonWithType:UIButtonTypeCustom];
+        _rightTitleButton.frame = CGRectMake(0.0f, 0.0f, 0.0f, 40.0f);
+        _rightTitleButton.tag = MHRightTitleButtonTag;
+        [_rightTitleButton addTarget:self action:@selector(navigationBarRightTitleAction:) forControlEvents:UIControlEventTouchUpInside];
+    }
+    [_rightTitleButton.titleLabel setFont:self.config.navigationLeftRightTitleFont];
+    [_rightTitleButton setTitleColor:self.config.navigationLeftRightTitleColor forState:UIControlStateNormal];
+    [_rightTitleButton setTitleColor:self.config.navigationLeftRightTitleColor forState:UIControlStateHighlighted];
+    [_rightTitleButton setTitle:self.config.navigationBarRightTitle forState:UIControlStateNormal];
     NSDictionary *attribute = @{NSFontAttributeName:self.config.navigationLeftRightTitleFont};
-    CGFloat textWidth =   [self.config.navigationBarRightTitle boundingRectWithSize:CGSizeMake(CGFLOAT_MAX, btn.height) options:(NSStringDrawingUsesLineFragmentOrigin | NSStringDrawingTruncatesLastVisibleLine) attributes:attribute context:nil].size.width;
-    btn.width = textWidth;
-    return btn;
+    CGFloat textWidth =   [self.config.navigationBarRightTitle boundingRectWithSize:CGSizeMake(CGFLOAT_MAX, _rightTitleButton.height) options:(NSStringDrawingUsesLineFragmentOrigin | NSStringDrawingTruncatesLastVisibleLine) attributes:attribute context:nil].size.width;
+    _rightTitleButton.width = textWidth;
+    return _rightTitleButton;
 }
 
 
 
 - (UIButton *) rightImageButton {
-    UIButton* btn = [UIButton buttonWithType:UIButtonTypeCustom];
-    btn.frame = CGRectMake(0.0f, 0.0f, 0.0f, 0.0f);
-    btn.tag = MHRightImageButtonTag;
-    [btn addTarget:self action:@selector(navigationBarRightImageAction:) forControlEvents:UIControlEventTouchUpInside];
+    if (_rightImageButton == nil) {
+        _rightImageButton = [UIButton buttonWithType:UIButtonTypeCustom];
+        _rightImageButton.frame = CGRectMake(0.0f, 0.0f, 0.0f, 0.0f);
+        _rightImageButton.tag = MHRightImageButtonTag;
+        [_rightImageButton addTarget:self action:@selector(navigationBarRightImageAction:) forControlEvents:UIControlEventTouchUpInside];
+    }
     UIImage *image = [[UIImage imageNamed:self.config.navigationBarRightImage] imageWithRenderingMode:UIImageRenderingModeAlwaysOriginal];
-    [btn setImage:image forState:UIControlStateNormal];
-    [btn setImage:image forState:UIControlStateHighlighted];
-    btn.width = image.size.width;
-    btn.height = image.size.height;
-    return btn;
+    [_rightImageButton setImage:image forState:UIControlStateNormal];
+    [_rightImageButton setImage:image forState:UIControlStateHighlighted];
+    _rightImageButton.width = image.size.width;
+    _rightImageButton.height = image.size.height;
+    return _rightImageButton;
 }
 
 

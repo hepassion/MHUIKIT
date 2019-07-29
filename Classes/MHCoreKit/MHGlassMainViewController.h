@@ -28,6 +28,7 @@
 #define MHLeftTitleButtonTag                        11002
 #define MHRightTitleButtonTag                       11003
 #define MHRightImageButtonTag                       11004
+#define MHCloseButtonTag                             11005
 
 
 NS_ASSUME_NONNULL_BEGIN
@@ -52,12 +53,13 @@ NS_ASSUME_NONNULL_BEGIN
  */
 @property (nonatomic, assign) BOOL useSystemNavigationBar; // 是否使用系统导航栏，yes 系统导航，no 自定义导航；默认 NO
 @property (nonatomic, assign) BOOL navigationBarHidden;//是否隐藏导航栏    默认：NO 不隐藏
+@property (nonatomic, assign) BOOL showCloseButton;//是否显示close  button    默认：NO 不隐藏
 @property (nonatomic, strong) NSString* navigationTitle;//NavigationBar标题
 @property (nonatomic, strong) UIColor* navigationTitleColor;//NavigationTitle标题颜色
 @property (nonatomic, strong) UIColor*  navigationBarBackgroundColor;//NavigationBar 背景色
 @property (nonatomic, assign) BOOL showNavigationBarBottomLine;// 是否显示NavigationBar底部线    yes 显示; no 不显示
 
-@property (nonatomic, strong) UIColor*  navigationBarBackButtonColor ;//返回按钮颜色
+@property (nonatomic, strong) UIColor*  navigationBarBackButtonColor ;//返回 close按钮颜色
 @property (nonatomic, strong) UIColor*  navigationLeftRightTitleColor ;//左右侧文字color
 @property (nonatomic, strong) UIFont*  navigationLeftRightTitleFont ;//左右侧文字font
 
@@ -87,6 +89,7 @@ NS_ASSUME_NONNULL_BEGIN
  点击事件
  */
 - (void) backButtonAction:(id )sender;
+- (void) closeButtonAction:(id)sender;
 - (void) navigationBarLeftTitleAction:(id)sender;
 
 - (void) navigationBarRightTitleAction:(id)sender;
