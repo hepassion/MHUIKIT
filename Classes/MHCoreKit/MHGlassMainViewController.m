@@ -52,11 +52,11 @@
         _rightImageButton = rightImageButton;
         [self addSubview:rightImageButton];
         rightImageButton.centerY =  (self.height-MH_Status_Bar_Height)/2+MH_Status_Bar_Height;
-        if (self.rightTitleButton.titleLabel.text && self.rightTitleButton.titleLabel.text.length) { //显示图片 和 文字
-            rightImageButton.right = self.width - MHNavigationBarButtonDistanceToEdge - self.rightTitleButton.width - MHNavigationBarButtonImageTextSpace;
-        } else {//只显示图片
-            rightImageButton.right =    self.width - MHNavigationBarButtonDistanceToEdge;
-        }
+    }
+    if (self.rightTitleButton.titleLabel.text && self.rightTitleButton.titleLabel.text.length) { //显示图片 和 文字
+        self.rightImageButton.right = self.width - MHNavigationBarButtonDistanceToEdge - self.rightTitleButton.width - MHNavigationBarButtonImageTextSpace;
+    } else {//只显示图片
+        self.rightImageButton.right =    self.width - MHNavigationBarButtonDistanceToEdge;
     }
 }
 
@@ -204,7 +204,9 @@
         self.pageNavigationBar.rightImageButton = self.rightImageButton;
     } else  if (self.config.navigationBarRightTitle && self.config.navigationBarRightTitle.length && (!self.config.navigationBarRightImage || !self.config.navigationBarRightImage.length)) {
         self.pageNavigationBar.rightTitleButton = self.rightTitleButton;
+        self.pageNavigationBar.rightImageButton = [UIButton new];
     }  else  if (self.config.navigationBarRightImage && self.config.navigationBarRightImage.length && (!self.config.navigationBarRightTitle || !self.config.navigationBarRightTitle.length)) {
+        self.pageNavigationBar.rightTitleButton = [UIButton new];
         self.pageNavigationBar.rightImageButton = self.rightImageButton;
     } else {//什么都不显示
         self.pageNavigationBar.rightImageButton  =  [UIButton new];
