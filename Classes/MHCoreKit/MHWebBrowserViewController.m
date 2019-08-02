@@ -301,7 +301,7 @@ UIScrollViewDelegate
         
         _wkWebView.UIDelegate = self;
          _wkWebView.navigationDelegate = self;
-        self.bridge =  [WebViewJavascriptBridge bridgeForWebView:_wkWebView];
+        self.bridge =  [WKWebViewJavascriptBridge bridgeForWebView:_wkWebView];
         [self.bridge setWebViewDelegate:self];
     }return _wkWebView;
 }
