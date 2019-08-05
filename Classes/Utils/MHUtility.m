@@ -52,7 +52,7 @@
     return osVersion;
 }
 
-+ (NSString*) deviceInfo {
++ (NSString*) systemName {
     NSString* deviceName = [[UIDevice currentDevice] systemName];
     return deviceName;
 }
@@ -60,6 +60,11 @@
 + (NSString*) uuid {
     NSString* uuid = [UIDevice currentDevice].identifierForVendor.UUIDString;
     return uuid;
+}
+
++ (NSString *)getPhoneModel {
+    NSString * phoneModel = [[UIDevice currentDevice] model];
+    return phoneModel;
 }
 
 @end

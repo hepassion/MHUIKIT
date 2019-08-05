@@ -15,6 +15,7 @@
 + (NSString*) appVersion;
 + (NSString*) osVersion;
 + (NSString*) appBuildID;
-+ (NSString*) deviceInfo;
++ (NSString*) systemName;//ios
 + (NSString*) uuid;
++ (NSString *)getPhoneModel;//iPhone
 @end

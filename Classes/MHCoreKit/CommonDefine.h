@@ -27,6 +27,7 @@
 #define MH_SCREEN_SIZE                                  [[UIScreen mainScreen] bounds].size
 #define MH_SCREEN_WIDTH                                  MH_SCREEN_SIZE.width
 #define MH_SCREEN_HEIGHT                                 MH_SCREEN_SIZE.height
+#define MH_SCREEN_SCALE                                  [UIScreen mainScreen].scale
 
 #define FIT5(x)                 ((x)/640.0f)*MH_SCREEN_WIDTH
 #define FIT6(x)                 ((x)/750.0f)*MH_SCREEN_WIDTH
