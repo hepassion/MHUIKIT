@@ -10,6 +10,8 @@
 #import "CommonDefine.h"
 #import "UIImage+Category.h"
 #import "UIView+Utils.h"
+#import <SDWebImage/UIButton+WebCache.h>
+
 
 @implementation MHNavigationBar
 
@@ -391,11 +393,32 @@
         _rightImageButton.tag = MHRightImageButtonTag;
         [_rightImageButton addTarget:self action:@selector(navigationBarRightImageAction:) forControlEvents:UIControlEventTouchUpInside];
     }
-    UIImage *image = [[UIImage imageNamed:self.config.navigationBarRightImage] imageWithRenderingMode:UIImageRenderingModeAlwaysOriginal];
-    [_rightImageButton setImage:image forState:UIControlStateNormal];
-    [_rightImageButton setImage:image forState:UIControlStateHighlighted];
-    _rightImageButton.width = image.size.width;
-    _rightImageButton.height = image.size.height;
+   
+
+    UIImage *nilImage = [UIImage new];
+    [_rightImageButton setImage:nilImage forState:UIControlStateNormal];
+    [_rightImageButton setImage:nilImage forState:UIControlStateHighlighted];
+    
+    
+    if (self.config.navigationBarRightImage && self.config.navigationBarRightImage.length) {
+        if ([self.config.navigationBarRightImage rangeOfString:@"http:"].location == NSNotFound) {
+            UIImage *image = [[UIImage imageNamed:self.config.navigationBarRightImage] imageWithRenderingMode:UIImageRenderingModeAlwaysOriginal];
+            [_rightImageButton setImage:image forState:UIControlStateNormal];
+            [_rightImageButton setImage:image forState:UIControlStateHighlighted];
+            _rightImageButton.width = image.size.width;
+            _rightImageButton.height = image.size.height;
+        } else {
+            [_rightImageButton sd_setImageWithURL:[NSURL URLWithString:self.config.navigationBarRightImage ]
+                                         forState:UIControlStateNormal];
+            [_rightImageButton sd_setImageWithURL:[NSURL URLWithString:self.config.navigationBarRightImage ]
+                                         forState:UIControlStateHighlighted];
+            _rightImageButton.width = 35;
+            _rightImageButton.height = 35;
+        }
+    }
+    
+
+
     return _rightImageButton;
 }
 
