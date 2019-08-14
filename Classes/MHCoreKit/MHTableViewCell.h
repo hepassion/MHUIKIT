@@ -8,7 +8,7 @@
 
 #import <UIKit/UIKit.h>
 #import "MHDataModel.h"
-#import "UIView+Utils.h"
+
 
 #define MHTableViewCell_DEFAULT_BACKGROUND_COLOR                          [UIColor whiteColor]
 /*!

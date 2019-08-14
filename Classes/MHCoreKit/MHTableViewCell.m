@@ -8,6 +8,8 @@
 
 #import "MHTableViewCell.h"
 #import "CommonDefine.h"
+#import "UIView+Utils.h"
+
 @interface MHTableViewCell ()
 
 @property (nonatomic, strong)   UIView *topLine;

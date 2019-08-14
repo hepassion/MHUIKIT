@@ -9,6 +9,8 @@
 #import "MHTableViewController.h"
 #import "CommonDefine.h"
 #import <UIApplication+Helper.h>
+#import "UIView+Utils.h"
+
 @interface MHTableViewController ()<MHTableViewAdaptorDelegate>
 - (void) initialize;
 - (void) createTableView;
