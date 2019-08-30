@@ -3,7 +3,7 @@ Pod::Spec.new do |s|
 
 
   s.name         = "MHUIKIT"
-  s.version      = "0.8.1"
+  s.version      = "0.8.2"
   s.summary      = "iOS一套UI开发框架"
   s.homepage     = "https://github.com/hepassion/MHUIKIT"
   s.license      = "MIT"
@@ -63,7 +63,6 @@ Pod::Spec.new do |s|
   sp.dependency 'MHUIKIT/Utils'
   sp.dependency 'MHUIKIT/Observer'
   sp.dependency 'MBProgressHUD', '~> 1.1.0'
-  sp.dependency 'WebViewJavascriptBridge', '~> 6.0.3'
   sp.dependency 'SDWebImage', '~> 5.1.0'
 
 end
