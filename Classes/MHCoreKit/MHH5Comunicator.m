@@ -41,7 +41,6 @@ static MHH5Comunicator* instance = nil;
         [[WKWebsiteDataStore defaultDataStore] removeDataOfTypes:websiteDataTypes modifiedSince:dateFrom completionHandler:^{
         }];
     } else {
-        //清除UIWebView的缓存
         [[NSURLCache sharedURLCache] removeAllCachedResponses];
         NSURLCache * cache = [NSURLCache sharedURLCache];
         [cache removeAllCachedResponses];
