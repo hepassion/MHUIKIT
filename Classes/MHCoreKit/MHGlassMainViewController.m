@@ -69,7 +69,7 @@
     if (_titleLabel == nil) {
         _titleLabel = [[UILabel alloc] initWithFrame:CGRectMake(0,
                                                                 MH_Status_Bar_Height,
-                                                                self.width*0.3,
+                                                                self.width*0.5,
                                                                 MH_NAVIGATION_BAR_DEFAULT_HEIGHT)];
         _titleLabel.textAlignment = NSTextAlignmentCenter;
         _titleLabel.adjustsFontSizeToFitWidth = YES;
