@@ -18,7 +18,7 @@
     [super viewDidLoad];
     self.view.backgroundColor = [UIColor clearColor];
     self.uiTableView.backgroundColor = [UIColor whiteColor];
-  
+  //min
 }
 
 #pragma mark - NavigationBar
