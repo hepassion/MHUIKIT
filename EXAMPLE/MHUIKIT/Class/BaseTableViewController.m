@@ -19,6 +19,7 @@
     self.view.backgroundColor = [UIColor clearColor];
     self.uiTableView.backgroundColor = [UIColor whiteColor];
     self.config.navigationTitle = @"navigationTitle";
+    //明鹤
 }
 
 #pragma mark - NavigationBar
