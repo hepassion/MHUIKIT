@@ -9,6 +9,6 @@
 #import <UIKit/UIKit.h>
 //#import <NavyUIKit/NVJTaskProtocol.h>
 
-@interface AccountViewController : BaseTableViewController 
+@interface AccountViewController : MHGlassMainViewController
 
 @end

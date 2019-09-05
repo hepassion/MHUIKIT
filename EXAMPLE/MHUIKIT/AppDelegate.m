@@ -26,8 +26,15 @@
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions {
     [self runtimeConfig ];
-  
+   
+    UIImage *image = [UIImage imageNamed:@"moreSelect"];
+    NSLog(@"%@", NSStringFromCGSize(image.size));
     
+    CGSize size = CGSizeMake(CGImageGetWidth(image.CGImage), CGImageGetHeight(image.CGImage));//这个size就是实际图片的像素大小
+    NSLog(@"%@", NSStringFromCGSize(size));
+
+    
+
     [MHDubugger Debug];
     
     self.window = [[UIWindow alloc] initWithFrame:[UIScreen mainScreen].bounds];

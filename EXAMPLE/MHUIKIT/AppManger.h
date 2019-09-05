@@ -16,6 +16,10 @@
 @property (nonatomic, strong) UsrModel *userModel;
 @property (nonatomic, strong) NSString *ipAdress;
 - (void)deviceWANIPAddress:(void (^)(NSString *WANIP))WANIPAddress;
+@property (nonatomic, copy) int (^sun)(NSString *kkk) ;
+
+
+
 @end
 
 

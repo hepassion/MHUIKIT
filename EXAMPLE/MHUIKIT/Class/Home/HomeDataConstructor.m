@@ -19,6 +19,7 @@
     
     [self MH_startLoading];
     
+    [self MH_responseSuccess:nil];
 
     [[PDHttpClient sharedInstance] getTestDataSuccess:^(UsrModel *dataModel) {
         [self MH_responseSuccess:dataModel];
@@ -29,12 +30,12 @@
     }];
 
 
-    [[PDHttpClient sharedInstance] postTestDataSuccess:^(UsrModel *dataModel) {
-        NSLog(@"post success");
-    } failure:^(MHErrorModel *dataModel) {
-         NSLog(@"post failure");
-    }];
-    
+//    [[PDHttpClient sharedInstance] postTestDataSuccess:^(UsrModel *dataModel) {
+//        NSLog(@"post success");
+//    } failure:^(MHErrorModel *dataModel) {
+//         NSLog(@"post failure");
+//    }];
+//
 }
 
 - (void)constructData {
@@ -106,50 +107,23 @@
     model.delegate = self.viewControllerDelegate;
 //    model.showTopLine = YES;
 //    model.topLineColor = COLOR_GRAY;
-    
     [self.items addObject:model];
     
-//
-//    NSMutableArray *array = [NSMutableArray new];
-//    [array addObject:model];
-//
-// //   [self.items addObjects:array];
-//    [self.items addObjectsAtNewSection:array];
-//    
-    
-    
-    MHTestTableViewHeaderViewModel *header = [MHTestTableViewHeaderViewModel new];
-    header.title = @"header";
-    header.midleText = @"headerText";
-    header.cellHeight  =@([ MHTestTableViewHeaderView heightForHeaderView]);
-    header.cellType = @"ccdd";
-    header.cellClass = [MHTestTableViewHeaderView class];
-    NSMutableArray *saa = [NSMutableArray new];
-    [saa addObject:header];
-    [saa addObject:header];
-    
-   // self.headerModels = saa;
-    
-    MHTableViewFooterViewModel *footer = [MHTableViewFooterViewModel new];
-    footer.footerTitle = @"footer";
-    footer.cellHeight  =@([ MHTableViewFooterView heightForFooterView ]);
-    footer.cellType = @"ccdd";
-    footer.cellClass = [MHTableViewFooterView class];
-    NSMutableArray *bbb = [NSMutableArray  new];
-    [bbb addObject:footer];
-    [bbb addObject:footer];
-    
-    //self.footerModels = bbb;
-    
-    
-    
-    NSMutableArray *keys = [NSMutableArray new];
-    [keys addObject:@"a"];
-    [keys addObject:@"b"];
-    [keys addObject:@"c"];
-    
-    //self.arrayKeys = keys;
-    
+    model = [MHTitleDataModel new];
+    model.content = @"小鱼test";
+    model.cellClass = [MHTitleTableViewCell class];
+    model.cellType  = @"cell.type.fish";
+    model.cellHeight = @([MHTitleTableViewCell heightForCell]);
+    model.delegate = self.viewControllerDelegate;
+    [self.items addObject:model];
+  
+    model = [MHTitleDataModel new];
+    model.content = @"sort";
+    model.cellClass = [MHTitleTableViewCell class];
+    model.cellType  = @"cell.type.sort";
+    model.cellHeight = @([MHTitleTableViewCell heightForCell]);
+    model.delegate = self.viewControllerDelegate;
+    [self.items addObject:model];
 }
 
 @end

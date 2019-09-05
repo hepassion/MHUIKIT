@@ -6,7 +6,7 @@
 //  Copyright © 2017年 shibiao. All rights reserved.
 //
 
-#import "SBControlView.h"
+#import "SBControlView.h" 
 @interface SBControlView ()
 //当前时间
 @property (nonatomic,strong) UILabel *timeLabel;
@@ -78,7 +78,7 @@ static NSInteger padding = 8;
 }
 
 -(void)setupUI{
-    [self removeAllSubviews];
+//    [self removeAllSubviews];
     [self addSubview:self.timeLabel];
     [self addSubview:self.bufferSlier];
     [self addSubview:self.slider];

@@ -9,8 +9,7 @@
 
 #import "AccountViewController.h"
 #import "AccountDataConstructor.h"
-//NSCache
-
+#import <XMTXCustomKeyBoard/XMTextField.h>
 @interface AccountViewController ()<NSCacheDelegate>
 
 @property (nonatomic, strong) AccountDataConstructor *dataConstructor;
@@ -25,7 +24,37 @@
     self.view.backgroundColor = [UIColor whiteColor];
 
     
-   
+    self.config.navigationTitle = @"账户";
+    
+    
+    XMTextField *field = [[XMTextField alloc] initWithFrame:CGRectMake(100, 100, 100, 60)];
+    field.placeholder = @"输入密码";
+    field.xmKeyBoardType = XMkeyBoardType_charAndNumber;
+    field.delegate = self;
+    field.inputTextBlock = ^(id userInfo) {
+        XMTextField *field2 = (XMTextField *)userInfo;
+        if (field2.text.length > 3) {
+            field2.text = [field2.text substringWithRange:NSMakeRange(0, 2)];
+        }
+        NSLog(@"inputTextBlock: %@", field2.text);
+
+    };
+    [self.view addSubview:field];
+    
+    
+}
+
+- (void)textFieldDidBeginEditing:(UITextField *)textField {
+    NSLog(@"textFieldDidBeginEditing: %@", textField.text);
+}
+
+- (void)textFieldDidEndEditing:(UITextField *)textField reason:(UITextFieldDidEndEditingReason)reason {
+    NSLog(@"textFieldDidEndEditing22: %@", textField.text);
+
+}
+
+- (void)touchesBegan:(NSSet<UITouch *> *)touches withEvent:(UIEvent *)event {
+    [self.view endEditing:YES];
 }
 
 - (void)constructData {
@@ -35,24 +64,17 @@
         _dataConstructor.delegate  = self;
     }
     // 初始化完毕 发送网络请求
-    [self.dataConstructor constructData];
-    self.adaptor.items = self.dataConstructor.items;
-    [self.uiTableView reloadData];
+   
 }
 
 
-- (NSString *)getNavigationTitle {
-    return @"account";
-}
 
 #pragma mark NVTableViewAdaptor Delegate
 
 - (void) tableView:(UITableView *)tableView didSelectObject:(id<MHTableViewCellItemProtocol>)object rowAtIndexPath:(NSIndexPath *)indexPath {
     NSString *cellType = object.cellType;
     if ([cellType isEqualToString:@"cell.type.collectionView"]) {
-       
-       
-
+    
         
     } else   if ([cellType isEqualToString:@"cell.type.search"]) {
 

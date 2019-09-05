@@ -10,4 +10,18 @@
 
 @implementation SortNetworkDataConstructor
 
+- (void)constructData {
+    [self.items removeAllObjects];
+    MHTitleDataModel *model = [MHTitleDataModel new];
+    model.content = @"冒泡";
+    model.cellClass = [MHTitleTableViewCell class];
+    model.cellType  = @"cell.type.Bubble";
+    model.cellHeight = @([MHTitleTableViewCell heightForCell]);
+    model.delegate = self.viewControllerDelegate;
+    model.showTopLine = YES;
+    model.topLineColor = COLOR_GRAY;
+    model.selectedStyle = UITableViewCellSelectionStyleGray;
+    [self.items addObject:model];
+}
+
 @end

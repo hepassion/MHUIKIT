@@ -11,6 +11,7 @@
 NS_ASSUME_NONNULL_BEGIN
 
 @interface UsrModel (Category)
+@property (nonatomic ,strong) NSString *categoryTest;
 
 @end
 

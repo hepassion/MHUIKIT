@@ -17,6 +17,10 @@
 #import <WebKit/WebKit.h>
 #import <CoreLocation/CoreLocation.h>
 #import "GRMustache.h"
+#import "PDHttpClient+Test.h"
+#import "SortViewController.h"
+#import "UsrModel+Category.h"
+#import <SSKeychain/SSKeychain.h>
 
 @interface HomeViewController ()
 @property (nonatomic, strong) HomeDataConstructor *dataConstructor;
@@ -37,8 +41,10 @@ static inline UIEdgeInsets sgm_safeAreaInset(UIView *view) {
     [super viewDidLoad];
     self.view.backgroundColor = HEX(0xfffff1);
     WEAK_SELF;
-   
-    
+    self.config.navigationTitle = @"首页";
+    self.config.navigationTitleColor = [UIColor redColor];
+    self.config.navigationBarBackgroundColor = COLOR_DEFAULT_WHITE;
+
     
     [[NSURLCache sharedURLCache] removeAllCachedResponses];
     NSURLCache * cache = [NSURLCache sharedURLCache];
@@ -53,6 +59,8 @@ static inline UIEdgeInsets sgm_safeAreaInset(UIView *view) {
     }];
   
    
+   
+    
     
     //  http://download.3g.joy.cn/video/236/60236937/1451280942752_hd.mp4
     
@@ -66,23 +74,8 @@ static inline UIEdgeInsets sgm_safeAreaInset(UIView *view) {
     }
     // 初始化完毕 发送网络请求
     [self.dataConstructor loadData];
-    
 }
 
-- (BOOL)getCustomNavigationBar {
-    return NO;
-    
-}
-//
-//- (NSString *)getNavigationTitle {
-//    return @"首页";
-//}
-//
-
-
-- (void)decorateNavigationBar:(UINavigationBar *)navigationBar {
-    [super decorateNavigationBar:navigationBar];
-}
 
 
 - (void) stopMJRefreshing {
@@ -107,7 +100,8 @@ static inline UIEdgeInsets sgm_safeAreaInset(UIView *view) {
 
 - (void) tableView:(UITableView *)tableView didSelectObject:(id<MHTableViewCellItemProtocol>)object rowAtIndexPath:(NSIndexPath *)indexPath {
     NSString *cellType = object.cellType;
-   
+    UsrModel *model = [[UsrModel alloc] init];
+    model.categoryTest = @"赵";
     
     if ([cellType isEqualToString:@"cell.type.block"]) {
         BlockViewController *blockVC  = [[BlockViewController alloc] init];
@@ -124,25 +118,18 @@ static inline UIEdgeInsets sgm_safeAreaInset(UIView *view) {
         
         
       BaseMHHtmlViewController *webBrowserController = [[BaseMHHtmlViewController alloc] init];
-//        NSString* path = [[NSBundle mainBundle] pathForResource:@"hyh" ofType:@"html"];
-//        NSString* htmlStr = [NSString stringWithContentsOfFile:path encoding:NSUTF8StringEncoding error:nil];
-//        webBrowserController.loadHTMLString = htmlStr;
+        NSString* path = [[NSBundle mainBundle] pathForResource:@"hyh" ofType:@"html"];
+        NSString* htmlStr = [NSString stringWithContentsOfFile:path encoding:NSUTF8StringEncoding error:nil];
+        webBrowserController.loadHTMLString = htmlStr;
 //        webBrowserController.defaultTitle = @"默认标题";
-//
 //        MHWebBrowserConfig *config = [MHWebBrowserConfig new];
-//        config.useSystemNavigationBar = YES;
 //        webBrowserController.config = config;
-//
-//        
-        
-        
-        NSString *rendering = [self demoFormatWithName:@"minghe" value:@"zhao"];
-        NSString *path = [[NSBundle mainBundle] bundlePath];
-        NSURL *baseUrl = [NSURL fileURLWithPath:path];
-        webBrowserController.loadHTMLString = rendering;
-        webBrowserController.baseURL = baseUrl;
+//        NSString *rendering = [self demoFormatWithName:@"minghe" value:@"zhao"];
+//        NSString *path = [[NSBundle mainBundle] bundlePath];
+//        NSURL *baseUrl = [NSURL fileURLWithPath:path];
+//        webBrowserController.loadHTMLString = rendering;
+//        webBrowserController.baseURL = baseUrl;
 //        webBrowserController.defaultTitle = @"默认标题";
-        
         [self.navigationController pushViewController:webBrowserController animated:YES];
     } else if ([cellType isEqualToString:@"cell.type.failure"]) {
         MHWebBrowserView* webBrowser    = [[MHWebBrowserView alloc] initWithFrame:CGRectMake(0.0f,
@@ -164,9 +151,10 @@ static inline UIEdgeInsets sgm_safeAreaInset(UIView *view) {
         [webBrowser.wkWebView loadHTMLString:htmlStr baseURL:baseURL];
     } else if ([cellType isEqualToString:@"cell.type.baidu"]) {
        // NSString *urlStr = @"https://www.tutorialspoint.com/ios/ios_tutorial.pdf";
-        NSString *urlStr = @"https://test.95590.cn/OLI/H5/#/lhb/replayLhb";
+//        NSString *urlStr = @"https://test.95590.cn/OLI/H5/#/lhb/replayLhb";
 //        NSString *urlStr = @"https://test.95590.cn/nloan_test/test/index1.html";
-        //        NSString *urlStr = @"https://app.ddsd-ccic.com/loan/shortMessage.html?channel=FC001&activity=001";
+            NSString *urlStr = @"https://www.baidu.com?哈哈哈=啦啦啦啦啦";
+
 //        NSString *appstrore = @"https://itunes.apple.com/cn/app/id1439399498";
     [[MHAppSchemaObserver sharedInstance] openURLString:urlStr];
     } else if ([cellType isEqualToString:@"cell.type.task"]) {
@@ -179,12 +167,60 @@ static inline UIEdgeInsets sgm_safeAreaInset(UIView *view) {
 //        web.urlPath = @"https://www.baidu.com";
         web.urlPath = @"https://test.95590.cn/OLI_ver/H5/#/lhb/mineNoLogin";
         [self.navigationController pushViewController:web animated:YES];
-    } else if ([cellType isEqualToString:@"cell.type.fish"]) {
-       
-        
         
 
+    } else if ([cellType isEqualToString:@"cell.type.fish"]) {
+      
+    
+        
+        
+        
+        
+    } else if ([cellType isEqualToString:@"cell.type.sort"]) {
+//        SortViewController *sortVC  = [SortViewController new];
+//        [self.navigationController pushViewController:sortVC animated:YES];
+        NSString *getDeviceUUID =  [self getDeviceUUID];
+        NSLog(@"getDeviceUUID: %@", getDeviceUUID);
+
     }
+}
+
+- (NSString *) getBundleIdentifier{
+    NSDictionary *dic = [[NSBundle mainBundle] infoDictionary];
+    return [dic valueForKey: @"CFBundleIdentifier"];
+}
+
+#define ACCOUNT_DEVICE_UUID     @"CCIC2C.device.uuid"
+
+- (NSString *) getDeviceUUID{
+    UIDevice *device = [UIDevice currentDevice];
+    
+    NSError *err = nil;
+    NSString *uuid = [SSKeychain passwordForService: [self getBundleIdentifier]
+                                            account: ACCOUNT_DEVICE_UUID
+                                              error: &err];
+    if (!uuid && err && [err code] == errSecItemNotFound) {
+        uuid = [[device identifierForVendor] UUIDString];
+        NSString *mhuuid = [MHUtility uuid];
+        NSLog(@"uuid:%@", uuid);
+        NSLog(@"mhuuid: %@", mhuuid);
+
+        
+        [SSKeychain setPassword: uuid
+                     forService: [self getBundleIdentifier]
+                        account: ACCOUNT_DEVICE_UUID];
+    }
+    
+    return uuid;
+    
+}
+
+
+
+- (void)goToMessageCenter:(UIButton *)button {
+
+    NSLog(@"messsss");
+    
 }
 
 

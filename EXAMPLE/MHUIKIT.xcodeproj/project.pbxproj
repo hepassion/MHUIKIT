@@ -3,7 +3,7 @@
 	archiveVersion = 1;
 	classes = {
 	};
-	objectVersion = 50;
+	objectVersion = 51;
 	objects = {
 
 /* Begin PBXBuildFile section */
@@ -35,6 +35,7 @@
 		423C2D8721CB948C005EDE99 /* MHTestTableViewHeaderView.m in Sources */ = {isa = PBXBuildFile; fileRef = 423C2D8621CB948C005EDE99 /* MHTestTableViewHeaderView.m */; };
 		423C2D8F21CCC34B005EDE99 /* PDHttpClient.m in Sources */ = {isa = PBXBuildFile; fileRef = 423C2D8E21CCC34B005EDE99 /* PDHttpClient.m */; };
 		423C2D9221CCC47E005EDE99 /* MHErrorModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 423C2D9121CCC47E005EDE99 /* MHErrorModel.m */; };
+		42438A1722E95713007374F8 /* UsrModel+Category.m in Sources */ = {isa = PBXBuildFile; fileRef = 42438A1622E95713007374F8 /* UsrModel+Category.m */; };
 		426CEC79219BC674000FC911 /* pause@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 426CEC6E219BC674000FC911 /* pause@2x.png */; };
 		426CEC7A219BC674000FC911 /* play@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 426CEC6F219BC674000FC911 /* play@2x.png */; };
 		426CEC7B219BC674000FC911 /* knob.png in Resources */ = {isa = PBXBuildFile; fileRef = 426CEC70219BC674000FC911 /* knob.png */; };
@@ -47,8 +48,9 @@
 		426CEC82219BC674000FC911 /* SBControlView.m in Sources */ = {isa = PBXBuildFile; fileRef = 426CEC78219BC674000FC911 /* SBControlView.m */; };
 		4283BB19225CAC0E005C3074 /* accountSelect.png in Resources */ = {isa = PBXBuildFile; fileRef = 4283BB18225CAC0E005C3074 /* accountSelect.png */; };
 		42842C272283F1410081942E /* BaseMHHtmlViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 42842C262283F1410081942E /* BaseMHHtmlViewController.m */; };
+		42980EF022E549D100E2AED1 /* SortNetworkDataConstructor.m in Sources */ = {isa = PBXBuildFile; fileRef = 42980EEF22E549D100E2AED1 /* SortNetworkDataConstructor.m */; };
+		42980EF322E549E000E2AED1 /* SortViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 42980EF222E549E000E2AED1 /* SortViewController.m */; };
 		429A7543221A823600089E66 /* JavaScriptCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 429A7542221A823600089E66 /* JavaScriptCore.framework */; };
-		429A754A221A97CF00089E66 /* MHWebBrowserViewController+Inject.m in Sources */ = {isa = PBXBuildFile; fileRef = 429A7549221A97CF00089E66 /* MHWebBrowserViewController+Inject.m */; };
 		42A725C121E591A100FACA20 /* AppManger.m in Sources */ = {isa = PBXBuildFile; fileRef = 42A725C021E591A100FACA20 /* AppManger.m */; };
 		42A725C421E591E800FACA20 /* UsrModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 42A725C321E591E800FACA20 /* UsrModel.m */; };
 		42A725C721E5DE4B00FACA20 /* MHFileDataModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 42A725C621E5DE4B00FACA20 /* MHFileDataModel.m */; };
@@ -144,6 +146,9 @@
 		423C2D8E21CCC34B005EDE99 /* PDHttpClient.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = PDHttpClient.m; sourceTree = "<group>"; };
 		423C2D9021CCC47E005EDE99 /* MHErrorModel.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = MHErrorModel.h; sourceTree = "<group>"; };
 		423C2D9121CCC47E005EDE99 /* MHErrorModel.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = MHErrorModel.m; sourceTree = "<group>"; };
+		42438A1122E95568007374F8 /* UIColor+ffff.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "UIColor+ffff.h"; sourceTree = "<group>"; };
+		42438A1522E95713007374F8 /* UsrModel+Category.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "UsrModel+Category.h"; sourceTree = "<group>"; };
+		42438A1622E95713007374F8 /* UsrModel+Category.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = "UsrModel+Category.m"; sourceTree = "<group>"; };
 		426CEC6A219BC674000FC911 /* SBPauseOrPlayView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SBPauseOrPlayView.h; sourceTree = "<group>"; };
 		426CEC6B219BC674000FC911 /* SBPlayer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SBPlayer.h; sourceTree = "<group>"; };
 		426CEC6C219BC674000FC911 /* SBCommonHeader.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SBCommonHeader.h; sourceTree = "<group>"; };
@@ -161,9 +166,11 @@
 		4283BB18225CAC0E005C3074 /* accountSelect.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = accountSelect.png; sourceTree = "<group>"; };
 		42842C252283F1410081942E /* BaseMHHtmlViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = BaseMHHtmlViewController.h; sourceTree = "<group>"; };
 		42842C262283F1410081942E /* BaseMHHtmlViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = BaseMHHtmlViewController.m; sourceTree = "<group>"; };
+		42980EEE22E549D100E2AED1 /* SortNetworkDataConstructor.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = SortNetworkDataConstructor.h; sourceTree = "<group>"; };
+		42980EEF22E549D100E2AED1 /* SortNetworkDataConstructor.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = SortNetworkDataConstructor.m; sourceTree = "<group>"; };
+		42980EF122E549E000E2AED1 /* SortViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = SortViewController.h; sourceTree = "<group>"; };
+		42980EF222E549E000E2AED1 /* SortViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = SortViewController.m; sourceTree = "<group>"; };
 		429A7542221A823600089E66 /* JavaScriptCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = JavaScriptCore.framework; path = System/Library/Frameworks/JavaScriptCore.framework; sourceTree = SDKROOT; };
-		429A7548221A97CF00089E66 /* MHWebBrowserViewController+Inject.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "MHWebBrowserViewController+Inject.h"; sourceTree = "<group>"; };
-		429A7549221A97CF00089E66 /* MHWebBrowserViewController+Inject.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = "MHWebBrowserViewController+Inject.m"; sourceTree = "<group>"; };
 		42A3BA65216C8277006CD33F /* PrefixHeader.pch */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = PrefixHeader.pch; sourceTree = "<group>"; };
 		42A725BF21E591A100FACA20 /* AppManger.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppManger.h; sourceTree = "<group>"; };
 		42A725C021E591A100FACA20 /* AppManger.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AppManger.m; sourceTree = "<group>"; };
@@ -243,6 +250,7 @@
 				420227042175802D00D2B3A5 /* HomeDataConstructor.m */,
 				420227052175802D00D2B3A5 /* HomeViewController.h */,
 				420226FE2175802D00D2B3A5 /* HomeViewController.m */,
+				42980EED22E5499600E2AED1 /* sort */,
 				420226FF2175802D00D2B3A5 /* Lock */,
 				420227062175802D00D2B3A5 /* Block */,
 			);
@@ -342,10 +350,11 @@
 				4229DF9F215CA582002DE8BA /* AppConfigure.m */,
 				42A725BF21E591A100FACA20 /* AppManger.h */,
 				42A725C021E591A100FACA20 /* AppManger.m */,
+				42438A1122E95568007374F8 /* UIColor+ffff.h */,
 				42A725C221E591E800FACA20 /* UsrModel.h */,
 				42A725C321E591E800FACA20 /* UsrModel.m */,
-				429A7548221A97CF00089E66 /* MHWebBrowserViewController+Inject.h */,
-				429A7549221A97CF00089E66 /* MHWebBrowserViewController+Inject.m */,
+				42438A1522E95713007374F8 /* UsrModel+Category.h */,
+				42438A1622E95713007374F8 /* UsrModel+Category.m */,
 				42A3BA65216C8277006CD33F /* PrefixHeader.pch */,
 				42A725CE21E5E91200FACA20 /* Common.h */,
 				42DDDBC12193FD6A003C4E1E /* NSObject+Runtime.h */,
@@ -426,6 +435,17 @@
 				4283BB18225CAC0E005C3074 /* accountSelect.png */,
 			);
 			path = image;
+			sourceTree = "<group>";
+		};
+		42980EED22E5499600E2AED1 /* sort */ = {
+			isa = PBXGroup;
+			children = (
+				42980EEE22E549D100E2AED1 /* SortNetworkDataConstructor.h */,
+				42980EEF22E549D100E2AED1 /* SortNetworkDataConstructor.m */,
+				42980EF122E549E000E2AED1 /* SortViewController.h */,
+				42980EF222E549E000E2AED1 /* SortViewController.m */,
+			);
+			path = sort;
 			sourceTree = "<group>";
 		};
 		83E97A7D6A9AC31E5ADA6BCA /* Pods */ = {
@@ -635,6 +655,8 @@
 				4219600F214BA68500446DD9 /* main.m in Sources */,
 				4229DFA0215CA582002DE8BA /* AppConfigure.m in Sources */,
 				423C2D9221CCC47E005EDE99 /* MHErrorModel.m in Sources */,
+				42980EF022E549D100E2AED1 /* SortNetworkDataConstructor.m in Sources */,
+				42438A1722E95713007374F8 /* UsrModel+Category.m in Sources */,
 				420227262175802D00D2B3A5 /* ProductDataConstructor.m in Sources */,
 				4202273A2178876100D2B3A5 /* UIViewController+Exception.m in Sources */,
 				4202271F2175802D00D2B3A5 /* LockDataConstructor.m in Sources */,
@@ -656,7 +678,7 @@
 				420227242175802D00D2B3A5 /* BaseTableViewController.m in Sources */,
 				42DDDBC22193FD6A003C4E1E /* NSObject+Runtime.m in Sources */,
 				42196001214BA68300446DD9 /* AppDelegate.m in Sources */,
-				429A754A221A97CF00089E66 /* MHWebBrowserViewController+Inject.m in Sources */,
+				42980EF322E549E000E2AED1 /* SortViewController.m in Sources */,
 				4202271E2175802D00D2B3A5 /* HomeViewController.m in Sources */,
 				42A725C421E591E800FACA20 /* UsrModel.m in Sources */,
 				420227202175802D00D2B3A5 /* LockViewController.m in Sources */,

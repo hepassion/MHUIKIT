@@ -23,7 +23,13 @@
     [self.items addObject:model];
     
     
-    
+    model = [MHTitleDataModel new];
+    model.content = @"showBack";
+    model.cellClass = [MHTitleTableViewCell class];
+    model.cellType  = @"cell.type.showBack";
+    model.cellHeight = @([MHTitleTableViewCell heightForCell]);
+    model.delegate = self.viewControllerDelegate;
+    [self.items addObject:model];
     
 }
 

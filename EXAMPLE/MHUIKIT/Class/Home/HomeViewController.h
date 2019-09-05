@@ -10,4 +10,7 @@
 
 @interface HomeViewController : BaseTableViewController
 
+@property (atomic, strong) NSString *name ;
+
+
 @end

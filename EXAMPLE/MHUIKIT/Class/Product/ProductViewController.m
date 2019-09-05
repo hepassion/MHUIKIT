@@ -37,10 +37,6 @@
 }
 
 
-- (NSString *)getNavigationTitle {
-    return @"product";
-}
-
 
 #pragma mark NVTableViewAdaptor Delegate
 

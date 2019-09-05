@@ -20,11 +20,14 @@
 #define         POST              @"POST"
 #define         UPLOAD            @"UPLOAD"
 
+typedef void(^Block)();
 
 
 
 @interface PDHttpClient : NSObject
 + (instancetype)sharedInstance;
+@property (nonatomic, copy) Block block;
+@property (nonatomic, assign) BOOL isRefreshToken;
 
 @property (nonatomic, strong) NSString *baseURL;
 

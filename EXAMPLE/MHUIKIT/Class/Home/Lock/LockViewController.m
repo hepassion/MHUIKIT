@@ -8,6 +8,7 @@
 
 #import "LockViewController.h"
 #import "LockDataConstructor.h"
+#import "SortViewController.h"
 @interface LockViewController ()
 
 @property (nonatomic, strong) LockDataConstructor *dataConstructor;
@@ -22,6 +23,11 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
+    self.config.navigationTitle = @"我的";
+    self.config.hidenBackButton =  NO;
+    self.config.navigationBarLeftTitle = @"取消哈哈哈";
+    self.config.navigationBarRightTitle = @"右侧按钮";
+//    self.config.navigationBarRightImage = @"accountSelect";
 //  7  @synchronized
 //  4   NSLock 对象锁
 //  6 NSRecursiveLock 递归锁 NSRecursiveLock类定义的锁可以在同一线程多次lock，而不会造成死锁。
@@ -42,11 +48,19 @@
     NSString *cellType = object.cellType;
     
     if ([cellType isEqualToString:@"cell.type.synchronized"]) {
+        self.config.hidenBackButton = YES;
+        [self relodNavigationBar];
         if (self.completion) {
             self.completion(YES, @"lockvc");
         }
-    
-      
+    } else if ([cellType isEqualToString:@"cell.type.showBack"]) {
+//        self.config.hidenBackButton = NO;
+//        [self relodNavigationBar];
+        
+        
+        SortViewController *sortVC  = [SortViewController new];
+        [self.navigationController pushViewController:sortVC animated:YES];
+        
     }
     
     
@@ -65,9 +79,6 @@
     [self.uiTableView reloadData];
 }
 
-- (NSString *)getNavigationTitle {
-    return @"lock test";
-}
 - (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];
     // Dispose of any resources that can be recreated.

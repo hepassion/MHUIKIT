@@ -44,13 +44,6 @@
     
 }
 
-- (BOOL)getCustomNavigationBar {
-    return NO;
-}
-
-- (BOOL)getNavigationBarEdgePanBack {
-    return YES;
-}
 
 
 - (void) constructData {
@@ -65,9 +58,6 @@
     [self.uiTableView reloadData];
 }
 
-- (NSString *)getNavigationTitle {
-    return @"block test";
-}
 
 - (void)viewDidDisappear:(BOOL)animated {
     [super viewDidDisappear:animated];

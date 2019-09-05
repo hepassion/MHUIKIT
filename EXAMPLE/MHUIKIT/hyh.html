@@ -18,7 +18,10 @@
             }
         
             setupWebViewJavascriptBridge(function(bridge) {
-                                  
+                                         bridge.registerHandler('OCcalljs', function(data, responseCallback) {
+                                                                var responseData = 'js返回值'
+                                                                responseCallback(responseData)
+                                                    })
                                      })
             // alert/prompt/confirm
 			function onClicked () {
@@ -43,9 +46,29 @@
             }
 			
             function JSToOC2 () {
-              WebViewJavascriptBridge.callHandler('jsoc2', {'name': 'Tony'}, function(response) {
-                                          alert('OC返回结果:' + response['name']);
-                        })
+                var data = {
+                    'OPERATION_TYPE':'CHANGE_NAV',
+                    'params':{
+                        'navBackColor':'#3d9dff',
+                        'titleColor':'#ffffff',
+                        'backBtnColor':'#ffffff',
+                        'showLeft':true,
+                        'showRight':true,
+                        'left':{
+                            'type':1,
+                            'title':'取消'
+                        },
+                        'right':{
+                            'type':2,
+                            'img':'http://d.hiphotos.baidu.com/image/h%3D300/sign=fa89f3be5c66d01661199828a72ad498/8601a18b87d6277f5d7d424b26381f30e924fc52.jpg'
+                            
+                        }
+                    }
+                }
+                
+              WebViewJavascriptBridge.callHandler('jsoc2', data, function(response) {
+                                                  alert(response);
+                                                  })
             }
         
           
