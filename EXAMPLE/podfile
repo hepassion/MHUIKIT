@@ -1,6 +1,12 @@
+
+#source 'https://github.com/git.coding.net/Specs.git'
+
+source 'https://github.com/CocoaPods/Specs.git'
+
+
 target :MHUIKIT do
     
-   pod 'MHUIKIT', ' 0.8.0'
+   pod 'MHUIKIT', ' 0.8.5'
    pod 'MJRefresh', '~> 3.1.15.7'
    # pod 'VideoPlayerKit', '~> 1.0.0'
    pod 'Masonry', '~> 1.1.0'
@@ -15,4 +21,11 @@ target :MHUIKIT do
     pod 'XMTXCustomKeyBoard', '~> 1.1.3'
     pod 'ReactiveObjC', '~> 2.1.0’
 pod 'Masonry'
+pod 'YYText', '~> 1.0.7'
+
+pod 'GTSDK'
+pod 'MMNetworkingKit', '~> 0.0.1'
+
 end
+
+
