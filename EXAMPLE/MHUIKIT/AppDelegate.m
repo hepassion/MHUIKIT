@@ -35,7 +35,7 @@
 
     
 
-    [MHDubugger Debug];
+//    [MHDubugger Debug];
     
     self.window = [[UIWindow alloc] initWithFrame:[UIScreen mainScreen].bounds];
     self.window.backgroundColor =  [UIColor whiteColor];
